@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('fonts/proza-libre/ProzaLibre-SemiBoldItalic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Aplicar la fuente a Bootstrap */
+  body {
+    font-family: 'Proza Libre', sans-serif;
+  }
+
+  :root {
+    --bs-body-font-family: 'Proza Libre', sans-serif;
+  }
+
+  .imageninicio{
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+        
+        /* Soporte para WebKit (Chrome, Safari) */
+        -webkit-mask-image: linear-gradient(black 89%, transparent),
+                            linear-gradient(to left, black 20%, transparent);
+        -webkit-mask-composite: intersect;
+        
+        /* Soporte para otros navegadores */
+        mask-image: linear-gradient(black 89%, transparent),
+                    linear-gradient(to left, black 20%, transparent);
+        mask-composite: intersect;
+  }
+
+body{
+
+  z-index: -2;
+  background-color: #100f18; /* bg-neutral-950 */
+  background-image: radial-gradient(
+    ellipse 80% 80% at 50% -20%,
+    rgba(0, 0, 0, 0.096),
+    rgba(255, 255, 255, 0)
+  )
+}
+
+.tarjetamedio{
+background: rgba(255, 255, 255, 0.04);
+border-radius: 10px 100px 10px 150px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(17.5px);
+-webkit-backdrop-filter: blur(17.5px);
+z-index: -100;
+}
