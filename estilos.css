@@ -4,8 +4,7 @@
     font-weight: normal;
     font-style: normal;
   }
-  
-  /* Aplicar la fuente a Bootstrap */
+
   body {
     font-family: 'Proza Libre', sans-serif;
   }
@@ -19,16 +18,14 @@
         height: auto;
         filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
         
-        /* Soporte para WebKit (Chrome, Safari) */
         -webkit-mask-image: linear-gradient(black 89%, transparent),
                             linear-gradient(to left, black 20%, transparent);
         -webkit-mask-composite: intersect;
         
-        /* Soporte para otros navegadores */
         mask-image: linear-gradient(black 89%, transparent),
                     linear-gradient(to left, black 20%, transparent);
         mask-composite: intersect;
-        animation: parpadeo 2.5s infinite alternate ease-in-out;
+        animation: parpadeo 2xs infinite alternate ease-in-out;
   }
 
 body{
@@ -60,15 +57,17 @@ backdrop-filter: blur(17.5px);
 
 @keyframes parpadeo {
   0% {
+
     opacity: 1;
     transform: translateY(0);
 }
 50% {
     opacity: 0.2;
-    transform: translateY(-3px); /* Sube un poco */
+    transform: translateY(-3px); 
 }
 100% {
     opacity: 0.3;
-    transform: translateY(-5px); /* Sube más */
+    transform: translateY(-5px); 
 }
+
 }
