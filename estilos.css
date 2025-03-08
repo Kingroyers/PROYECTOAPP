@@ -25,7 +25,7 @@
         mask-image: linear-gradient(black 89%, transparent),
                     linear-gradient(to left, black 20%, transparent);
         mask-composite: intersect;
-        animation: parpadeo 2xs infinite alternate ease-in-out;
+        animation: parpadeo 2s infinite alternate ease-in-out;
   }
 
 body{
