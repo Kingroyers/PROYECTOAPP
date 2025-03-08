@@ -28,6 +28,7 @@
         mask-image: linear-gradient(black 89%, transparent),
                     linear-gradient(to left, black 20%, transparent);
         mask-composite: intersect;
+        animation: parpadeo 2.5s infinite alternate ease-in-out;
   }
 
 body{
@@ -55,4 +56,19 @@ backdrop-filter: blur(30px);
 background: rgba(255, 255, 255, 0.04);
 backdrop-filter: blur(17.5px);
 -webkit-backdrop-filter: blur(17.5px);
+}
+
+@keyframes parpadeo {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+}
+50% {
+    opacity: 0.2;
+    transform: translateY(-3px); /* Sube un poco */
+}
+100% {
+    opacity: 0.3;
+    transform: translateY(-5px); /* Sube más */
+}
 }
