@@ -29,7 +29,6 @@
   }
 
 body{
-
   z-index: -2;
   background-color: #100f18; /* bg-neutral-950 */
   background-image: radial-gradient(
@@ -70,4 +69,11 @@ backdrop-filter: blur(17.5px);
     transform: translateY(-5px); 
 }
 
+}
+
+.custom-navbar a{
+  transition: all 0.5s ease;
+}
+.custom-navbar a:hover{
+  transform: translateY(-10px);
 }
