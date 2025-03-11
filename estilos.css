@@ -11,6 +11,11 @@
 
   :root {
     --bs-body-font-family: 'Proza Libre', sans-serif;
+    --color-claro: #8689AC;
+    --color-2: #587099;
+    --color-3: #3F5576;
+    --color-4: #2F3148;
+    --color-dark: #101116;
   }
 
   .imageninicio{
@@ -74,6 +79,18 @@ backdrop-filter: blur(17.5px);
 .custom-navbar a{
   transition: all 0.5s ease;
 }
+.custom-navbar a img{
+  width: 27px;
+
+}
 .custom-navbar a:hover{
   transform: translateY(-10px);
+  background-color: #8689ac34;
+  border-radius: 50%;
+  padding: 1em;
+}
+.pagina-inicial{
+  background-color: #8689ac34;
+  border-radius: 50%;
+  padding: 1em;
 }
