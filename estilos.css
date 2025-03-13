@@ -66,12 +66,12 @@ body {
   }
 
   50% {
-    opacity: 0.2;
+    opacity: 0.5;
     transform: translateY(-3px);
   }
 
   100% {
-    opacity: 0.3;
+    opacity: 0.9;
     transform: translateY(-5px);
   }
 
