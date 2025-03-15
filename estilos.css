@@ -106,3 +106,8 @@ body {
   border-radius: 50%;
   padding: 1em;
 }
+
+.wapper::-webkit-scrollbar{
+  width: 0;
+  display: none;
+}
