@@ -1,16 +1,16 @@
 @font-face {
-  font-family: 'Proza Libre';
-  src: url('fonts/proza-libre/ProzaLibre-SemiBoldItalic.woff2') format('woff2');
+  font-family: 'Valorant';
+  src: url("fonts/Valorant-Font.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: 'Proza Libre', sans-serif;
+  font-family: var(--font-valorant);
 }
 
 :root {
-  --bs-body-font-family: 'Proza Libre', sans-serif;
+  --font-valorant: 'Valorant', sans-serif;
   --color-claro: #8689AC;
   --color-2: #587099;
   --color-3: #3F5576;
@@ -110,4 +110,13 @@ body {
 .wapper::-webkit-scrollbar{
   width: 0;
   display: none;
+}
+
+.cartas-rutinas{
+  transition: transform 0.3s ease-in-out;
+  background: transparent;
+}
+.cartas-rutinas:hover{
+  transform: scale(1.1);
+
 }
