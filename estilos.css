@@ -107,8 +107,8 @@ body {
   padding: 1em;
 }
 
-.wapper::-webkit-scrollbar{
-  width: 0;
+.wrapper::-webkit-scrollbar{
+  
   display: none;
 }
 
