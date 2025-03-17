@@ -120,3 +120,12 @@ body {
   transform: scale(1.1);
 
 }
+
+.fondo-rutina{
+  background-image: url('/img/3d-render-grunge-style-room-with-foggy-atmosphere.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -100;
+  
+  background-repeat: no-repeat;
+}
