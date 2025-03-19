@@ -129,3 +129,16 @@ body {
   
   background-repeat: no-repeat;
 }
+
+.custom-proximas-clases{
+  min-width: 150px; 
+  height: 60px; 
+  text-align: center; 
+  margin-right: 5px; 
+  box-sizing: content-box; 
+  overflow: hidden; 
+  display: flex; 
+  justify-content: center; 
+  border-radius: 20px; 
+  border: 1px solid #7a7a7a;
+}
