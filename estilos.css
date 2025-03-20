@@ -82,7 +82,7 @@ body {
 
 .custom-navbar {
   background: rgba(241, 240, 240, 0.11);
-  
+  z-index: 10000;
   backdrop-filter: blur(20.5px);
   -webkit-backdrop-filter: blur(30.5px);
   border-radius: 10px;
@@ -139,6 +139,7 @@ body {
   justify-content: center; 
   border-radius: 20px; 
   border: 1px solid #7a7a7a;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(13, 12, 110, 0.3) 0px 7px 13px -3px, rgba(16, 9, 83, 0.2) 0px -3px 0px inset;
 }
 
 .custom-entrenadores{
