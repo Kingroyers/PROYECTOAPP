@@ -11,7 +11,7 @@
 
 <body class="position-relative d-flex justify-content-center align-items-center">
 
-    <a href="../index.html" class="position-absolute top-0 my-4" style="z-index: 100; text-decoration: none; color: #fff;"><img src="../src/img/inconos/logo.png" alt="">FITNESS LIFE</a>
+    <a href="../index.php" class="position-absolute top-0 my-4" style="z-index: 100; text-decoration: none; color: #fff;"><img src="../src/img/inconos/logo.png" alt="">FITNESS LIFE</a>
 
     <div class=" d-flex justify-content-center align-items-center" style="background-color: #101116; width: 100vh; height: 100vh;">
           
