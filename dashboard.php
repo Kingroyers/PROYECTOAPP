@@ -23,7 +23,7 @@
             <main style="height: auto">
 
 
-                <p style="margin: 30px 0 0 10px;">proximas clases</p>
+                <a href="View/ClasesView.php" class="text-black text-decoration-none"><p style="margin: 30px 0 0 10px;">proximas clases</p></a>
                 <hr style="margin: 0;">
 
                 <div class="row d-flex justify-content-center align-content-center" style=" margin-top: 0; padding: 0 0 10px 0;">
