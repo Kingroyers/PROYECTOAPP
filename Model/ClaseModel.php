@@ -1,28 +1,26 @@
 <?php
+require_once "conexionbd.php"; 
 
-require_once __DIR__ . "/../../config/database.php"; // Cambia la ruta según tu estructura de carpetas
-//__DIR__ es una constante mágica que devuelve la ruta del directorio actual del archivo 
-
-class ClaseModel{
-    private $db;
-
-    public function __construct(){
-        $this->db = new ConexionBD(); // Instancia de la clase ConexionBD
-    }
+class ModeloClases {
 
     public function obtenerClases() {
-        // $sql = "SELECT * FROM clases ORDER BY fecha_hora ASC";
-        // $result = $this->db->query($sql);
-        // $clases = [];
+        $conexion = new ConexionBD();
 
-        // while ($row = $result->fetch_assoc()) {
-        //     $clases[] = $row;
-        // }
-        // return $clases;
+        $db = $conexion->getConexion(); 
+
+        $sql = "SELECT * FROM clases ORDER BY fecha, horario ASC";
+        $result = $db->query($sql);
+
+        $clases = [];
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $clases[] = $row;
+            }
+        } else {
+            die("Error en la consulta: " . $db->error);
+        }
+
+        return $clases;
     }
 }
-
-
-
-
 ?>

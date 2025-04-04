@@ -27,7 +27,7 @@
                 
                   <div class="d-flex mt-4 justify-content-center">
                     <a href="../ProyectoAPP/View/login.php"><button class="btn btn-outline-light px-4 py-2 rounded-" style="border-radius:  0 0 0 30px;">Iniciar</button></a>
-                    <a href="/View/Register.html"><button class="btn btn-outline-light px-4 py-2 rounded-top-end" style="border-radius:  0 30px 0 0;">Resgistrar</button></a>
+                    <a href="../ProyectoAPP/View/Register.html"><button class="btn btn-outline-light px-4 py-2 rounded-top-end" style="border-radius:  0 30px 0 0;">Resgistrar</button></a>
                   </div>
                 </div>
                 

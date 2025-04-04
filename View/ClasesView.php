@@ -13,6 +13,20 @@
     <!---Barra principal-->
     <?php include '../View/componentes/barraPrincipal.html' ?>
 
+    <div class="container mt-5">
+    <h2>Clases Disponibles</h2>
+
+    <div class="col-12 d-flex flex-wrap" style="border: 1px solid;">
+       
+    
+    <?php
+        require_once "../Controller/ClaseController.php"; // Asegúrate de que la ruta sea correcta
+        $claseController = new ClaseController();
+        $claseController->obtenerClases(); // Llama al método para mostrar las clases
+        ?>
+    
+    </div>
+</div>
 
 
 
