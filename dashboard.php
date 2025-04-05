@@ -23,12 +23,13 @@
             <main style="height: auto">
 
 
-                <a href="View/ClasesView.php" class="text-black text-decoration-none"><p style="margin: 30px 0 0 10px;">proximas clases</p></a>
+                <a href="View/ClasesView.php" class="text-black text-decoration-none">
+                    <p style="margin: 30px 0 0 10px;">proximas clases</p></a>
                 <hr style="margin: 0;">
 
                 <div class="row d-flex justify-content-center align-content-center" style=" margin-top: 0; padding: 0 0 10px 0;">
                     
-                    <?php include '../ProyectoAPP/View/componentes/ProximasClases.html' ?>
+                    <?php include '../ProyectoAPP/View/componentes/ProximasClases.php' ?>
 
 
                     <p style="margin: 10px 0 10px 0;">Nuestra coleccion</p>

@@ -2,8 +2,18 @@
 
     <div class="wrapper d-flex" style="max-height: 120px;  overflow-x: auto; height: 77px;">
 
+        <?php 
+       require_once "../ProyectoAPP/Controller/ClaseController.php";
+        
+        $claseController = new ClaseController();
+        $claseController->mostrarClasesDashboard();
+        $icons_yoga = ""; 
+        
+        ?>
 
-        <a href="#" style="text-decoration: none; color: #000;">
+
+
+        <!-- <a href="#" style="text-decoration: none; color: #000;">
             <div class="custom-proximas-clases item">
 
                 <div class="row" style=" width: 100%;">
@@ -156,8 +166,9 @@
                 </div>
 
             </div>
-        </a>
+        </a> -->
 
+        
 
     </div>
 </div>
