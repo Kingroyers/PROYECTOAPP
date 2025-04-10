@@ -5,22 +5,34 @@ class ModeloClases {
 
     public function obtenerClases() {
         $conexion = new ConexionBD();
+        $db = $conexion->getConexion();
 
-        $db = $conexion->getConexion(); 
-
-        $sql = "SELECT * FROM clases ORDER BY fecha, horario ASC";
+        $sql = "SELECT * FROM clases ORDER BY fecha >= CURDATE() DESC, fecha DESC, horario DESC;";
         $result = $db->query($sql);
 
         $clases = [];
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $clases[] = $row;
-            }
-        } else {
-            die("Error en la consulta: " . $db->error);
+
+        while ($row = $result->fetch_assoc()) {
+            $clases[] = $row;
         }
 
         return $clases;
     }
+
+    public function obtenerClasesOrdenadas() {
+        $conexion = new ConexionBD();
+        $db = $conexion->getConexion();
+
+        $sql = "SELECT * FROM clases ORDER BY fecha >= CURDATE() DESC, fecha DESC, horario DESC;";
+        $result = $db->query($sql);
+
+        $clases = [];
+        while ($row = $result->fetch_assoc()) {
+            $clases[] = $row;
+        }
+
+        return $clases;
+    }
+  
 }
 ?>

@@ -1,94 +1,62 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../Model/ClaseModel.php');
 
-
-
-
-class ClaseController
-{
+class ClaseController{
     private $modelo;
 
-    public function obtenerClases()
+    public function mostrarClasesHoy() 
     {
-        $conexion = new ConexionBD();
-        $db = $conexion->getConexion();
+        $modelo = new ModeloClases();
+        $clases = $modelo->obtenerClases();
 
-        // Consultar todas las clases ordenadas por fecha y hora
-        $sql = "SELECT * FROM clases ORDER BY fecha >= CURDATE() DESC, fecha DESC, horario DESC;";
-        $result = $db->query($sql);
+        date_default_timezone_set('America/Bogota');
+        $fecha_actual = date('Y-m-d');
+        $actual_timestamp = strtotime(date('Y-m-d H:i'));
 
-        while ($row = $result->fetch_assoc()) { //fetch_assoc() obtiene una fila como un array asociativo
+        foreach ($clases as $row) {
+            if ($row['fecha'] != $fecha_actual) continue;
+
+            // Icono según tipo de clase
             $icon = "bi-calendar-check";
-            if (strtolower($row['nombre_clase']) == "yoga") $icon = "src/img/icons-yoga.png";
-            if (strtolower($row['nombre_clase']) == "zumba") $icon = "src/img/inconos/icons-zumba.png";
-            if (strtolower($row['nombre_clase']) == "boxing") $icon = "src/img/inconos/icons-boxing.png";
-            if (strtolower($row['nombre_clase']) == "cardio") $icon = "src/img/running.png";
-
-            $imagenEntrenador = "src/img/Entrenador4.png";
-
-            switch (strtolower($row['entrenador'])) {
-                case "antonio royero":
-                    $imagenEntrenador = "src/img/Entrenador3.png";
-                    break;
-                case "samuel alzate":
-                    $imagenEntrenador = "src/img/entrenadorcopia.png";
-                    break;
-                case "uso carruso":
-                    $imagenEntrenador = "src/img/entrenador.png";
-                    break;
-                // Agrega más casos según sea necesario
-                default:
-                    $imagenEntrenador = "default.jpg";
-                    break;
+            switch (strtolower($row['nombre_clase'])) {
+                case "yoga": $icon = "src/img/icons-yoga.png"; break;
+                case "zumba": $icon = "src/img/inconos/icons-zumba.png"; break;
+                case "boxing": $icon = "src/img/inconos/icons-boxing.png"; break;
+                case "cardio": $icon = "src/img/running.png"; break;
             }
 
-            date_default_timezone_set('America/Bogota');
+            // Imagen del entrenador
+            $imagenEntrenador = match (strtolower($row['entrenador'])) {
+                "antonio royero" => "src/img/Entrenador3.png",
+                "samuel alzate" => "src/img/entrenadorcopia.png",
+                "uso carruso"   => "src/img/entrenador.png",
+                default         => "default.jpg"
+            };
 
-            // Convierte los valores de la base de datos a timestamp
-            $fecha_clase = strtotime($row['fecha']);
+            // Estado de la clase
             $horario_clase = strtotime($row['fecha'] . ' ' . $row['horario']);
+            $estado = $horario_clase < $actual_timestamp
+                ? "<button class='btn btn-secondary' disabled>Clase Finalizada</button>"
+                : "<a href='inscribirse.php?id={$row['fecha']}' class='btn btn-success'>Inscribirse</a>";
 
-            // Fecha y hora actual como timestamp
-            $actual_timestamp = strtotime(date('Y-m-d H:i'));
+            // Mostrar HTML
+            echo "
+            <div class='col-12 d-flex col-md-5 p-3 justify-align-content-between' style='margin:4px 4px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>
 
-            if ($horario_clase < $actual_timestamp) {
-                $estado = "<button class='btn btn-secondary' disabled>Clase Finalizada</button>";
-            } else {
-                $estado = "<a href='inscribirse.php?id={$row['fecha']}' class='btn btn-success'>Inscribirse</a>";
-            }
+                <div class='col-5 d-flex justify-content-center align-items-center position-relative'>
+                    <img src='$imagenEntrenador' alt='Imagen' class='img-fluid position-absolute bottom-0' width='100%'>
+                    <img src='$icon' alt='icono' class='img-fluid' style='width: 40px; height: 40px; position: absolute; top: 10px; left: 10px;'>
+                </div>
 
-            $fecha_actual = date('Y-m-d');
-
-
-
-
-            if ($row['fecha'] == $fecha_actual) {
-
-                echo "
-                  
-                <div class='col-12 d-flex col-md-5 p-3 justify-align-content-between' style='margin:4px 4px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>
-
-                    <div class='col-5  d-flex justify-content-center align-items-center position-relative' style=''>
-
-                       <img src='$imagenEntrenador' alt='Imagen' class='img-fluid position-absolute bottom-0' style='box-sizing: conten-box;' width='100%'>
-                        
-                       <img src='$icon' alt='icono' class='img-fluid' style='width: 40px; height: 40px; position: absolute; top: 10px; left: 10px;'>
-
-                    </div>
-
-                    <div class='col-6 d-flex flex-column justify-content-center align-align-items-center'>
-
-                     
+                <div class='col-6 d-flex flex-column justify-content-center align-align-items-center'>
                     <h5 class='align-self-center'>{$row['nombre_clase']}</h5>
                     <p>Entrenador: {$row['entrenador']}</p>
                     <p>Fecha: {$row['fecha']}</p>
-                    <p>hora: {$row['horario']}</p>
-                     $estado
+                    <p>Hora: {$row['horario']}</p>
+                    $estado
+                </div>
 
-                     </div>
-
-                    </div>";
-            }
+            </div>";
         }
     }
 
@@ -119,19 +87,20 @@ class ClaseController
         echo "</div>";
     }
 
-    public function mostrarClasesDashboard()
-    {
-        $conexion = new ConexionBD();
-        $db = $conexion->getConexion();
+    public function mostrarClasesDashboard() {
+        $modelo = new ModeloClases();
+        $clases = $modelo->obtenerClasesOrdenadas();
 
-        $sql = "SELECT * FROM clases ORDER BY fecha >= CURDATE() DESC, fecha DESC, horario DESC;";
+        date_default_timezone_set('America/Bogota');
+        $fecha_actual = date('Y-m-d');
+        $actual_timestamp = strtotime(date('Y-m-d H:i'));
 
-        $result = $db->query($sql);
+        foreach ($clases as $row) {
+            if ($row['fecha'] != $fecha_actual) continue;
 
-        while ($row = $result->fetch_assoc()) {
             $nombre_clase = strtolower($row['nombre_clase']);
 
-
+            
             switch ($nombre_clase) {
                 case 'yoga':
                     $icon = 'src/img/Icons-Yoga.png';
@@ -160,45 +129,27 @@ class ClaseController
                     break;
             }
 
-
-            $fecha_clase = strtotime($row['fecha']);
-            $horario_clase = strtotime($row['horario']);
-
-            date_default_timezone_set('America/Bogota');
-
-            // Convierte los valores de la base de datos a timestamp
-            $fecha_clase = strtotime($row['fecha']);
             $horario_clase = strtotime($row['fecha'] . ' ' . $row['horario']);
-
-
-            $actual_timestamp = strtotime(date('Y-m-d H:i'));
-
             if ($horario_clase < $actual_timestamp) {
                 $estado = "pointer-events: none; opacity: 0.5;";
             } else {
                 $estado = "pointer-events: auto; opacity: 1;";
             }
 
-            $fecha_actual = date('Y-m-d');
-
-
-
-            if ($row['fecha'] == $fecha_actual) {
-
-                if ($row['fecha'] == $fecha_actual) {
-                    echo "
-                    <div class='custom-proximas-clases item'>
-                        <div class='row' style='width: 100%; $estado;'>
-                            <div class='col-4' style='display: flex; padding: 0; justify-content: center; align-items: center;'>
-                                <img src='$icon' alt='icono' style='width: 40px; height: 40px;'>
-                            </div>
-                            <div class='col-8' style='display: flex; justify-content: center; align-items: center;'>
-                                <h6>{$row['nombre_clase']}</h6>
-                            </div>
-                        </div>
-                    </div>";
-                }
-            }
+            echo "
+            <div class='custom-proximas-clases item'>
+                <div class='row' style='width: 100%; $estado;'>
+                    <div class='col-4' style='display: flex; padding: 0; justify-content: center; align-items: center;'>
+                        <img src='$icon' alt='icono' style='width: 40px; height: 40px;'>
+                    </div>
+                    <div class='col-8' style='display: flex; justify-content: center; align-items: center;'>
+                        <h6>{$row['nombre_clase']}</h6>
+                    </div>
+                </div>
+            </div>";
         }
     }
+
+    
 }
+

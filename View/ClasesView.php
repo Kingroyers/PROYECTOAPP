@@ -63,7 +63,7 @@
             <?php
             require_once "../Controller/ClaseController.php"; 
             $claseController = new ClaseController();
-            $claseController->obtenerClases(); 
+            $claseController->mostrarClasesHoy(); 
             ?>
 
         </div>
