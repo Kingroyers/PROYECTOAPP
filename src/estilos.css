@@ -157,6 +157,9 @@ body {
   border-radius: 20px; 
   border: 1px solid #7a7a7a;
 }
+input{
+  font-size: 10px;
+}
 
 input::placeholder{
   color: #7a7a7a13;
