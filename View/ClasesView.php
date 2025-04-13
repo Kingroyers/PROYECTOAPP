@@ -46,18 +46,20 @@
     
     <?php include '../View/componentes/barraPrincipal.html' ?>
 
-    <div class='d-flex justify-content-center overflow-x-auto p-2' style='width: 100%; padding: 1em; scrollbar-width: none; '>
+    <div class='d-flex justify-content-center overflow-x-auto p-2' id="semana" style='width: 100%; padding: 1em; scrollbar-width: none; '>
         <?php
         require_once "../Controller/ClaseController.php";
         $claseController = new ClaseController();
         $claseController->ObtenerDiaSemana();
         ?>
     </div>
+    
 
     <div class="container mt-5">
         <h2>Clases De la semana</h2>
+        <hr>
 
-        <div class="col-12 d-flex flex-wrap">
+        <div class="col-12 d-flex flex-wrap mb-5">
 
 
             <?php
