@@ -38,15 +38,19 @@
                     <div class="row" style="padding: 1em; justify-self: center; ">
 
 
-                        <figure class="cartas-rutinas col-12 col-sm-4">
+                        <figure class="cartas-rutinas col-12 col-sm-4" style="position: relative;">
                             <a href="https://www.youtube.com/watch?v=oCtrksNCiKk"
                                 style="color: #101116; text-decoration: none;">
                                 <div class="fondo-rutina col10 col-md-4 d-flex flex-row justify-content-between" style="border-radius: 10px; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
                                     <div class="" style=" margin: 10px 10px ; z-index: 100;">
-                                        <p style="margin-top: 70px; margin-left: 10px; color: #fff; font-size: 20px;">
+                                        <p style="margin-top: 60px; margin-left: 10px; margin-bottom: 10px; color: #fff; font-size: 20px;">
                                             Espalda y Hombros</p>
 
+                                    </div>
+                                    <div class="" style="position: absolute; bottom: 10px; left: 17px; color: #fff; font-size: 10px;" >
+                                        <img src="src/img/inconos/IonTime.png" alt="icono time" style="width: 20px;"> 5:08m
+                                        <img src="src/img/inconos/MdiStar.png" alt="icono star" style="width: 20px;"> 4.5
                                     </div>
 
                                     <div class="position-relative"><img class="img-fluid
@@ -57,15 +61,19 @@
                             </a>
                         </figure>
 
-                        <figure class="cartas-rutinas col-12 col-sm-4">
+                        <figure class="cartas-rutinas col-12 col-sm-4" >
                             <a href="https://www.youtube.com/watch?v=VB09kLgJDo0"  style="color: #101116; text-decoration: none;">
                                 <div class="fondo-rutina  col10 col-md-4 d-flex flex-row justify-content-between" style=" max-height: 160px; border-radius: 10px; background-color: #101116; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
                                     <div class=" d-flex flex-wrap" style=" margin: 10px 10px ; z-index: 100;">
                                         <p class="text-white"
-                                            style="margin-top: 70px; margin-left: 10px; font-size: 20px;">Pecho y
+                                            style="margin-top: 60px; margin-left: 10px; font-size: 20px;">Pecho y
                                             Abdomen</p>
 
+                                    </div>
+                                    <div class="" style="position: absolute; bottom: 10px; left: 17px; color: #fff; font-size: 10px;" >
+                                        <img src="src/img/inconos/IonTime.png" alt="icono time" style="width: 20px;"> 4:53m
+                                        <img src="src/img/inconos/MdiStar.png" alt="icono star" style="width: 20px;"> 4
                                     </div>
 
                                     <div class="position-relative"><img class="img-fluid
@@ -82,9 +90,13 @@
                                 <div class="fondo-rutina col10 col-md-4 d-flex flex-row justify-content-between"  style="border-radius: 10px; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
                                     <div class="" style=" margin: 10px 10px ; z-index: 100;">
-                                        <p style="margin-top: 70px; margin-left: 10px; color: #fff; font-size: 20px;">
+                                        <p style="margin-top: 60px; margin-left: 10px; color: #fff; font-size: 20px;">
                                             Brazo</p>
 
+                                    </div>
+                                    <div class="" style="position: absolute; bottom: 10px; left: 17px; color: #fff; font-size: 10px;" >
+                                        <img src="src/img/inconos/IonTime.png" alt="icono time" style="width: 20px;"> 8:18m
+                                        <img src="src/img/inconos/MdiStar.png" alt="icono star" style="width: 20px;"> 5
                                     </div>
 
                                     <div class="position-relative"><img class="img-fluid
@@ -103,9 +115,13 @@
                                     style="border-radius: 10px; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
                                     <div class="" style=" margin: 10px 10px ; z-index: 100;">
-                                        <p style="margin-top: 70px; margin-left: 10px; color: #fff; font-size: 20px;">
+                                        <p style="margin-top: 60px; margin-left: 10px; color: #fff; font-size: 20px;">
                                             Pierna y Gluteos</p>
 
+                                    </div>
+                                    <div class="" style="position: absolute; bottom: 10px; left: 17px; color: #fff; font-size: 10px;" >
+                                        <img src="src/img/inconos/IonTime.png" alt="icono time" style="width: 20px;"> 7:13m
+                                        <img src="src/img/inconos/MdiStar.png" alt="icono star" style="width: 20px;"> 4.5
                                     </div>
 
                                     <div class="position-relative"><img class="img-fluid
