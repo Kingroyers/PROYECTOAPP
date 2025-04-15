@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../src/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../src/estilos.css">
-    <base href="http://localhost/ProyectoAPP/"> 
+    <base href="http://localhost/ProyectoAPP/">
     <title>Proximas Clases</title>
 </head>
 
@@ -29,6 +29,12 @@
 
         }
 
+        #contenedor-dias {
+            scroll-snap-type: x mandatory;
+        }
+
+
+
         .dia p {
             margin: 0;
         }
@@ -42,18 +48,35 @@
             font-size: 0.9rem;
             text-transform: uppercase;
         }
+
+        .dia {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 999px;
+            min-width: 60px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .activo {
+            background: #000;
+            color: #fff;
+        }
     </style>
-    
+
     <?php include '../View/componentes/barraPrincipal.php' ?>
 
-    <div class='d-flex justify-content-center overflow-x-auto p-2' id="semana" style='width: 100%; padding: 1em; scrollbar-width: none; '>
-        <?php
-        require_once "../Controller/ClaseController.php";
-        $claseController = new ClaseController();
-        $claseController->ObtenerDiaSemana();
-        ?>
+    <div class="col-12 d-flex justify-content-center my-2">
+        <div class='d-flex  overflow-x-auto p-2' id="contenedor-dias" style='width: 100%; padding: 1em; scrollbar-width: none; scroll-behavior: smooth; '>
+            <?php
+            require_once "../Controller/ClaseController.php";
+            $claseController = new ClaseController();
+            $claseController->ObtenerDiaSemana();
+            ?>
+        </div>
     </div>
-    
+
+
 
     <div class="container mt-5">
         <h2>Clases De la semana</h2>
@@ -63,10 +86,12 @@
 
 
             <?php
-            require_once "../Controller/ClaseController.php"; 
+            require_once "../Controller/ClaseController.php";
             $claseController = new ClaseController();
-            $claseController->mostrarClasesHoy(); 
+            $claseController->mostrarClasesHoy();
             ?>
+
+
 
         </div>
     </div>
@@ -76,6 +101,19 @@
     <?php include '../View/componentes/menu.html' ?>
 
     <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
+    <!-- <script>
+window.onload = function () {
+    const activo = document.querySelector('.activo');
+    const container = document.getElementById('semana');
+
+    if (activo) {
+        const offset = activo.offsetLeft - (container.offsetWidth / 2) + (activo.offsetWidth / 2);
+        container.scrollLeft = offset;
+    }
+}
+</script> -->
+
+
 </body>
 
 </html>

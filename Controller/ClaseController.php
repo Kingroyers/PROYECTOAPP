@@ -98,17 +98,34 @@ class ClaseController{
 
 
         foreach ($dia_semana as $index => $dia) {
-            $clase_hoy = ($dia == $fecha_actual) ? "hoy" : "bg-light";
-
-            echo "<div class='dia $clase_hoy'id='hoy' style='flex: 0 0 auto; width: 130px; text-align: center; border: 1px solid #ddd; border-radius: 10px; padding: 15px; transition: transform 0.2s, box-shadow 0.2s; scroll-snap-align: center; scrollbar-width: 1px;'>
-                    
-             <p class='numero-dia'>" . date("d", strtotime($dia)) . "</p>
-             <p class='nombre-dia'>" . $nombres_dias[$index] . "</p>
-            
+            $es_hoy = ($dia == $fecha_actual);
+            $clase_hoy = $es_hoy ? "hoy" : "bg-light";
+            $id = $es_hoy ? "id='hoy'" : "";
+        
+            echo "<div class='dia $clase_hoy' $id style='flex: 0 0 auto; width: 130px; text-align: center; border: 1px solid #ddd; border-radius: 10px; padding: 15px; transition: transform 0.2s, box-shadow 0.2s; scroll-snap-align: center; scrollbar-width: 1px;'>
+                <p class='numero-dia'>" . date("d", strtotime($dia)) . "</p>
+                <p class='nombre-dia'>" . $nombres_dias[$index] . "</p>
             </div>";
         }
 
-        echo "</div>";
+        // date_default_timezone_set('America/Bogota');
+        // $fecha_actual = date('Y-m-d');
+        // $inicio_semana = date('Y-m-d', strtotime('Monday this week'));
+        // $nombres_dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+    
+        // $dias = [];
+    
+        // for ($i = 0; $i < 7; $i++) {
+        //     $dia = date('Y-m-d', strtotime("+$i day", strtotime($inicio_semana))); 
+        //     $dias[] = [
+        //         'fecha' => $dia,
+        //         'nombre' => $nombres_dias[$i],
+        //         'es_hoy' => ($dia == $fecha_actual)
+        //     ];
+        // }
+    
+        // return $dias;
+        
     }
 
     public function mostrarClasesDashboard() {
