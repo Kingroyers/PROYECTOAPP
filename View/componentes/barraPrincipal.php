@@ -1,15 +1,22 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}   
+}
+
+// if (isset($_SESSION['nombre_usuario'])) {
+//     $nombre = $_SESSION['nombre_usuario'];
+// } else {
+//     $nombre = 'Invitado';
+// }
 ?>
+
 
 <div class="d-flex w-100 w-md-75 w-lg-50 text-white justify-content-between" style="background: #101116; padding: 1em; width: 100vh;">
 
     <section class="row w-100 mx-2">
         <div class="col-6 w-auto d-flex justify-content-center align-items-center" style="gap: 10px;">
             <div style="width: 40px; height: 40px; border: 1px solid; border-radius: 50%;"></div>
-            <p style="font-size: 17px;margin-top: 15px;">Hola, <?php echo $_SESSION['nombre_usuario']?> <?php #echo $_SESSION['apellido'] ?> </p>
+           <p style="font-size: 17px;margin-top: 15px;">Hola, <?php echo $_SESSION['nombre_usuario']. ' '. $_SESSION['apellido'] ?> </p>
         </div>
         <div class="col-6 w-auto position-absolute" style="width: auto; right: 0; top: 26px; cursor: pointer;"><img
                     src="src/img/inconos/BiThreeDotsVertical.png" alt="config" style="width: 24px;"
@@ -29,7 +36,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                         <figure class=""
                             style="border-radius: 50%; width: 100px; height: 100px; border: 1px solid;"></figure>
-                        <p style="justify-self: center; font-size: 20px;"><?php echo $_SESSION['nombre_usuario']; ?></p>
+                        <p style="justify-self: center; font-size: 20px;"><?php echo $_SESSION['nombre_usuario']. ' '. $_SESSION['apellido'] ?></p>
     
                     </div>
                 </div>

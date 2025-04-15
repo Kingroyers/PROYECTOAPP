@@ -32,6 +32,19 @@ class LoginModel{
             
         }
     }
+
+    function registrarUsuario($nombre, $apellido, $correo, $identificacion, $contraseña)
+    {
+        $conexion = new ConexionBD();
+        $conexion->getConexion();
+
+        $sql = "INSERT INTO login (id_usuario, nombre_usuario, apellido, correo, contraseña) VALUES ('$identificacion','$nombre', '$apellido', '$correo', '$contraseña')";
+        if ($conexion->getConexion()->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>
 

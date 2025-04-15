@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-// if (empty($_SESSION['id_login'])) {
-//     header("Location: ../index.php");
-// }
+if (empty($_SESSION['id_login'])) {
+    header("Location: index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +23,9 @@ session_start();
     <!---Barra principal-->
     <?php include '../ProyectoAPP/View/componentes/barraPrincipal.php' ?>
 
+    <?php #echo '<pre>';
+    #print_r($_SESSION);  
+    #echo '</pre>'; ?>
 
     <div class=" d-flex justify-content-center align-items-center  w-100 ">
 

@@ -31,9 +31,14 @@
 
             </div>
 
-            <div class="mb-3 text-white  my-5">
+            <div class="mb-3 text-white my-5">
                 <label class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="pass" placeholder="***************" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+                <div class="input-group">
+                    <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="***************" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
+                    <span class="input-group-text" style="cursor: pointer;" onclick="togglePassword()">
+                        <img src="../src/img/inconos/ojoabierto.png" id="iconoContraseña" width="20px"></img>
+                    </span>
+                </div>
             </div>
 
             <div class="mb-3 form-check text-white ">
@@ -50,6 +55,7 @@
 
 
     <script src="../src/js/bootstrap.bundle.min.js"></script>
+    <script src="../Model/funcionPass.js" ></script>
 </body>
 
 </html>
