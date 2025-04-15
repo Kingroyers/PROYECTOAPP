@@ -44,7 +44,7 @@
         }
     </style>
     
-    <?php include '../View/componentes/barraPrincipal.html' ?>
+    <?php include '../View/componentes/barraPrincipal.php' ?>
 
     <div class='d-flex justify-content-center overflow-x-auto p-2' id="semana" style='width: 100%; padding: 1em; scrollbar-width: none; '>
         <?php

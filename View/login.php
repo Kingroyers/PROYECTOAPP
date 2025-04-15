@@ -13,28 +13,27 @@
 
     <a href="../index.php" class="position-absolute top-0 my-4" style="z-index: 100; text-decoration: none; color: #fff;"><img src="../src/img/inconos/logo.png" alt="">FITNESS LIFE</a>
 
-    <div class=" d-flex justify-content-center align-items-center" style="background-color: #101116; width: 100vh; height: 100vh;">
-
-
-
+    <div class=" d-flex flex-column justify-content-center align-items-center" style="background-color: #101116; width: 100vh; height: 100vh;">
+        <?php
+        require_once '../Controller/loginController.php';
+        $login = new loginController();
+        $login->loginValidar();
+        ?>
 
 
         <form method="post" action="" class="w-lg-100 p-4 text-white h-auto mt-sm-5" style="border: 1px solid #fff; border-radius: 10px 10px 10px 50px; min-width: 300px; background-color: #101116;">
 
+
             <div class="mb-3 text-white  my-4">
-                <?php
-                require_once '../Controller/loginController.php';
-                 $login = new loginController();
-                 $login->loginValidar();
-                ?>
-                <label for="exampleInputEmail1" class="form-label">Correo</label>
-                <input type="text" class="form-control" name="correo"  placeholder="usuario@example.com" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+
+                <label class="form-label">Correo</label>
+                <input type="text" class="form-control" name="correo" placeholder="usuario@example.com" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
 
             </div>
 
             <div class="mb-3 text-white  my-5">
-                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="contraseña" placeholder="***************" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+                <label class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="pass" placeholder="***************" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
             </div>
 
             <div class="mb-3 form-check text-white ">

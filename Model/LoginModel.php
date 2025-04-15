@@ -7,15 +7,22 @@ class LoginModel{
 
     function loginValidar($correo, $contraseña)
     {
+        
+
         $conexion = new ConexionBD();
         $conexion->getConexion();
     
-        $sql = "select * from login where correo='$correo'and contrasena='$contraseña'";
+        $sql = "select * from login where correo ='$correo'and contraseña='$contraseña'";
         $result = $conexion->getConexion()->query($sql);
+
     
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            if ($row['correo'] == $correo && $row['contrasena'] == $contraseña) {
+            session_start();
+            $_SESSION['id_login'] = $row->id_login;
+            $_SESSION['nombre_usuario'] = $row->nombre_usuario;
+
+            if ($row['correo'] == $correo && $row['contraseña'] == $contraseña) {
                 return true;
             } else {
                 return false;

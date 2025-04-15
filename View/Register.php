@@ -39,7 +39,7 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Enviar</button>
         </form>
-        <p class="text-center mt-3" style="color: #dadada;">¿Ya tienes una cuenta? <a href="../View/login.html" style="text-decoration: none; color: #007bff;">Inicia sesión</a></p>
+        <p class="text-center mt-3" style="color: #dadada;">¿Ya tienes una cuenta? <a href="../View/login.php" style="text-decoration: none; color: #007bff;">Inicia sesión</a></p>
 
     </div>
 

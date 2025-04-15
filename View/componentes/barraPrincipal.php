@@ -1,9 +1,15 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}   
+?>
+
 <div class="d-flex w-100 w-md-75 w-lg-50 text-white justify-content-between" style="background: #101116; padding: 1em; width: 100vh;">
 
     <section class="row w-100 mx-2">
         <div class="col-6 w-auto d-flex justify-content-center align-items-center" style="gap: 10px;">
             <div style="width: 40px; height: 40px; border: 1px solid; border-radius: 50%;"></div>
-            <p style="font-size: 17px;margin-top: 15px;">Hola, Nombre de usuario!</p>
+            <p style="font-size: 17px;margin-top: 15px;">Hola, <?php echo $_SESSION['nombre_usuario']?> <?php #echo $_SESSION['apellido'] ?> </p>
         </div>
         <div class="col-6 w-auto position-absolute" style="width: auto; right: 0; top: 26px; cursor: pointer;"><img
                     src="src/img/inconos/BiThreeDotsVertical.png" alt="config" style="width: 24px;"
@@ -23,7 +29,7 @@
                         style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                         <figure class=""
                             style="border-radius: 50%; width: 100px; height: 100px; border: 1px solid;"></figure>
-                        <p style="justify-self: center; font-size: 20px;">Nombre Usuario</p>
+                        <p style="justify-self: center; font-size: 20px;"><?php echo $_SESSION['nombre_usuario']; ?></p>
     
                     </div>
                 </div>
@@ -56,10 +62,12 @@
                 </ul>
     
                 <ul class="list-group" style="margin-top: 20px;">
-                    <li class="list-group-item" style="padding: 1em;"><a href="#"
+                    <li class="list-group-item" style="padding: 1em;">
+                        <a href="Controller/cerrarSesion.php"
                             style="text-decoration: none; color: #000;"><img
                                 src="src/img/inconos/Icons-CerrarSesion.png" alt="user" width="30px" height="30px"
-                                style="margin-right: 10px;">Cerrar Sesión</a></li>
+                                style="margin-right: 10px;">Cerrar Sesión
+                        </a></li>
                     <li class="list-group-item"
                         style="padding: 1em; height: 50px; margin-top: 20px; background-color: #101116; display: flex; justify-content: center;">
                         <a href="#" style="text-decoration: none; color: #fff;">Visita nuestra pagina</a>
