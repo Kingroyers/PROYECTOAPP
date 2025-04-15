@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../src/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../src/estilos.css">
-    <base href="http://localhost/ProyectoAPP/">
+    <base href="http://localhost/ProyectoAPP/"> 
     <title>Proximas Clases</title>
 </head>
 
