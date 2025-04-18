@@ -81,6 +81,12 @@
     <div class="container mt-5">
         <h2>Clases De la semana</h2>
         <hr>
+        <?php
+        //   require_once '../Controller/ClaseController.php';
+        //   $claseController = new ClaseController();
+        //   $usuarioExiste = $claseController-> 
+        
+        ?>
 
         <div class="col-12 d-flex flex-wrap mb-5">
 

@@ -34,5 +34,20 @@ class ModeloClases {
         return $clases;
     }
   
+    public function InscripcionClases($id_clase, $id_usuario,$fecha) {
+        $conexion = new ConexionBD();
+        $db = $conexion->getConexion();
+        
+
+        $sql = "INSERT INTO inscripcion_clases (id_clase, id_usuario, fecha_inscripcion) VALUES ('$id_clase', '$id_usuario','$fecha')";
+        
+        if ($db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+   
 }
 ?>

@@ -1,70 +1,112 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../Model/ClaseModel.php');
+require_once realpath(dirname(__FILE__) . '/../Model/LoginModel.php');
 
-class ClaseController{
+class ClaseController
+{
     private $modelo;
 
-    public function mostrarClasesHoy() 
+
+
+
+    public function mostrarClasesHoy()
     {
-        $modelo = new ModeloClases();
-        $clases = $modelo->obtenerClases();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-        date_default_timezone_set('America/Bogota');
-        $fecha_actual = date('Y-m-d');
-        $actual_timestamp = strtotime(date('Y-m-d H:i'));
+        $id_usuario = $_SESSION['id_usuario'];
+        $LoginModel = new LoginModel();
+        $usuarioExiate = $LoginModel->UsuarioExiste($id_usuario);
 
-        foreach ($clases as $row) {
-            if ($row['fecha'] != $fecha_actual) continue;
+        if (!$usuarioExiate) {
+            echo '
+                <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-10">
+                          <div class="alert alert-danger d-flex align-items-center flex-wrap" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-3"></i>
+                             <div class="me-2 justify-content-center d-flex">
+                                Usuario debe pagar un plan o estar registrado para que pueda visualizar las clases
+                              </div>
+                              <div class="col-12 mt-4">
+                              <a href="#" class="btn btn-primary w-100">Comprar Plan</a>
+                              </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                ';
+            exit;
+        } else {
 
-            $nombre_clase = strtolower($row['nombre_clase']);
-            
-            switch ($nombre_clase) {
-                case 'yoga':
-                    $icon = 'src/img/Icons-Yoga.png';
-                    break;
-                case 'zumba':
-                    $icon = 'src/img/inconos/icons-zumba.png';
-                    break;
-                case 'boxing':
-                    $icon = 'src/img/inconos/icons-boxing.png';
-                    break;
-                case 'cardio':
-                    $icon = 'src/img/running.png';
-                    break;
-                case 'spinning':
-                    $icon = '../src/img/inconos/iconos-spinning.png';
-                    break;
-                case 'IronCWout':
-                    $icon = 'src/img/Icons-Biceps.png';
-                    break;
-                case 'crossfit':
-                    $icon = 'src/img/icons-peso-rusa.png';
-                    break;
 
-                default:
-                    $icon = 'src/img/inconos/logo.png';
-                    break;
-            }
+            $modelo = new ModeloClases();
+            $clases = $modelo->obtenerClases();
 
-            
-            $imagenEntrenador = match (strtolower($row['entrenador'])) {
-                "antonio royero" => "src/img/Entrenador3.png",
-                "samuel alzate" => "src/img/entrenadorcopia.png",
-                "uso carruso"   => "src/img/entrenador4.png",
-                default         => "src/img/default.png"
-            };
-            
+            date_default_timezone_set('America/Bogota');
+            $fecha_actual = date('Y-m-d');
+            $actual_timestamp = strtotime(date('Y-m-d H:i'));
+
+            foreach ($clases as $row) {
+                if ($row['fecha'] != $fecha_actual) continue;
+
+                $nombre_clase = strtolower($row['nombre_clase']);
+
+                switch ($nombre_clase) {
+                    case 'yoga':
+                        $icon = 'src/img/Icons-Yoga.png';
+                        break;
+                    case 'zumba':
+                        $icon = 'src/img/inconos/icons-zumba.png';
+                        break;
+                    case 'boxing':
+                        $icon = 'src/img/inconos/icons-boxing.png';
+                        break;
+                    case 'cardio':
+                        $icon = 'src/img/running.png';
+                        break;
+                    case 'spinning':
+                        $icon = '../src/img/inconos/iconos-spinning.png';
+                        break;
+                    case 'IronCWout':
+                        $icon = 'src/img/Icons-Biceps.png';
+                        break;
+                    case 'crossfit':
+                        $icon = 'src/img/icons-peso-rusa.png';
+                        break;
+
+                    default:
+                        $icon = 'src/img/inconos/logo.png';
+                        break;
+                }
+
+
+                $imagenEntrenador = match (strtolower($row['entrenador'])) {
+                    "antonio royero" => "src/img/Entrenador3.png",
+                    "samuel alzate" => "src/img/entrenadorcopia.png",
+                    "uso carruso"   => "src/img/entrenador4.png",
+                    default         => "src/img/default.png"
+                };
+
                 $horario_clase = strtotime($row['fecha'] . ' ' . $row['horario']);
                 if ($horario_clase < $actual_timestamp) {
                     $estado = "<button class='btn btn-secondary' disabled>Cerrada</button>";
                     $desabilitar = "pointer-events: ; opacity: 0.5;";
-                          
                 } else {
-                    $estado = "<a href='inscribirse.php?id={$row['fecha']}' class='btn btn-success'>Inscribirse</a>";
+                    $controller = new ClaseController();
+                    $controller->inscribirClase();
+
+                    $id_clase = $row['id_clase'];
+                    $estado = "
+                    <form method='POST' action=''>
+                        <input type='hidden' name='id_clase' value='$id_clase'>
+                      <button type='submit' name='btnInscripcion' id={$row['fecha']}' class='btn btn-success' style='width:100%;  margin-left:10px;' ' >Inscribirse</button>
+                    </form>";
                     $desabilitar = "pointer-events: auto; opacity: 1;";
                 }
-            
-            echo "
+
+                echo "
             <div class='col-12 d-flex col-md-4 p-3 justify-align-content-between' style='$desabilitar margin:4px 4px; border: 1px solid #ccc; max-height: 280px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>
 
                 <div class='col-5 d-flex justify-content-center align-items-center position-relative'>
@@ -81,6 +123,7 @@ class ClaseController{
                 </div>
 
             </div>";
+            }
         }
     }
 
@@ -101,7 +144,7 @@ class ClaseController{
             $es_hoy = ($dia == $fecha_actual);
             $clase_hoy = $es_hoy ? "hoy" : "bg-light";
             $id = $es_hoy ? "id='hoy'" : "";
-        
+
             echo "<div class='dia $clase_hoy' $id style='flex: 0 0 auto; width: 130px; text-align: center; border: 1px solid #ddd; border-radius: 10px; padding: 15px; transition: transform 0.2s, box-shadow 0.2s; scroll-snap-align: center; scrollbar-width: 1px;'>
                 <p class='numero-dia'>" . date("d", strtotime($dia)) . "</p>
                 <p class='nombre-dia'>" . $nombres_dias[$index] . "</p>
@@ -112,9 +155,9 @@ class ClaseController{
         // $fecha_actual = date('Y-m-d');
         // $inicio_semana = date('Y-m-d', strtotime('Monday this week'));
         // $nombres_dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-    
+
         // $dias = [];
-    
+
         // for ($i = 0; $i < 7; $i++) {
         //     $dia = date('Y-m-d', strtotime("+$i day", strtotime($inicio_semana))); 
         //     $dias[] = [
@@ -123,12 +166,13 @@ class ClaseController{
         //         'es_hoy' => ($dia == $fecha_actual)
         //     ];
         // }
-    
+
         // return $dias;
-        
+
     }
 
-    public function mostrarClasesDashboard() {
+    public function mostrarClasesDashboard()
+    {
         $modelo = new ModeloClases();
         $clases = $modelo->obtenerClasesOrdenadas();
 
@@ -141,7 +185,7 @@ class ClaseController{
 
             $nombre_clase = strtolower($row['nombre_clase']);
 
-            
+
             switch ($nombre_clase) {
                 case 'yoga':
                     $icon = 'src/img/Icons-Yoga.png';
@@ -191,6 +235,43 @@ class ClaseController{
         }
     }
 
-    
-}
+    public function inscribirClase()
+    {
+        if (isset($_POST['btnInscripcion'])) {
 
+
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            echo "<pre>SESION:\n";
+            print_r($_SESSION);
+            echo "</pre>";
+
+            $id_usuario = $_SESSION['id_usuario'];
+            $id_clase = $_POST['id_clase'];
+            $fecha = date('Y-m-d H:i:s');
+
+            $LoginModel = new LoginModel();
+            $usuarioExiste = $LoginModel->UsuarioExiste($id_usuario);
+
+            if (!$usuarioExiste) {
+                echo "<script>alert('Usuario no registrado');</script>";
+                echo "<script>window.location.href='View/ClasesView.php';</script>";
+                exit;
+            } else {
+                $modelo = new ModeloClases();
+                $resultado = $modelo->InscripcionClases($id_clase, $id_usuario, $fecha);
+
+                if ($resultado) {
+                    echo "<script>alert('Inscripción exitosa');</script>";
+                    echo "<script>window.location.href='dashboard.php';</script>";
+                } else {
+                    echo "<script>alert('Error al inscribirse');</script>";
+                }
+                echo "<script>window.location.href='dashboard.php';</script>";
+                exit;
+            }
+        }
+    }
+}

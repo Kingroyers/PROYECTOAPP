@@ -6,7 +6,7 @@ class LoginModel{
 
 
     function loginValidar($correo, $contraseña)
-    {
+    { 
         
 
         $conexion = new ConexionBD();
@@ -21,6 +21,7 @@ class LoginModel{
             session_start();
             $_SESSION['id_login'] = $row->id_login;
             $_SESSION['nombre_usuario'] = $row->nombre_usuario;
+            $_SESSION['id_usuario'] = $row->id_usuario;
 
             if ($row['correo'] == $correo && $row['contraseña'] == $contraseña) {
                 return true;
@@ -45,6 +46,21 @@ class LoginModel{
             return false;
         }
     }
+
+    public function UsuarioExiste($id_usuario)
+    {
+        $conexion = new ConexionBD();
+        $db = $conexion->getConexion();
+        $sql = "SELECT Identificacion FROM usuarios WHERE Identificacion = '$id_usuario'";
+        $result = $db->query($sql);
+    
+        if ($result->num_rows > 0) {
+            return true;  // Usuario encontrado
+        } else {
+            return false; // Usuario no encontrado
+        }
+    }
+    
 }
 ?>
 

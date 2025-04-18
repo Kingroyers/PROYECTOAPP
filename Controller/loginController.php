@@ -6,6 +6,7 @@ require_once '../Model/conexionbd.php';
 class loginController
 {
 
+
     function loginValidar()
     {
 
@@ -30,6 +31,7 @@ class loginController
                     $_SESSION['id_login'] = $datos['id_login'];
                     $_SESSION['nombre_usuario'] = $datos['nombre_usuario'];
                     $_SESSION['apellido'] = $datos['apellido'];
+                    $_SESSION['id_usuario'] = $datos['id_usuario'];
 
 
 
