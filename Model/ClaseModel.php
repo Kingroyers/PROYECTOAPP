@@ -39,7 +39,7 @@ class ModeloClases {
         $db = $conexion->getConexion();
         
 
-        $sql = "INSERT INTO inscripcion_clases (id_clase, id_usuario, fecha_inscripcion) VALUES ('$id_clase', '$id_usuario','$fecha')";
+        $sql = "INSERT INTO inscripcion (id_clase, id_usuario, fecha_inscripcion) VALUES ('$id_clase', '$id_usuario','$fecha')";
         
         if ($db->query($sql) === TRUE) {
             return true;
@@ -47,6 +47,49 @@ class ModeloClases {
             return false;
         }
     }
+
+    public function ValidarInscripcion($id_clase, $id_usuario) {
+        $conexion = new ConexionBD();
+        $db = $conexion->getConexion();
+
+        $sql = "SELECT * FROM inscripcion WHERE id_clase = '$id_clase' AND id_usuario = '$id_usuario'";
+        $result = $db->query($sql);
+
+        if ($result->num_rows > 0) {
+            return true; // Inscripción ya existe
+        } else {
+            return false; // Inscripción no existe
+        }
+    }
+
+    public function EliminarInscripcion($id_clase, $id_usuario) {
+        $conexion = new ConexionBD();
+        $db = $conexion->getConexion();
+
+        $sql = "DELETE FROM inscripcion WHERE id_clase = '$id_clase' AND id_usuario = '$id_usuario'";
+        
+        if ($db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // public function MostrarClasesInscritas($id_usuario) {
+    //     $conexion = new ConexionBD();
+    //     $db = $conexion->getConexion();
+
+    //     $sql = "SELECT clases.* FROM clases JOIN inscripcion ON clases.id_clase = inscripcion.id_clase WHERE inscripcion.id_usuario = '$id_usuario' ORDER BY clases.fecha DESC, clases.horario DESC;";
+    //     $result = $db->query($sql);
+
+    //     $clasesInscritas = [];
+
+    //     while ($row = $result->fetch_assoc()) {
+    //         $clasesInscritas[] = $row;
+    //     }
+
+    //     return $clasesInscritas;
+    // }
 
    
 }

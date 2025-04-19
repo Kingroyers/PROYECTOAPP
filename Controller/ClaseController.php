@@ -1,6 +1,7 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../Model/ClaseModel.php');
 require_once realpath(dirname(__FILE__) . '/../Model/LoginModel.php');
+require_once realpath(dirname(__FILE__) . '/../Model/ClaseModel.php');
 
 class ClaseController
 {
@@ -96,14 +97,31 @@ class ClaseController
                 } else {
                     $controller = new ClaseController();
                     $controller->inscribirClase();
+                    $model = new ModeloClases();
+                    $inscripcion = $model->ValidarInscripcion($row['id_clase'], $id_usuario);
 
-                    $id_clase = $row['id_clase'];
-                    $estado = "
+                    if ($inscripcion) { //si el vale esta inscrito en la clase 
+                        $controller->ElimnarInscripcion();
+                        $id_clase = $row['id_clase'];
+                        $id_usuario = $_SESSION['id_usuario'];
+                        $estado = "
+                        <form method='POST' action=''> 
+                         <input type='hidden' name='id_clase' value='$id_clase'>
+                         <input type='hidden' name='id_usuario' value='$id_usuario'>
+                         <button type='submit' class='btn btn-outline-danger'name='btnEliminarInscripcion' >Eliminar Inscripcion</button>
+                        </form> 
+                         ";
+                        $desabilitar = "";
+                    } else {
+
+                        $id_clase = $row['id_clase'];
+                        $estado = "
                     <form method='POST' action=''>
                         <input type='hidden' name='id_clase' value='$id_clase'>
                       <button type='submit' name='btnInscripcion' id={$row['fecha']}' class='btn btn-success' style='width:100%;  margin-left:10px;' ' >Inscribirse</button>
                     </form>";
-                    $desabilitar = "pointer-events: auto; opacity: 1;";
+                        $desabilitar = "pointer-events: auto; opacity: 1;";
+                    }
                 }
 
                 echo "
@@ -244,9 +262,9 @@ class ClaseController
                 session_start();
             }
 
-            echo "<pre>SESION:\n";
-            print_r($_SESSION);
-            echo "</pre>";
+            // echo "<pre>SESION:\n";
+            // print_r($_SESSION);
+            // echo "</pre>";
 
             $id_usuario = $_SESSION['id_usuario'];
             $id_clase = $_POST['id_clase'];
@@ -264,14 +282,75 @@ class ClaseController
                 $resultado = $modelo->InscripcionClases($id_clase, $id_usuario, $fecha);
 
                 if ($resultado) {
-                    echo "<script>alert('Inscripción exitosa');</script>";
-                    echo "<script>window.location.href='dashboard.php';</script>";
+                    echo '<div class="container mt-4 d-flex justify-content-center">
+                           <div class="alert alert-success alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                            <strong>¡Inscripción exitosa!</strong>
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                           </div>
+                          </div>';
                 } else {
-                    echo "<script>alert('Error al inscribirse');</script>";
+                    echo '<div class="container mt-4 d-flex justify-content-center">
+                            <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                             <strong>Error al inscribirse.</strong>
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                          </div>';
                 }
-                echo "<script>window.location.href='dashboard.php';</script>";
-                exit;
             }
         }
     }
+
+    public function ElimnarInscripcion()
+    {
+        if (isset($_POST['btnEliminarInscripcion'])) {
+
+
+            $id_usuario = $_POST['id_usuario'];
+            $id_clase = $_POST['id_clase'];
+
+            $modelo = new ModeloClases();
+            $resultado = $modelo->EliminarInscripcion($id_clase, $id_usuario);
+
+            if ($resultado) {
+                echo '<div class="container mt-4 d-flex justify-content-center">
+                           <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                            <strong>¡Eliministe Inscripcion!</strong>
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                           </div>
+                          </div>';
+                          echo '<script>
+                          setTimeout(function() {
+                              location.reload();
+                          }, 3000);
+                        </script>';          
+               
+            } else {
+                echo '<div class="container mt-4 d-flex justify-content-center">
+                           <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                            <strong>Error al eliminar </strong>
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                           </div>
+                          </div>';
+            }
+        }
+    }
+
+    // public function MostrarCLasesInscritas(){
+    //     if (session_status() === PHP_SESSION_NONE) {
+    //         session_start();
+    //     }
+
+    //     $id_usuario = $_SESSION['id_usuario'];
+    //     $modelo = new ModeloClases();
+    //     $clasesInscritas = $modelo->MostrarClasesInscritas($id_usuario);
+
+    //     foreach ($clasesInscritas as $row) {
+            
+    //         echo "<div class='clase-inscrita'>";
+    //         echo "<h5>{$row['nombre_clase']}</h5>";
+    //         echo "<p>Fecha: {$row['fecha']}</p>";
+    //         echo "<p>Hora: {$row['horario']}</p>";
+    //         echo "</div>";
+    //     }
+    // }
 }
