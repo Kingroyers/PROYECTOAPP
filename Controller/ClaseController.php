@@ -101,6 +101,7 @@ class ClaseController
                     $inscripcion = $model->ValidarInscripcion($row['id_clase'], $id_usuario);
 
                     if ($inscripcion) { //si el vale esta inscrito en la clase 
+                        
                         $controller->ElimnarInscripcion();
                         $id_clase = $row['id_clase'];
                         $id_usuario = $_SESSION['id_usuario'];
@@ -115,12 +116,29 @@ class ClaseController
                     } else {
 
                         $id_clase = $row['id_clase'];
-                        $estado = "
-                    <form method='POST' action=''>
-                        <input type='hidden' name='id_clase' value='$id_clase'>
-                      <button type='submit' name='btnInscripcion' id={$row['fecha']}' class='btn btn-success' style='width:100%;  margin-left:10px;' ' >Inscribirse</button>
-                    </form>";
-                        $desabilitar = "pointer-events: auto; opacity: 1;";
+
+                        $model = new ModeloClases;
+                        $verificarCapacidad = $model->VerificarCapacidadMaxima($id_clase);
+
+                        if($verificarCapacidad){
+                            $estado = "
+                            <form method='POST' action=''>
+                                <input type='hidden' name='id_clase' value='$id_clase'>
+                              <button type='submit' name='btnInscripcion' id={$row['fecha']}' class='btn btn-success' style='width:100%;  margin-left:10px; ' >
+                               Inscribirse
+                               </button>
+                            </form>";
+                                $desabilitar = "pointer-events: auto; opacity: 1;";
+                        }else{
+                            $estado = "
+                            <button type='submit' class='btn btn-outline-secondary' style='width:100%;  margin-left:10px; border:1px solid ; height:auto;' >
+                               No hay cupo disponible
+                               </button>
+                            ";
+                            $desabilitar= "pointer-events: none; opacity: 0.5;";
+                        }
+                        
+                       
                     }
                 }
 
@@ -278,24 +296,38 @@ class ClaseController
                 echo "<script>window.location.href='View/ClasesView.php';</script>";
                 exit;
             } else {
-                $modelo = new ModeloClases();
-                $resultado = $modelo->InscripcionClases($id_clase, $id_usuario, $fecha);
+                $model = new ModeloClases;
+                $verificarCapacidad = $model->VerificarCapacidadMaxima($id_clase);
 
-                if ($resultado) {
+                if($verificarCapacidad){
+
+                    $modelo = new ModeloClases();
+                    $resultado = $modelo->InscripcionClases($id_clase, $id_usuario, $fecha);
+    
+                    if ($resultado) {
+                        echo '<div class="container mt-4 d-flex justify-content-center">
+                               <div class="alert alert-success alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                                <strong>¡Inscripción exitosa!</strong>
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                               </div>
+                              </div>';
+                    } else {
+                        echo '<div class="container mt-4 d-flex justify-content-center">
+                                <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                                 <strong>Error al inscribirse.</strong>
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                              </div>';
+                    }
+                }else{
                     echo '<div class="container mt-4 d-flex justify-content-center">
-                           <div class="alert alert-success alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
-                            <strong>¡Inscripción exitosa!</strong>
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                           </div>
-                          </div>';
-                } else {
-                    echo '<div class="container mt-4 d-flex justify-content-center">
-                            <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
-                             <strong>Error al inscribirse.</strong>
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                          </div>';
+                    <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                     <strong>No hay cupo Disponible</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>';
                 }
+               
             }
         }
     }

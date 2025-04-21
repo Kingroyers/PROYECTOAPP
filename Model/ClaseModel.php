@@ -1,9 +1,11 @@
 <?php
-require_once "conexionbd.php"; 
+require_once "conexionbd.php";
 
-class ModeloClases {
+class ModeloClases
+{
 
-    public function obtenerClases() {
+    public function obtenerClases()
+    {
         $conexion = new ConexionBD();
         $db = $conexion->getConexion();
 
@@ -19,7 +21,8 @@ class ModeloClases {
         return $clases;
     }
 
-    public function obtenerClasesOrdenadas() {
+    public function obtenerClasesOrdenadas()
+    {
         $conexion = new ConexionBD();
         $db = $conexion->getConexion();
 
@@ -33,14 +36,15 @@ class ModeloClases {
 
         return $clases;
     }
-  
-    public function InscripcionClases($id_clase, $id_usuario,$fecha) {
+
+    public function InscripcionClases($id_clase, $id_usuario, $fecha)
+    {
         $conexion = new ConexionBD();
         $db = $conexion->getConexion();
-        
+
 
         $sql = "INSERT INTO inscripcion (id_clase, id_usuario, fecha_inscripcion) VALUES ('$id_clase', '$id_usuario','$fecha')";
-        
+
         if ($db->query($sql) === TRUE) {
             return true;
         } else {
@@ -48,7 +52,8 @@ class ModeloClases {
         }
     }
 
-    public function ValidarInscripcion($id_clase, $id_usuario) {
+    public function ValidarInscripcion($id_clase, $id_usuario)
+    {
         $conexion = new ConexionBD();
         $db = $conexion->getConexion();
 
@@ -62,12 +67,13 @@ class ModeloClases {
         }
     }
 
-    public function EliminarInscripcion($id_clase, $id_usuario) {
+    public function EliminarInscripcion($id_clase, $id_usuario)
+    {
         $conexion = new ConexionBD();
         $db = $conexion->getConexion();
 
         $sql = "DELETE FROM inscripcion WHERE id_clase = '$id_clase' AND id_usuario = '$id_usuario'";
-        
+
         if ($db->query($sql) === TRUE) {
             return true;
         } else {
@@ -91,6 +97,29 @@ class ModeloClases {
     //     return $clasesInscritas;
     // }
 
-   
+    public function VerificarCapacidadMaxima($id_clase)
+    {
+        $conn = new ConexionBD();
+        $db = $conn->getConexion();
+
+        $sql = "SELECT capacidad_maxima FROM clases WHERE id_clase = '$id_clase'";
+        $result = $db->query($sql);
+
+        if($row = $result->fetch_assoc()){
+            $capacidad = $row['capacidad_maxima'];
+
+            $sqlInscritos = "SELECT COUNT(*) AS total FROM inscripcion WHERE id_clase = '$id_clase'";
+            $resultado = $db->query($sqlInscritos);
+            $fila2 = $resultado->fetch_assoc();
+
+            $inscritos = $fila2['total'];
+
+            return $inscritos < $capacidad;
+
+             
+        }
+
+        return false;
+    }
+
 }
-?>
