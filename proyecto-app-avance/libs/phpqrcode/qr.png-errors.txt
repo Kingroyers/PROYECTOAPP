@@ -1,0 +1,12 @@
+2025-04-18 03:00:00: empty string!!!2025-04-18 03:01:44: empty string!!!2025-04-18 03:02:37: empty string!!!2025-04-18 03:02:38: empty string!!!2025-04-18 03:02:38: empty string!!!2025-04-18 03:02:38: empty string!!!2025-04-18 03:05:03: empty string!!!2025-04-18 03:06:05: empty string!!!2025-04-18 03:06:05: empty string!!!2025-04-18 03:06:06: empty string!!!2025-04-18 03:10:42: empty string!!!2025-04-18 03:19:58: empty string!!!2025-04-18 03:20:17: empty string!!!2025-04-18 03:27:51: empty string!!!2025-04-18 03:28:03: empty string!!!2025-04-18 04:01:55: empty string!!!2025-04-18 06:54:19: <br />
+<b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\php\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>71</b><br />
+<br />
+<b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\php\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>53</b><br />
+<br />
+<b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\php\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>62</b><br />
+2025-04-18 06:54:28: <br />
+<b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\php\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>71</b><br />
+<br />
+<b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\php\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>53</b><br />
+<br />
+<b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\php\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>62</b><br />
