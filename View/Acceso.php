@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/bootstrap.min.css">
     <link rel="stylesheet" href="../src/estilos.css">
-<<<<<<< HEAD
     <base href="http://localhost/ProyectoAPP/">
     <title>Acceso-APP</title>
-=======
     <title>Acceso</title>
->>>>>>> 0896699661c6374637fb04b2b52292d828766c96
 </head>
 
 <body class="bg-white">
@@ -37,6 +34,7 @@
             </div>
         </main>
         <?php include '../View/componentes/menu.html' ?>
+        <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
     </div>
 </body>
 
