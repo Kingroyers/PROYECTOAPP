@@ -54,7 +54,7 @@ if (empty($_SESSION['id_login'])) {
 
                         <figure class="cartas-rutinas col-12 col-sm-4" style="position: relative;">
                             <a href="https://www.youtube.com/watch?v=oCtrksNCiKk"
-                                style="color: #101116; text-decoration: none;">
+                                style="color: #101116; text-decoration: none;" target="_blank">
                                 <div class="fondo-rutina col10 col-md-4 d-flex flex-row justify-content-between" style="border-radius: 10px; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
                                     <div class="" style=" margin: 10px 10px ; z-index: 100;">
@@ -76,7 +76,7 @@ if (empty($_SESSION['id_login'])) {
                         </figure>
 
                         <figure class="cartas-rutinas col-12 col-sm-4">
-                            <a href="https://www.youtube.com/watch?v=VB09kLgJDo0" style="color: #101116; text-decoration: none;">
+                            <a href="https://www.youtube.com/watch?v=VB09kLgJDo0" target="_blank" style="color: #101116; text-decoration: none;">
                                 <div class="fondo-rutina  col10 col-md-4 d-flex flex-row justify-content-between" style=" max-height: 160px; border-radius: 10px; background-color: #101116; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
                                     <div class=" d-flex flex-wrap" style=" margin: 10px 10px ; z-index: 100;">
@@ -100,7 +100,7 @@ if (empty($_SESSION['id_login'])) {
                         </figure>
 
                         <figure class="cartas-rutinas col-12 col-sm-4">
-                            <a href="https://www.youtube.com/watch?v=_hkUNgX9e54" style="color: #101116; text-decoration: none;">
+                            <a href="https://www.youtube.com/watch?v=_hkUNgX9e54" target="_blank" style="color: #101116; text-decoration: none;">
                                 <div class="fondo-rutina col10 col-md-4 d-flex flex-row justify-content-between" style="border-radius: 10px; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
                                     <div class="" style=" margin: 10px 10px ; z-index: 100;">
@@ -124,7 +124,7 @@ if (empty($_SESSION['id_login'])) {
 
                         <figure class="cartas-rutinas col-12 col-sm-4">
                             <a href="https://www.youtube.com/watch?v=LFR7BPbLmTc"
-                                style="color: #101116; text-decoration: none;">
+                                style="color: #101116; text-decoration: none;" target="_blank">
                                 <div class="fondo-rutina col10 col-md-4 d-flex flex-row justify-content-between"
                                     style="border-radius: 10px; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 

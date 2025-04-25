@@ -292,7 +292,12 @@ class ClaseController
             $usuarioExiste = $LoginModel->UsuarioExiste($id_usuario);
 
             if (!$usuarioExiste) {
-                echo "<script>alert('Usuario no registrado');</script>";
+                echo '<div class="container mt-4 d-flex justify-content-center">
+                <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                 <strong>Usuario no Registrado</strong>
+                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+               </div>';
                 echo "<script>window.location.href='View/ClasesView.php';</script>";
                 exit;
             } else {
