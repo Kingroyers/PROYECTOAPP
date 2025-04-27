@@ -22,6 +22,7 @@ class LoginModel{
             $_SESSION['id_login'] = $row->id_login;
             $_SESSION['nombre_usuario'] = $row->nombre_usuario;
             $_SESSION['id_usuario'] = $row->id_usuario;
+            $_SESSION['foto_usuario'] = $row->foto_usuario;
 
             if ($row['correo'] == $correo && $row['contraseña'] == $contraseña) {
                 return true;
@@ -58,6 +59,57 @@ class LoginModel{
             return true;  // Usuario encontrado
         } else {
             return false; // Usuario no encontrado
+        }
+    }
+
+    public function mostrarFotoUsuario() {
+
+        // Iniciar sesión si no está iniciada
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        // Verificar si el usuario está logueado
+        if(isset($_SESSION['id_usuario'])) {
+    
+            // Obtener el ID del usuario desde la sesión
+            $id_usuario = $_SESSION['id_usuario'];
+    
+            // Crear la conexión a la base de datos
+            $conexion = new ConexionBD;
+            $bd = $conexion->getConexion();
+    
+            // Consulta para obtener la foto del usuario
+            $sql = "SELECT foto_usuario FROM login WHERE id_usuario = '$id_usuario'";
+            $resultado = $bd->query($sql);
+    
+            // Verificar si la consulta devuelve un resultado
+            if($row = $resultado->fetch_assoc()) {
+                // Almacenar la foto del usuario en la sesión
+                $_SESSION['foto_usuario'] = $row['foto_usuario'];
+                return $row['foto_usuario']; // Retornar la foto para mostrarla
+            } else {
+                // Si no se encuentra la foto, retornar null
+                return null;
+            }
+        }
+        return null; // Si el usuario no está logueado, retornar null
+    }
+    
+
+    public function ActualizarFotoUsuario($foto_usuario){
+        $conexion = new ConexionBD();
+        $bd = $conexion->getConexion();
+
+        $id_usuario = $_SESSION['id_usuario'];
+
+        $sql= "update login set foto_usuario = '$foto_usuario' where id_usuario = '$id_usuario'";
+        $resultado = $bd->query($sql);
+
+        if($resultado){
+          return true;
+        }else{
+            return false;
         }
     }
     

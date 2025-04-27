@@ -181,7 +181,7 @@ class ClaseController
             $clase_hoy = $es_hoy ? "hoy" : "bg-light";
             $id = $es_hoy ? "id='hoy'" : "";
 
-            echo "<div class='dia $clase_hoy' $id style='flex: 0 0 auto; width: 130px; text-align: center; border: 1px solid #ddd; border-radius: 10px; padding: 15px; transition: transform 0.2s, box-shadow 0.2s; scroll-snap-align: center; scrollbar-width: 1px;'>
+            echo "<div class='dia $clase_hoy' $id style='flex: 0 0 auto; width: 110px; text-align: center; border: 1px solid #ddd; border-radius: 10px; padding: 15px; transition: transform 0.2s, box-shadow 0.2s; scroll-snap-align: center; scrollbar-width: 1px; margin-right:3px;'>
                 <p class='numero-dia'>" . date("d", strtotime($dia)) . "</p>
                 <p class='nombre-dia'>" . $nombres_dias[$index] . "</p>
             </div>";
