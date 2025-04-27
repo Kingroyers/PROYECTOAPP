@@ -114,66 +114,36 @@ class loginController
     {
         if (isset($_POST['actualizarFoto'])) {
             if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0 || !empty($_POST['foto'])) {
-    
-                // Obtener datos de la imagen
+
+               
                 $nombreFoto = $_FILES['foto']['name'];
                 $rutaTemporal = $_FILES['foto']['tmp_name'];
-                $tipoArchivo = $_FILES['foto']['type'];
-                $tamañoArchivo = $_FILES['foto']['size'];
-    
-                // Carpeta donde se guardarán las fotos
+
+                
                 $carpetaDestino = 'src/uploads/';
-    
-                // Definir tipos de archivo permitidos (solo imágenes)
-                $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
-    
-                // Definir tamaño máximo permitido (por ejemplo, 2MB)
-                $tamañoMaximo = 2 * 1024 * 1024;  // 2MB en bytes
-    
-                // Verificar que el tipo de archivo sea válido
-                if (!in_array($tipoArchivo, $tiposPermitidos)) {
-                    echo "Solo se permiten archivos de imagen (JPEG, PNG, GIF).";
-                    exit();
-                }
-    
-                // Verificar que el tamaño del archivo sea menor o igual al permitido
-                if ($tamañoArchivo > $tamañoMaximo) {
-                    echo "El archivo es demasiado grande. El tamaño máximo permitido es 2 MB.";
-                    exit();
-                }
-    
-                // Crear un nombre único para la foto (opcional)
+
+                
                 $nombreUnico = uniqid() . "_" . $nombreFoto;
-    
-                // Mover la foto al servidor
+
+
+                
                 if (move_uploaded_file($rutaTemporal, $carpetaDestino . $nombreUnico)) {
-    
-                    // Llamar al modelo para actualizar en la base de datos
+
                     $model = new LoginModel();
                     $model->ActualizarFotoUsuario($nombreUnico);
-    
-                    // Opcional: redirigir o mostrar éxito
+
+                    
                     echo '<script>
                           setTimeout(function() {
                               location.reload();
                           }, 3000);
-                        </script>';
+                        </script>'; 
                     exit();
                 } else {
-                    echo '<div class="container mt-4 d-flex justify-content-center">
-                    <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
-                     <strong>Error al subir la imagen</strong>
-                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                   </div>';
+                    echo "Error al subir la imagen.";
                 }
             } else {
-                echo '<div class="container mt-4 d-flex justify-content-center">
-                           <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
-                            <strong>No selecciono ninguna imagen</strong>
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                           </div>
-                          </div>';
+                echo "No se seleccionó ninguna imagen.";
             }
         }
     }
