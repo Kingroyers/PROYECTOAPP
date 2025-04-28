@@ -62,7 +62,8 @@ class LoginModel{
         }
     }
 
-    public function mostrarFotoUsuario() {
+    public function mostrarFotoUsuario() 
+    {
 
         // Iniciar sesión si no está iniciada
         if (session_status() === PHP_SESSION_NONE) {

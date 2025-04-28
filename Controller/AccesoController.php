@@ -1,7 +1,7 @@
 <?php
 
 include('../libs/phpqrcode/qrlib.php');
-include('../Model/LoginModel.php');
+require_once realpath(dirname(__FILE__) . '/../Model/LoginModel.php');
 
 class AccesoController
 {

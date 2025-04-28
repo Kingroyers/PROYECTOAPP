@@ -113,37 +113,58 @@ class loginController
     public function ActualizarFoto()
     {
         if (isset($_POST['actualizarFoto'])) {
-            if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0 || !empty($_POST['foto'])) {
-
-               
-                $nombreFoto = $_FILES['foto']['name'];
-                $rutaTemporal = $_FILES['foto']['tmp_name'];
-
-                
-                $carpetaDestino = 'src/uploads/';
-
-                
-                $nombreUnico = uniqid() . "_" . $nombreFoto;
-
-
-                
-                if (move_uploaded_file($rutaTemporal, $carpetaDestino . $nombreUnico)) {
-
-                    $model = new LoginModel();
-                    $model->ActualizarFotoUsuario($nombreUnico);
-
+            if (!isset($_FILES['foto']) || $_FILES['foto']['error'] !== UPLOAD_ERR_OK) {
+                if (empty($_POST['foto'])) {
                     
-                    echo '<script>
-                          setTimeout(function() {
-                              location.reload();
-                          }, 3000);
-                        </script>'; 
+                    $model = new LoginModel();
+                    $model->ActualizarFotoUsuario(null); 
+                    header("Location: dashboard.php?mensaje=foto_borrada");
                     exit();
                 } else {
-                    echo "Error al subir la imagen.";
+                    echo "Error: No se seleccionó ninguna imagen o hubo un error en la subida.";
+                    return; 
                 }
+            }
+    
+            // 2. Procesar la subida del archivo si no hubo errores
+            $archivoFoto = $_FILES['foto'];
+            $nombreFoto = $archivoFoto['name'];
+            $rutaTemporal = $archivoFoto['tmp_name'];
+            $tamañoFoto = $archivoFoto['size'];
+            $tipoFoto = $archivoFoto['type'];
+    
+            $carpetaDestino = 'src/uploads/';
+    
+            // 3. Validar el tipo de archivo (ejemplo: permitir solo imágenes JPEG, PNG, GIF)
+            $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
+            if (!in_array($tipoFoto, $tiposPermitidos)) {
+                echo "Error: Solo se permiten archivos con formato JPEG, PNG o GIF.";
+                return;
+            }
+    
+            // 4. Validar el tamaño del archivo (ejemplo: máximo 2MB)
+            $tamañoMaximo = 2 * 1024 * 1024; // 2MB en bytes
+            if ($tamañoFoto > $tamañoMaximo) {
+                echo "Error: El tamaño de la imagen no puede exceder los 2MB.";
+                return;
+            }
+    
+            // 5. Generar un nombre de archivo único para evitar colisiones
+            $nombreUnico = uniqid() . "_" . pathinfo($nombreFoto, PATHINFO_FILENAME) . "." . pathinfo($nombreFoto, PATHINFO_EXTENSION);
+            $rutaDestino = $carpetaDestino . $nombreUnico;
+    
+            // 6. Mover la foto al servidor
+            if (move_uploaded_file($rutaTemporal, $rutaDestino)) {
+                // 7. Actualizar la base de datos con el nuevo nombre de archivo
+                $model = new LoginModel();
+                $model->ActualizarFotoUsuario($nombreUnico);
+    
+                // 8. Redirigir con un mensaje de éxito
+                header("Location: dashboard.php?mensaje=foto_actualizada");
+                exit();
             } else {
-                echo "No se seleccionó ninguna imagen.";
+                // 9. Manejar el error al mover el archivo
+                echo "Error al guardar la imagen en el servidor.";
             }
         }
     }
