@@ -101,9 +101,9 @@ class loginController
         $modelo = new LoginModel();
         $foto = $modelo->mostrarFotoUsuario();
 
-        // Si la foto está en la sesión, mostrarla
+        
         if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
-            echo '<img src="src/uploads/' . htmlspecialchars($_SESSION['foto_usuario']) . '" alt="Foto de perfil" style="width:100%; border-radius:50%;" >';
+            echo '<img src="src/uploads/' . htmlspecialchars($_SESSION['foto_usuario']) . '" alt="Foto de perfil" style="width:100%; height:100%; border-radius:50%;" >';
         } else {
             echo '<img src="src/uploads/perfil_default.png" alt="Foto de perfil" style="width:100%; border-radius:50%;">';
         }
