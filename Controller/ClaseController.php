@@ -1,7 +1,6 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../Model/ClaseModel.php');
 require_once realpath(dirname(__FILE__) . '/../Model/LoginModel.php');
-require_once realpath(dirname(__FILE__) . '/../Model/ClaseModel.php');
 
 class ClaseController
 {
@@ -56,25 +55,25 @@ class ClaseController
 
                 switch ($nombre_clase) {
                     case 'yoga':
-                        $icon = 'src/img/Icons-Yoga.png';
+                        $icon = 'src/img/inconos/iconos-Yoga.png';
                         break;
                     case 'zumba':
-                        $icon = 'src/img/inconos/icons-zumba.png';
+                        $icon = 'src/img/inconos/iconos-zumba.png';
                         break;
                     case 'boxing':
-                        $icon = 'src/img/inconos/icons-boxing.png';
+                        $icon = 'src/img/inconos/iconos-Boxing.png';
                         break;
                     case 'cardio':
-                        $icon = 'src/img/running.png';
+                        $icon = 'src/img/inconos/iconos-Running.png';
                         break;
                     case 'spinning':
-                        $icon = '../src/img/inconos/iconos-spinning.png';
+                        $icon = 'src/img/inconos/iconos-spinning.png';
                         break;
-                    case 'IronCWout':
-                        $icon = 'src/img/Icons-Biceps.png';
+                    case 'ironcwout':
+                        $icon = 'src/img/inconos/Icons-Biceps.png';
                         break;
                     case 'crossfit':
-                        $icon = 'src/img/icons-peso-rusa.png';
+                        $icon = 'src/img/inconos/muscle.png';
                         break;
 
                     default:
@@ -143,18 +142,20 @@ class ClaseController
                 }
 
                 echo "
-            <div class='col-12 d-flex col-md-4 p-3 justify-align-content-between' style='$desabilitar margin:4px 4px; border: 1px solid #ccc; max-height: 280px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>
+            <div class='col-12 d-flex col-md-4 p-3 justify-align-content-between' style='$desabilitar margin:4px 4px; border: 1px solid #ccc; max-height: 280px; border-radius: 64px 10px 10px 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>
 
                 <div class='col-5 d-flex justify-content-center align-items-center position-relative'>
-                    <img src='$imagenEntrenador' alt='Imagen' class='img-fluid position-absolute bottom-0' width='100%'>
-                    <img src='$icon' alt='icono' class='img-fluid' style='width: 40px; height: 40px; position: absolute; top: 10px; left: 10px;'>
+                    <img src='$imagenEntrenador' alt='Imagen' class='img-fluid position-absolute bottom-0' width='100% '>
+                    <div class='' style='display: flex; justify-content: center; align-items: center; position: absolute; top: -18px; left: -16px; border-radius: 50%; width: 50px; height: 50px; background: #587099; overflow: hidden; padding: 3px;'>
+                      <img src='$icon' alt='icono' class='img-fluid' style='width: 2rem; height: 2rem'>
+                    </div>
                 </div>
 
                 <div class='col-6 d-flex flex-column justify-content-center align-align-items-center'>
                     <h5 class='align-self-center'>{$row['nombre_clase']}</h5>
-                    <p>Entrenador: {$row['entrenador']}</p>
-                    <p>Fecha: {$row['fecha']}</p>
-                    <p>Hora: {$row['horario']}</p>
+                    <p style='font-size: 16px;'>{$row['entrenador']}</p>
+                    <p>{$row['fecha']}</p>
+                    <p>{$row['horario']}</p>
                     $estado
                 </div>
 
@@ -236,9 +237,9 @@ class ClaseController
                     $icon = 'src/img/running.png';
                     break;
                 case 'spinning':
-                    $icon = '../src/img/inconos/iconos-spinning.png';
+                    $icon = 'src/img/inconos/GuidanceSpinning.png';
                     break;
-                case 'IronCWout':
+                case 'ironcwout':
                     $icon = 'src/img/Icons-Biceps.png';
                     break;
                 case 'crossfit':
@@ -257,14 +258,20 @@ class ClaseController
                 $estado = "pointer-events: auto; opacity: 1;";
             }
 
+            if($nombre_clase == "ironcwout" ){
+                $estilos = "min-width: 150px; height: 3.5rem;";
+            }else{
+                $estilos = "min-width: 120px; height: 3.5rem;";
+            }
+
             echo "
-            <div class='custom-proximas-clases item'>
+            <div class='custom-proximas-clases' style='$estilos border:1px solid #fff; border-radius: 15px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 4px, rgba(14, 12, 110, 0.16) 0px 7px 13px -3px, rgba(16, 9, 83, 0.06) 0px -3px 0px inset;' >
                 <div class='row' style='width: 100%; $estado;'>
                     <div class='col-4' style='display: flex; padding: 0; justify-content: center; align-items: center;'>
                         <img src='$icon' alt='icono' style='width: 40px; height: 40px;'>
                     </div>
                     <div class='col-8' style='display: flex; justify-content: center; align-items: center;'>
-                        <h6>{$row['nombre_clase']}</h6>
+                        <p style='font-size: 14px; margin-top: 20px;'>{$row['nombre_clase']}</p>
                     </div>
                 </div>
             </div>";
