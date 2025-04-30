@@ -52,7 +52,7 @@ if (empty($_SESSION['id_login'])) {
                     <div class="row" style="padding: 1em; justify-self: center; ">
 
 
-                        <figure class="cartas-rutinas col-12 col-sm-4" style="position: relative;">
+                        <figure class="cartas-rutinas col-12 col-md-4" style="position: relative;">
                             <a href="https://www.youtube.com/watch?v=oCtrksNCiKk"
                                 style="color: #101116; text-decoration: none;" target="_blank">
                                 <div class="fondo-rutina col10 col-md-4 d-flex flex-row justify-content-between" style="border-radius: 10px; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
@@ -75,7 +75,7 @@ if (empty($_SESSION['id_login'])) {
                             </a>
                         </figure>
 
-                        <figure class="cartas-rutinas col-12 col-sm-4">
+                        <figure class="cartas-rutinas col-12 col-md-4">
                             <a href="https://www.youtube.com/watch?v=VB09kLgJDo0" target="_blank" style="color: #101116; text-decoration: none;">
                                 <div class="fondo-rutina  col10 col-md-4 d-flex flex-row justify-content-between" style=" max-height: 160px; border-radius: 10px; background-color: #101116; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
@@ -99,7 +99,7 @@ if (empty($_SESSION['id_login'])) {
 
                         </figure>
 
-                        <figure class="cartas-rutinas col-12 col-sm-4">
+                        <figure class="cartas-rutinas col-12 col-md-4">
                             <a href="https://www.youtube.com/watch?v=_hkUNgX9e54" target="_blank" style="color: #101116; text-decoration: none;">
                                 <div class="fondo-rutina col10 col-md-4 d-flex flex-row justify-content-between" style="border-radius: 10px; box-shadow: 5px 5px 35px #3f55762f; width: 100%;">
 
@@ -122,7 +122,7 @@ if (empty($_SESSION['id_login'])) {
                             </a>
                         </figure>
 
-                        <figure class="cartas-rutinas col-12 col-sm-4">
+                        <figure class="cartas-rutinas col-12 col-md-4">
                             <a href="https://www.youtube.com/watch?v=LFR7BPbLmTc"
                                 style="color: #101116; text-decoration: none;" target="_blank">
                                 <div class="fondo-rutina col10 col-md-4 d-flex flex-row justify-content-between"

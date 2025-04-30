@@ -22,7 +22,7 @@
                         <img src="src/img/Icons-Biceps.png" alt="" width="20px"
                             height="20px">
                     </figure>
-                    <figure class=" d-flex justify-content-center align-items-center"
+                    <figure class="peso-ruso d-flex justify-content-center align-items-center"
                         style="backdrop-filter: blur(20px); border: 1px solid #fff; border-radius: 50%; overflow: hidden; padding: 1px; width: 20px; height: 20px; padding: 1em;  background: rgba(255, 255, 255, 0.753); -webkit-backdrop-filter: blur(19px); backdrop-filter: blur(21px); border: 1px solid rgba(255,255,255,0.225);">
                         <img src="src/img/icons-peso-rusa.png" alt="" width="20px"
                             height="20px">
@@ -35,15 +35,15 @@
                 </div>
 
                 <!--boton inicion modal-->
-                <button popovertarget="modal"
+                <button popovertarget="modal1"
                     class="btn btn-primary position-absolute d-flex justify-content-center align-items-center"
                     style="bottom: 10px; right: -35px; border-radius: 50%; width: 50px; height: 50px;">
                     <img src="src/img/inconos/icons-turnRigth.png" alt="">
                 </button>
 
                 <!--------------------------------------------------------------inicio modal----------------------------------------------->
-                <div id="modal" popover class="border-0 position-relative w-75 w-sm-25"
-                    style="background: #101116; border-radius: 40px;">
+                <div id="modal1" popover class="border-0 position-relative col-11 col-md-5"
+                    style="background: #101116; border-radius: 40px; scrollbar-width: none;">
                     <div class="row text-white" style="background: #101116;">
 
                         <div class="col-4" style="margin-top: 20px;">
@@ -60,8 +60,10 @@
                                 <figure
                                     class=" d-flex justify-content-center align-items-center"
                                     style="backdrop-filter: blur(20px); border: 1px solid #fff; border-radius: 50%; overflow: hidden; padding: 1px; width: 20px; height: 20px; padding: 1em;  background: rgba(255, 255, 255, 0.753); -webkit-backdrop-filter: blur(19px); backdrop-filter: blur(21px); border: 1px solid rgba(255,255,255,0.225);">
-                                    <img src="src/img/icons-peso-rusa.png" alt=""
-                                        width="20px" height="20px">
+                                    <div class="">
+                                        <img src="src/img/icons-peso-rusa.png" alt="" width="20px" height="20px" class="">
+                                        
+                                    </div>
                                 </figure>
                                 <figure
                                     class=" d-flex justify-content-center align-items-center"
@@ -74,7 +76,16 @@
                         </div>
 
                         <div class="col-8 d-flex justify-content-center align-items-center">
-                            <img src="src/img/entrenador.png" alt="" width="200px">
+                            <img src="src/img/entrenador.png" alt="" width="200px" style="filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+
+                            -webkit-mask-image: linear-gradient(black 89%, transparent),
+                              linear-gradient(to left, black 20%, transparent);
+                            -webkit-mask-composite: intersect;
+                          
+                            mask-image: linear-gradient(black 89%, transparent),
+                              linear-gradient(to left, black 10%, transparent);
+                            mask-composite: intersect;
+                            ">
                         </div>
                     </div>
 
@@ -87,11 +98,11 @@
                         <a href=""><img src="src/img/inconos/MdiLinkedin.png" alt=""></a>
                     </div>
 
-                    <button popovertarget="modal" class="position-absolute"
+                    <button popovertarget="modal1" class="position-absolute"
                         style="right: 20px; top: 20px; background: transparent; border: 0;"><img
                             src="src/img/inconos/Icons-Salir.png" alt=""
                             width="30px"></button>
-                    <a href="https://api.whatsapp.com/send?phone=3173029226" class="btn btn-primary my-3 w-100">enviar mensaje</a>
+                    <button  class="btn btn-primary my-3" style="width: 90%;" >enviar mensaje</button>
                 </div>
 
             </div>

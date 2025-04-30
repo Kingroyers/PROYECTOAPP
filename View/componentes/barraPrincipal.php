@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
                 ?>
             </div>
-            <p style="font-size: 17px;margin-top: 15px;">Hola, <?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
+            <p style="font-size: 15px ;margin-top: 15px;">Hola, <?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
         </div>
         <div class="col-6 w-auto position-absolute" style="width: auto; right: 0; top: 26px; cursor: pointer;"><img
                 src="src/img/inconos/BiThreeDotsVertical.png" alt="config" style="width: 24px;"

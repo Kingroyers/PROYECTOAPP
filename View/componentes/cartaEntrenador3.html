@@ -42,8 +42,8 @@
                 </button>
 
                 <!--------------------------------------------------------------inicio modal----------------------------------------------->
-                <div id="modal3" popover class="border-0 position-relative w-75 w-sm-25"
-                    style="background: #101116; border-radius: 40px;">
+                <div id="modal3" popover class="border-0 position-relative col-11 col-md-5"
+                    style="background: #101116; border-radius: 40px;  scrollbar-width: none;">
                     <div class="row text-white" style="background: #101116;">
 
                         <div class="col-4" style="margin-top: 20px;">
@@ -73,8 +73,17 @@
 
                         </div>
 
-                        <div class="col-8 d-flex justify-content-center align-items-center">
-                            <img src="src/img/entrenador4.png" alt="" width="200px">
+                        <div class="col-8 d-flex justify-content-center align-items-center position-relative">
+                            <img src="src/img/entrenador4.png" alt="" width="300px" style="position: absolute; bottom: 0;filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+
+                            -webkit-mask-image: linear-gradient(black 89%, transparent),
+                              linear-gradient(to left, black 20%, transparent);
+                            -webkit-mask-composite: intersect;
+                          
+                            mask-image: linear-gradient(black 89%, transparent),
+                              linear-gradient(to left, black 20%, transparent);
+                            mask-composite: intersect;
+                            ">
                         </div>
                     </div>
 
@@ -91,7 +100,7 @@
                         style="right: 20px; top: 20px; background: transparent; border: 0;"><img
                             src="src/img/inconos/Icons-Salir.png" alt=""
                             width="30px"></button>
-                    <button class="btn btn-primary my-3 w-100">enviar mensaje</button>
+                    <button class="btn btn-primary my-3" style="width: 90%;" >enviar mensaje</button>
                 </div>
 
             </div>
