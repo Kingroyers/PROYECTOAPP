@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <section class="row w-100 mx-2">
         <div class="col-6 w-auto d-flex justify-content-center align-items-center" style="gap: 10px;">
-            <div style="width: 55px; height: 55px; border: 1px solid; border-radius: 50%; margin-right:10px;">
+            <div class="justify-content-center align-items-center" style="width: 55px; height: 55px; border: 1px solid; border-radius: 50%; margin-right:10px; display: flex; border: 1px solid rgb(1, 4, 25);">
                 <?php
                 include_once __DIR__ . '/../../Controller/loginController.php';
 

@@ -3,14 +3,20 @@ require_once "conexionbd.php";
 
 class ModeloClases
 {
+    private $db;
+
+    public function __construct()
+    {
+        $conexion = new ConexionBD();
+        $this->db = $conexion->getConexion();
+    }
 
     public function obtenerClases()
     {
-        $conexion = new ConexionBD();
-        $db = $conexion->getConexion();
+        
 
         $sql = "SELECT * FROM clases ORDER BY fecha >= CURDATE() DESC, fecha DESC, horario DESC;";
-        $result = $db->query($sql);
+        $result = $this->db->query($sql);
 
         $clases = [];
 
@@ -23,11 +29,9 @@ class ModeloClases
 
     public function obtenerClasesOrdenadas()
     {
-        $conexion = new ConexionBD();
-        $db = $conexion->getConexion();
 
         $sql = "SELECT * FROM clases ORDER BY fecha >= CURDATE() DESC, fecha DESC, horario DESC;";
-        $result = $db->query($sql);
+        $result = $this->db->query($sql);
 
         $clases = [];
         while ($row = $result->fetch_assoc()) {
@@ -39,46 +43,33 @@ class ModeloClases
 
     public function InscripcionClases($id_clase, $id_usuario, $fecha)
     {
-        $conexion = new ConexionBD();
-        $db = $conexion->getConexion();
 
 
-        $sql = "INSERT INTO inscripcion (id_clase, id_usuario, fecha_inscripcion) VALUES ('$id_clase', '$id_usuario','$fecha')";
+        $stmt = $this->db->prepare("INSERT INTO inscripcion (id_clase, id_usuario, fecha_inscripcion) VALUES (?, ?, ?)");
+        $stmt->bind_param("iis",$id_clase, $id_usuario, $fecha);
 
-        if ($db->query($sql) === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        return $stmt->execute();
+       
     }
 
     public function ValidarInscripcion($id_clase, $id_usuario)
     {
-        $conexion = new ConexionBD();
-        $db = $conexion->getConexion();
 
-        $sql = "SELECT * FROM inscripcion WHERE id_clase = '$id_clase' AND id_usuario = '$id_usuario'";
-        $result = $db->query($sql);
+        $stmt = $this->db->prepare("SELECT * FROM inscripcion WHERE id_clase = ? AND id_usuario = ? ");
+        $stmt->bind_param("ii", $id_clase, $id_usuario);
+        $stmt->execute();
 
-        if ($result->num_rows > 0) {
-            return true; // Inscripción ya existe
-        } else {
-            return false; // Inscripción no existe
-        }
+         $result = $stmt->get_result();
+         return $result->num_rows > 0;
     }
 
     public function EliminarInscripcion($id_clase, $id_usuario)
     {
-        $conexion = new ConexionBD();
-        $db = $conexion->getConexion();
 
-        $sql = "DELETE FROM inscripcion WHERE id_clase = '$id_clase' AND id_usuario = '$id_usuario'";
+        $stmt = $this->db->prepare("DELETE FROM inscripcion WHERE id_clase = ? AND id_usuario = ?");
 
-        if ($db->query($sql) === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->bind_param("ii", $id_clase, $id_usuario);
+        return $stmt->execute();
     }
 
     // public function MostrarClasesInscritas($id_usuario) {
@@ -99,27 +90,36 @@ class ModeloClases
 
     public function VerificarCapacidadMaxima($id_clase)
     {
-        $conn = new ConexionBD();
-        $db = $conn->getConexion();
+        $stmt = $this->db->prepare("SELECT capacidad_maxima FROM clases WHERE id_clase = ?");
+        $stmt->bind_param("i", $id_clase);
+        $stmt->execute();
 
-        $sql = "SELECT capacidad_maxima FROM clases WHERE id_clase = '$id_clase'";
-        $result = $db->query($sql);
-
-        if($row = $result->fetch_assoc()){
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
             $capacidad = $row['capacidad_maxima'];
 
-            $sqlInscritos = "SELECT COUNT(*) AS total FROM inscripcion WHERE id_clase = '$id_clase'";
-            $resultado = $db->query($sqlInscritos);
-            $fila2 = $resultado->fetch_assoc();
+            $stmt2 = $this->db->prepare("SELECT COUNT(*) AS total FROM inscripcion WHERE id_clase = ?");
+            $stmt2->bind_param("i", $id_clase);
+            $stmt2->execute();
 
+            $res2 = $stmt2->get_result();
+            $fila2 = $res2->fetch_assoc();
             $inscritos = $fila2['total'];
 
             return $inscritos < $capacidad;
-
-             
         }
 
         return false;
+    }
+
+    public function eliminarAsistenciasDomingo() {
+        $conn = new ConexionBD();
+        $db = $conn->getConexion();
+
+        if (date('w') == 0) { 
+            $sql = "DELETE * FROM clases";
+            $db->query($sql);
+        }
     }
 
 }

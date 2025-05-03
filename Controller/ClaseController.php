@@ -6,10 +6,12 @@ class ClaseController
 {
     private $modelo;
 
+   
 
 
 
-    public function mostrarClasesHoy()
+
+    public function mostrarClasesPorFecha()
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -45,7 +47,7 @@ class ClaseController
             $clases = $modelo->obtenerClases();
 
             date_default_timezone_set('America/Bogota');
-            $fecha_actual = date('Y-m-d');
+            $fecha_actual = isset($_GET['fecha_seleccionada']) ? $_GET['fecha_seleccionada'] : date('Y-m-d');
             $actual_timestamp = strtotime(date('Y-m-d H:i'));
 
             foreach ($clases as $row) {
@@ -179,13 +181,21 @@ class ClaseController
 
         foreach ($dia_semana as $index => $dia) {
             $es_hoy = ($dia == $fecha_actual);
-            $clase_hoy = $es_hoy ? "hoy" : "bg-light";
+            if ($es_hoy) {
+                $clase_hoy = "hoy";
+            } else {
+                $clase_hoy = "bg-light";
+            }
+            
             $id = $es_hoy ? "id='hoy'" : "";
 
-            echo "<div class='dia $clase_hoy' $id style='flex: 0 0 auto; width: 110px; text-align: center; border: 1px solid #ddd; border-radius: 10px; padding: 15px; transition: transform 0.2s, box-shadow 0.2s; scroll-snap-align: center; scrollbar-width: 1px; margin-right:3px;'>
+            echo "<form method='GET' action=''>
+            <input type='hidden' name='fecha_seleccionada' value='$dia'>
+            <button type='submit' class='dia $clase_hoy' $id style='all:unset; cursor:pointer; flex: 0 0 auto; width: 110px; text-align: center; border: 1px solid #ddd; border-radius: 10px; padding: 15px; transition: transform 0.2s, box-shadow 0.2s; scroll-snap-align: center; margin-right:3px;'>
                 <p class='numero-dia'>" . date("d", strtotime($dia)) . "</p>
                 <p class='nombre-dia'>" . $nombres_dias[$index] . "</p>
-            </div>";
+            </button>
+        </form>";
         }
 
         // date_default_timezone_set('America/Bogota');

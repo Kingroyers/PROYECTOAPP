@@ -94,7 +94,7 @@
             <?php
             require_once "../Controller/ClaseController.php";
             $claseController = new ClaseController();
-            $claseController->mostrarClasesHoy();
+            $claseController->mostrarClasesPorFecha();
             ?>
 
 

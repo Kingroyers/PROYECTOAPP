@@ -103,9 +103,9 @@ class loginController
 
         
         if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
-            echo '<img src="src/uploads/' . htmlspecialchars($_SESSION['foto_usuario']) . '" alt="Foto de perfil" style="width:100%; height:100%; border-radius:50%;" >';
+            echo '<img src="src/uploads/' . htmlspecialchars($_SESSION['foto_usuario']) . '" alt="Foto de perfil" style="object-fit: cover; width:100%; height:100%; border-radius:50%;" >';
         } else {
-            echo '<img src="src/uploads/perfil_default.png" alt="Foto de perfil" style="width:100%; border-radius:50%;">';
+            echo '<img src="src/uploads/perfil_default.png" class="img-fluid" alt="Foto de perfil" style="width:100%; border-radius:50%;">';
         }
     }
 
@@ -160,7 +160,7 @@ class loginController
                 $model->ActualizarFotoUsuario($nombreUnico);
     
                 // 8. Redirigir con un mensaje de éxito
-                header("Location: dashboard.php?mensaje=foto_actualizada");
+                header("Location: dashboard.php");
                 exit();
             } else {
                 // 9. Manejar el error al mover el archivo
