@@ -4,6 +4,10 @@ session_start();
 if (empty($_SESSION['id_login'])) {
     header("Location: index.php");
 }
+
+include_once "Model/ClaseModel.php";
+$controller = new ModeloClases();
+$controller->eliminarAsistenciasDomingo();
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +29,8 @@ if (empty($_SESSION['id_login'])) {
 
     <?php #echo '<pre>';
     #print_r($_SESSION);  
-    #echo '</pre>'; ?>
+    #echo '</pre>'; 
+    ?>
 
     <div class=" d-flex justify-content-center align-items-center  w-100 ">
 
@@ -41,7 +46,7 @@ if (empty($_SESSION['id_login'])) {
                 </a>
                 <hr style="margin: 0;">
 
-                <div class="row d-flex justify-content-center align-content-center" style=" margin-top: 0; padding: 0 0 10px 0;">
+                <div class="row d-flex justify-content-center align-content-center" style=" margin-top: 0; padding: 0 0 10px 0; margin-bottom: 50px;">
 
                     <?php include '../ProyectoAPP/View/componentes/ProximasClases.php' ?>
 
@@ -155,6 +160,20 @@ if (empty($_SESSION['id_login'])) {
                     <hr>
 
                     <?php include '../ProyectoAPP/View/componentes/NuestroEquipo.php' ?>
+
+                    <!-- <div class="container-fluid mt-4 w-100 w-sm-100" style="padding: 1em;">
+                        <div class="wrapper d-flex" style=" overflow-x: auto; padding-bottom: 1em;">
+
+                            <?php
+                            // include_once 'Controller/ClaseController.php';
+
+                            // $controller = new ClaseController();
+                            // $controller->MostrarCLasesInscritas();
+
+                            ?>
+                        </div>    
+                    </div> -->
+
                 </div>
 
             </main>

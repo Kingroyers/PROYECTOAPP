@@ -6,10 +6,6 @@ class ClaseController
 {
     private $modelo;
 
-   
-
-
-
 
     public function mostrarClasesPorFecha()
     {
@@ -39,7 +35,7 @@ class ClaseController
                     </div>
                 </div>
                 ';
-            exit;
+            
         } else {
 
 
@@ -101,8 +97,8 @@ class ClaseController
                     $model = new ModeloClases();
                     $inscripcion = $model->ValidarInscripcion($row['id_clase'], $id_usuario);
 
-                    if ($inscripcion) { //si el vale esta inscrito en la clase 
-                        
+                    if ($inscripcion) { //si el vale esta inscrito a la clase 
+
                         $controller->ElimnarInscripcion();
                         $id_clase = $row['id_clase'];
                         $id_usuario = $_SESSION['id_usuario'];
@@ -121,7 +117,7 @@ class ClaseController
                         $model = new ModeloClases;
                         $verificarCapacidad = $model->VerificarCapacidadMaxima($id_clase);
 
-                        if($verificarCapacidad){
+                        if ($verificarCapacidad) {
                             $estado = "
                             <form method='POST' action=''>
                                 <input type='hidden' name='id_clase' value='$id_clase'>
@@ -129,17 +125,15 @@ class ClaseController
                                Inscribirse
                                </button>
                             </form>";
-                                $desabilitar = "pointer-events: auto; opacity: 1;";
-                        }else{
+                            $desabilitar = "pointer-events: auto; opacity: 1;";
+                        } else {
                             $estado = "
                             <button type='submit' class='btn btn-outline-secondary' style='width:100%;  margin-left:10px; border:1px solid ; height:auto;' >
                                No hay cupo disponible
                                </button>
                             ";
-                            $desabilitar= "pointer-events: none; opacity: 0.5;";
+                            $desabilitar = "pointer-events: none; opacity: 0.5;";
                         }
-                        
-                       
                     }
                 }
 
@@ -186,7 +180,7 @@ class ClaseController
             } else {
                 $clase_hoy = "bg-light";
             }
-            
+
             $id = $es_hoy ? "id='hoy'" : "";
 
             echo "<form method='GET' action=''>
@@ -268,9 +262,9 @@ class ClaseController
                 $estado = "pointer-events: auto; opacity: 1;";
             }
 
-            if($nombre_clase == "ironcwout" ){
+            if ($nombre_clase == "ironcwout") {
                 $estilos = "min-width: 150px; height: 3.5rem;";
-            }else{
+            } else {
                 $estilos = "min-width: 120px; height: 3.5rem;";
             }
 
@@ -309,47 +303,70 @@ class ClaseController
             $usuarioExiste = $LoginModel->UsuarioExiste($id_usuario);
 
             if (!$usuarioExiste) {
-                echo '<div class="container mt-4 d-flex justify-content-center">
-                <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5);">
+                <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
                  <strong>Usuario no Registrado</strong>
                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                </div>';
-                echo "<script>window.location.href='View/ClasesView.php';</script>";
+               echo "<script>
+               setTimeout(function() {
+               window.location.href = 'View/ClasesView.php';
+               }, 2000);
+                </script>";
                 exit;
             } else {
                 $model = new ModeloClases;
                 $verificarCapacidad = $model->VerificarCapacidadMaxima($id_clase);
 
-                if($verificarCapacidad){
+                if ($verificarCapacidad) {
+                    $model = new ModeloClases();
+                    $inscripcion = $model->ValidarInscripcion($id_clase, $id_usuario);
 
-                    $modelo = new ModeloClases();
-                    $resultado = $modelo->InscripcionClases($id_clase, $id_usuario, $fecha);
-    
-                    if ($resultado) {
-                        echo '<div class="container mt-4 d-flex justify-content-center">
-                               <div class="alert alert-success alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
-                                <strong>¡Inscripción exitosa!</strong>
-                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                               </div>
-                              </div>';
-                    } else {
-                        echo '<div class="container mt-4 d-flex justify-content-center">
-                                <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
-                                 <strong>Error al inscribirse.</strong>
-                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                              </div>';
+                    if (!$inscripcion) {
+                        $modelo = new ModeloClases();
+                        $resultado = $modelo->InscripcionClases($id_clase, $id_usuario, $fecha);
+
+                        if ($resultado) {
+                            echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
+                                    <div id="alerta-exito" class="alert alert-success alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
+                                           <div class="row">
+                                            <div class="col-12" style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+                                            <i class="bi bi-check-circle-fill" style="font-size: 10px;"></i> 
+                                             <strong style="font-size: 10px;">¡Inscripción exitosa!</strong>
+                                            </div>
+                                           </div>
+                                    </div>
+                                  </div>';
+                            echo '<script>
+                              setTimeout(function() {
+                                  location.reload();
+                              }, 2000);
+                            </script>';
+                            echo "<script>
+                                    setTimeout(function() {
+                                    window.location.href = 'View/ClasesView.php';
+                                    }, 2000);
+                                </script>";
+                        } else {
+                            echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
+                                    <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
+                                     <strong>Error al inscribirse.</strong>                                
+                                    </div>
+                                  </div>';
+                            echo '<script>
+                                  setTimeout(function() {
+                                      location.reload();
+                                  }, 2000);
+                                </script>';
+                            echo "<script>
+                                    setTimeout(function() {
+                                    window.location.href = 'View/ClasesView.php';
+                                    }, 2000);
+                                </script>";
+                        }
                     }
-                }else{
-                    echo '<div class="container mt-4 d-flex justify-content-center">
-                    <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
-                     <strong>No hay cupo Disponible</strong>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                  </div>';
                 }
-               
             }
         }
     }
@@ -366,25 +383,41 @@ class ClaseController
             $resultado = $modelo->EliminarInscripcion($id_clase, $id_usuario);
 
             if ($resultado) {
-                echo '<div class="container mt-4 d-flex justify-content-center">
-                           <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
-                            <strong>¡Eliministe Inscripcion!</strong>
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
+                           <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
+                             <div class="row">
+                                <div class="col-12" style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+                                        <strong style="font-size: 10px;">¡Eliminaste Inscripcion!</strong>
+                                </div>
+                             </div>
                            </div>
                           </div>';
-                          echo '<script>
+                echo '<script>
                           setTimeout(function() {
                               location.reload();
-                          }, 3000);
-                        </script>';          
-               
+                          }, 2000);
+                        </script>';
+                echo "<script>
+                       setTimeout(function() {
+                           window.location.href = 'View/ClasesView.php';
+                       }, 2000);
+                   </script>";
             } else {
-                echo '<div class="container mt-4 d-flex justify-content-center">
-                           <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 400px; width: 100%;">
+                echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
+                           <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
                             <strong>Error al eliminar </strong>
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                            </div>
                           </div>';
+                echo '<script>
+                          setTimeout(function() {
+                              location.reload();
+                          }, 2000);
+                        </script>';
+                echo "<script>
+                        setTimeout(function() {
+                            window.location.href = 'View/ClasesView.php';
+                        }, 2000);
+                    </script>";
             }
         }
     }
@@ -398,13 +431,123 @@ class ClaseController
     //     $modelo = new ModeloClases();
     //     $clasesInscritas = $modelo->MostrarClasesInscritas($id_usuario);
 
+
+    //     date_default_timezone_set('America/Bogota');
+    //     $actual_timestamp = strtotime(date('Y-m-d H:i'));
+
     //     foreach ($clasesInscritas as $row) {
-            
-    //         echo "<div class='clase-inscrita'>";
-    //         echo "<h5>{$row['nombre_clase']}</h5>";
-    //         echo "<p>Fecha: {$row['fecha']}</p>";
-    //         echo "<p>Hora: {$row['horario']}</p>";
-    //         echo "</div>";
+    //         $nombre_clase = strtolower($row['nombre_clase']);
+
+
+    //         $nombre_clase = strtolower($row['nombre_clase']);
+
+    //         switch ($nombre_clase) {
+    //             case 'yoga':
+    //                 $icon = 'src/img/inconos/iconos-Yoga.png';
+    //                 break;
+    //             case 'zumba':
+    //                 $icon = 'src/img/inconos/iconos-zumba.png';
+    //                 break;
+    //             case 'boxing':
+    //                 $icon = 'src/img/inconos/iconos-Boxing.png';
+    //                 break;
+    //             case 'cardio':
+    //                 $icon = 'src/img/inconos/iconos-Running.png';
+    //                 break;
+    //             case 'spinning':
+    //                 $icon = 'src/img/inconos/iconos-spinning.png';
+    //                 break;
+    //             case 'ironcwout':
+    //                 $icon = 'src/img/inconos/Icons-Biceps.png';
+    //                 break;
+    //             case 'crossfit':
+    //                 $icon = 'src/img/inconos/muscle.png';
+    //                 break;
+
+    //             default:
+    //                 $icon = 'src/img/inconos/logo.png';
+    //                 break;
+    //         }
+
+
+    //         $imagenEntrenador = match (strtolower($row['entrenador'])) {
+    //             "antonio royero" => "src/img/Entrenador3.png",
+    //             "samuel alzate" => "src/img/entrenadorcopia.png",
+    //             "uso carruso"   => "src/img/entrenador4.png",
+    //             default         => "src/img/default.png"
+    //         };
+
+    //         $horario_clase = strtotime($row['fecha'] . ' ' . $row['horario']);
+    //         if ($horario_clase < $actual_timestamp) { 
+    //             $estado = "<button class='btn btn-secondary' disabled>Cerrada</button>";
+    //             $desabilitar = "pointer-events: ; opacity: 0.5;";
+    //         } else {
+    //             $controller = new ClaseController();
+    //             $controller->inscribirClase();
+    //             $model = new ModeloClases();
+    //             $inscripcion = $model->ValidarInscripcion($row['id_clase'], $id_usuario);
+
+    //             if ($inscripcion) { //si el vale esta inscrito en la clase 
+
+    //                 $controller->ElimnarInscripcion();
+    //                 $id_clase = $row['id_clase'];
+    //                 $id_usuario = $_SESSION['id_usuario'];
+    //                 $estado = "
+    //                 <form method='POST' action=''> 
+    //                  <input type='hidden' name='id_clase' value='$id_clase'>
+    //                  <input type='hidden' name='id_usuario' value='$id_usuario'>
+    //                  <button type='submit' class='btn btn-outline-danger'name='btnEliminarInscripcion' >Eliminar Inscripcion</button>
+    //                 </form> 
+    //                  ";
+    //                 $desabilitar = "";
+    //             } else {
+
+    //                 $id_clase = $row['id_clase'];
+
+    //                 $model = new ModeloClases;
+    //                 $verificarCapacidad = $model->VerificarCapacidadMaxima($id_clase);
+
+    //                 if($verificarCapacidad){
+    //                     $estado = "
+    //                     <form method='POST' action=''>
+    //                         <input type='hidden' name='id_clase' value='$id_clase'>
+    //                       <button type='submit' name='btnInscripcion' id={$row['fecha']}' class='btn btn-success' style='width:100%;  margin-left:10px; ' >
+    //                        Inscribirse
+    //                        </button>
+    //                     </form>";
+    //                         $desabilitar = "pointer-events: auto; opacity: 1;";
+    //                 }else{
+    //                     $estado = "
+    //                     <button type='submit' class='btn btn-outline-secondary' style='width:100%;  margin-left:10px; border:1px solid ; height:auto;' >
+    //                        No hay cupo disponible
+    //                        </button>
+    //                     ";
+    //                     $desabilitar= "pointer-events: none; opacity: 0.5;";
+    //                 }
+
+
+    //             }
+    //         }
+
+    //         echo "
+    //     <div class='col-12 d-flex col-md-4 p-3 justify-align-content-between' style='$desabilitar margin:4px 4px; border: 1px solid #ccc; max-height: 280px; border-radius: 64px 10px 10px 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>
+
+    //         <div class='col-5 d-flex justify-content-center align-items-center position-relative'>
+    //             <img src='$imagenEntrenador' alt='Imagen' class='img-fluid position-absolute bottom-0' width='100% '>
+    //             <div class='' style='display: flex; justify-content: center; align-items: center; position: absolute; top: -18px; left: -16px; border-radius: 50%; width: 50px; height: 50px; background: #587099; overflow: hidden; padding: 3px;'>
+    //               <img src='$icon' alt='icono' class='img-fluid' style='width: 2rem; height: 2rem'>
+    //             </div>
+    //         </div>
+
+    //         <div class='col-6 d-flex flex-column justify-content-center align-align-items-center'>
+    //             <h5 class='align-self-center'>{$row['nombre_clase']}</h5>
+    //             <p style='font-size: 16px;'>{$row['entrenador']}</p>
+    //             <p>{$row['fecha']}</p>
+    //             <p>{$row['horario']}</p>
+    //             $estado
+    //         </div>
+
+    //     </div>";
     //     }
     // }
 }
