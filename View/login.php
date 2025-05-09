@@ -36,10 +36,10 @@
                 <input type="password" class="form-control" name="pass" placeholder="***************" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
             </div>
 
-            <div class="mb-3 form-check text-white ">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1" style="font-size: 10px;">Recordarme</label>
+            <div class="mb-3 text-white" style="display: flex; justify-content: right;">
+                <a href="RecuperarContraseña.php" style="font-size: 10px; font-family: Arial, Helvetica, sans-serif;">¿olvidaste tu contraseña?</a>
             </div>
+            
 
             <button type="submit" class="btn btn-primary my-4 w-100" name="btnlogin">Iniciar Sesion</button>
         </form>

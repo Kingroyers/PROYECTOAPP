@@ -2,7 +2,13 @@
 require_once 'conexionbd.php';
 class LoginModel
 {
+    private $db;
 
+    public function __construct()
+    {
+        $conexion = new ConexionBD();
+        $this->db = $conexion->getConexion();
+    }
 
 
 
@@ -123,4 +129,36 @@ class LoginModel
     }
 }
 
+    public function RecuperarContraseña($correo){
+
+        $stmt = $this->db->prepare("SELECT * FROM login WHERE correo = ? ");
+        $stmt->bind_param("s",$correo);
+        $result = $stmt->execute();
+
+        if($result){
+          return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function ConsularContraseña($correo){
+        $contraseña = null;
+        $stmt = $this->db->prepare("SELECT contraseña FROM login WHERE correo = ?");
+        $stmt->bind_param("s",$correo);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if($stmt->num_rows > 0){
+
+            
+            $stmt->bind_result($contraseña);
+            $stmt->fetch();
+            $stmt->close();
+            return $contraseña;   
+        }else{
+            return false;
+        }
+    }
 }
