@@ -1240,6 +1240,7 @@
 <b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>53</b><br />
 <br />
 <b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>62</b><br />
+<<<<<<< HEAD
 2025-05-12 04:43:29: <br />
 <b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>71</b><br />
 <br />
@@ -1283,6 +1284,9 @@
 <br />
 <b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>62</b><br />
 <br />
+=======
+2025-05-12 04:21:15: <br />
+>>>>>>> ea335b5f06c1d1a355a9842c2b980985ab4cb622
 <b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>71</b><br />
 <br />
 <b>Warning</b>:  Trying to access array offset on value of type int in <b>C:\xampp\htdocs\PROYECTOAPP\libs\phpqrcode\qrsplit.php</b> on line <b>53</b><br />
