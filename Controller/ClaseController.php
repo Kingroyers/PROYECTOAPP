@@ -422,132 +422,132 @@ class ClaseController
         }
     }
 
-    // public function MostrarCLasesInscritas(){
-    //     if (session_status() === PHP_SESSION_NONE) {
-    //         session_start();
-    //     }
+    public function MostrarCLasesInscritas(){
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-    //     $id_usuario = $_SESSION['id_usuario'];
-    //     $modelo = new ModeloClases();
-    //     $clasesInscritas = $modelo->MostrarClasesInscritas($id_usuario);
-
-
-    //     date_default_timezone_set('America/Bogota');
-    //     $actual_timestamp = strtotime(date('Y-m-d H:i'));
-
-    //     foreach ($clasesInscritas as $row) {
-    //         $nombre_clase = strtolower($row['nombre_clase']);
+        $id_usuario = $_SESSION['id_usuario'];
+        $modelo = new ModeloClases();
+        $clasesInscritas = $modelo->MostrarClasesInscritas($id_usuario);
 
 
-    //         $nombre_clase = strtolower($row['nombre_clase']);
+        date_default_timezone_set('America/Bogota');
+        $actual_timestamp = strtotime(date('Y-m-d H:i'));
 
-    //         switch ($nombre_clase) {
-    //             case 'yoga':
-    //                 $icon = 'src/img/inconos/iconos-Yoga.png';
-    //                 break;
-    //             case 'zumba':
-    //                 $icon = 'src/img/inconos/iconos-zumba.png';
-    //                 break;
-    //             case 'boxing':
-    //                 $icon = 'src/img/inconos/iconos-Boxing.png';
-    //                 break;
-    //             case 'cardio':
-    //                 $icon = 'src/img/inconos/iconos-Running.png';
-    //                 break;
-    //             case 'spinning':
-    //                 $icon = 'src/img/inconos/iconos-spinning.png';
-    //                 break;
-    //             case 'ironcwout':
-    //                 $icon = 'src/img/inconos/Icons-Biceps.png';
-    //                 break;
-    //             case 'crossfit':
-    //                 $icon = 'src/img/inconos/muscle.png';
-    //                 break;
-
-    //             default:
-    //                 $icon = 'src/img/inconos/logo.png';
-    //                 break;
-    //         }
+        foreach ($clasesInscritas as $row) {
+            $nombre_clase = strtolower($row['nombre_clase']);
 
 
-    //         $imagenEntrenador = match (strtolower($row['entrenador'])) {
-    //             "antonio royero" => "src/img/Entrenador3.png",
-    //             "samuel alzate" => "src/img/entrenadorcopia.png",
-    //             "uso carruso"   => "src/img/entrenador4.png",
-    //             default         => "src/img/default.png"
-    //         };
+            $nombre_clase = strtolower($row['nombre_clase']);
 
-    //         $horario_clase = strtotime($row['fecha'] . ' ' . $row['horario']);
-    //         if ($horario_clase < $actual_timestamp) { 
-    //             $estado = "<button class='btn btn-secondary' disabled>Cerrada</button>";
-    //             $desabilitar = "pointer-events: ; opacity: 0.5;";
-    //         } else {
-    //             $controller = new ClaseController();
-    //             $controller->inscribirClase();
-    //             $model = new ModeloClases();
-    //             $inscripcion = $model->ValidarInscripcion($row['id_clase'], $id_usuario);
+            switch ($nombre_clase) {
+                case 'yoga':
+                    $icon = 'src/img/inconos/iconos-Yoga.png';
+                    break;
+                case 'zumba':
+                    $icon = 'src/img/inconos/iconos-zumba.png';
+                    break;
+                case 'boxing':
+                    $icon = 'src/img/inconos/iconos-Boxing.png';
+                    break;
+                case 'cardio':
+                    $icon = 'src/img/inconos/iconos-Running.png';
+                    break;
+                case 'spinning':
+                    $icon = 'src/img/inconos/iconos-spinning.png';
+                    break;
+                case 'ironcwout':
+                    $icon = 'src/img/inconos/Icons-Biceps.png';
+                    break;
+                case 'crossfit':
+                    $icon = 'src/img/inconos/muscle.png';
+                    break;
 
-    //             if ($inscripcion) { //si el vale esta inscrito en la clase 
-
-    //                 $controller->ElimnarInscripcion();
-    //                 $id_clase = $row['id_clase'];
-    //                 $id_usuario = $_SESSION['id_usuario'];
-    //                 $estado = "
-    //                 <form method='POST' action=''> 
-    //                  <input type='hidden' name='id_clase' value='$id_clase'>
-    //                  <input type='hidden' name='id_usuario' value='$id_usuario'>
-    //                  <button type='submit' class='btn btn-outline-danger'name='btnEliminarInscripcion' >Eliminar Inscripcion</button>
-    //                 </form> 
-    //                  ";
-    //                 $desabilitar = "";
-    //             } else {
-
-    //                 $id_clase = $row['id_clase'];
-
-    //                 $model = new ModeloClases;
-    //                 $verificarCapacidad = $model->VerificarCapacidadMaxima($id_clase);
-
-    //                 if($verificarCapacidad){
-    //                     $estado = "
-    //                     <form method='POST' action=''>
-    //                         <input type='hidden' name='id_clase' value='$id_clase'>
-    //                       <button type='submit' name='btnInscripcion' id={$row['fecha']}' class='btn btn-success' style='width:100%;  margin-left:10px; ' >
-    //                        Inscribirse
-    //                        </button>
-    //                     </form>";
-    //                         $desabilitar = "pointer-events: auto; opacity: 1;";
-    //                 }else{
-    //                     $estado = "
-    //                     <button type='submit' class='btn btn-outline-secondary' style='width:100%;  margin-left:10px; border:1px solid ; height:auto;' >
-    //                        No hay cupo disponible
-    //                        </button>
-    //                     ";
-    //                     $desabilitar= "pointer-events: none; opacity: 0.5;";
-    //                 }
+                default:
+                    $icon = 'src/img/inconos/logo.png';
+                    break;
+            }
 
 
-    //             }
-    //         }
+            $imagenEntrenador = match (strtolower($row['entrenador'])) {
+                "antonio royero" => "src/img/Entrenador3.png",
+                "samuel alzate" => "src/img/entrenadorcopia.png",
+                "uso carruso"   => "src/img/entrenador4.png",
+                default         => "src/img/default.png"
+            };
 
-    //         echo "
-    //     <div class='col-12 d-flex col-md-4 p-3 justify-align-content-between' style='$desabilitar margin:4px 4px; border: 1px solid #ccc; max-height: 280px; border-radius: 64px 10px 10px 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>
+            $horario_clase = strtotime($row['fecha'] . ' ' . $row['horario']);
+            if ($horario_clase < $actual_timestamp) { 
+                $estado = "<button class='btn btn-secondary' disabled>Cerrada</button>";
+                $desabilitar = "pointer-events: ; opacity: 0.5;";
+            } else {
+                $controller = new ClaseController();
+                $controller->inscribirClase();
+                $model = new ModeloClases();
+                $inscripcion = $model->ValidarInscripcion($row['id_clase'], $id_usuario);
 
-    //         <div class='col-5 d-flex justify-content-center align-items-center position-relative'>
-    //             <img src='$imagenEntrenador' alt='Imagen' class='img-fluid position-absolute bottom-0' width='100% '>
-    //             <div class='' style='display: flex; justify-content: center; align-items: center; position: absolute; top: -18px; left: -16px; border-radius: 50%; width: 50px; height: 50px; background: #587099; overflow: hidden; padding: 3px;'>
-    //               <img src='$icon' alt='icono' class='img-fluid' style='width: 2rem; height: 2rem'>
-    //             </div>
-    //         </div>
+                if ($inscripcion) { //si el vale esta inscrito en la clase 
 
-    //         <div class='col-6 d-flex flex-column justify-content-center align-align-items-center'>
-    //             <h5 class='align-self-center'>{$row['nombre_clase']}</h5>
-    //             <p style='font-size: 16px;'>{$row['entrenador']}</p>
-    //             <p>{$row['fecha']}</p>
-    //             <p>{$row['horario']}</p>
-    //             $estado
-    //         </div>
+                    $controller->ElimnarInscripcion();
+                    $id_clase = $row['id_clase'];
+                    $id_usuario = $_SESSION['id_usuario'];
+                    $estado = "
+                    <form method='POST' action=''> 
+                     <input type='hidden' name='id_clase' value='$id_clase'>
+                     <input type='hidden' name='id_usuario' value='$id_usuario'>
+                     <button type='submit' class='btn btn-outline-danger'name='btnEliminarInscripcion' >Eliminar Inscripcion</button>
+                    </form> 
+                     ";
+                    $desabilitar = "";
+                } else {
 
-    //     </div>";
-    //     }
-    // }
+                    $id_clase = $row['id_clase'];
+
+                    $model = new ModeloClases;
+                    $verificarCapacidad = $model->VerificarCapacidadMaxima($id_clase);
+
+                    if($verificarCapacidad){
+                        $estado = "
+                        <form method='POST' action=''>
+                            <input type='hidden' name='id_clase' value='$id_clase'>
+                          <button type='submit' name='btnInscripcion' id={$row['fecha']}' class='btn btn-success' style='width:100%;  margin-left:10px; ' >
+                           Inscribirse
+                           </button>
+                        </form>";
+                            $desabilitar = "pointer-events: auto; opacity: 1;";
+                    }else{
+                        $estado = "
+                        <button type='submit' class='btn btn-outline-secondary' style='width:100%;  margin-left:10px; border:1px solid ; height:auto;' >
+                           No hay cupo disponible
+                           </button>
+                        ";
+                        $desabilitar= "pointer-events: none; opacity: 0.5;";
+                    }
+
+
+                }
+            }
+
+            echo "
+        <div class='col-12 d-flex col-md-4 p-3 justify-align-content-between' style='$desabilitar margin:4px 4px; border: 1px solid #ccc; max-height: 280px; border-radius: 64px 10px 10px 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>
+
+            <div class='col-5 d-flex justify-content-center align-items-center position-relative'>
+                <img src='$imagenEntrenador' alt='Imagen' class='img-fluid position-absolute bottom-0' width='100% '>
+                <div class='' style='display: flex; justify-content: center; align-items: center; position: absolute; top: -18px; left: -16px; border-radius: 50%; width: 50px; height: 50px; background: #587099; overflow: hidden; padding: 3px;'>
+                  <img src='$icon' alt='icono' class='img-fluid' style='width: 2rem; height: 2rem'>
+                </div>
+            </div>
+
+            <div class='col-6 d-flex flex-column justify-content-center align-align-items-center'>
+                <h5 class='align-self-center'>{$row['nombre_clase']}</h5>
+                <p style='font-size: 16px;'>{$row['entrenador']}</p>
+                <p>{$row['fecha']}</p>
+                <p>{$row['horario']}</p>
+                $estado
+            </div>
+
+        </div>";
+        }
+    }
 }

@@ -161,18 +161,21 @@ $controller->eliminarAsistenciasDomingo();
 
                     <?php include '../ProyectoAPP/View/componentes/NuestroEquipo.php' ?>
 
-                    <!-- <div class="container-fluid mt-4 w-100 w-sm-100" style="padding: 1em;">
+                    <p style="margin: 30px 0 10px 0;">Clases Agendadas</p>
+                    <hr>
+
+                    <div class="container-fluid mt-4 w-100 w-sm-100" style="padding: 1em;">
                         <div class="wrapper d-flex" style=" overflow-x: auto; padding-bottom: 1em;">
 
                             <?php
-                            // include_once 'Controller/ClaseController.php';
+                            include_once 'Controller/ClaseController.php';
 
-                            // $controller = new ClaseController();
-                            // $controller->MostrarCLasesInscritas();
+                            $controller = new ClaseController();
+                            $controller->MostrarCLasesInscritas();
 
                             ?>
                         </div>    
-                    </div> -->
+                    </div>
 
                 </div>
 
