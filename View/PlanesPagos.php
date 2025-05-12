@@ -36,6 +36,37 @@
                 </div>
             </div>
         </main>
+        <main style="height: auto;">
+            <div class="container mt-4">
+                <div class="card shadow-lg p-4">
+                    <h4 class="card-title">Formulario de Pago para el Plan:</h4>
+                    <form action="" method="POST">
+                        <input type="hidden" name="id_plan" value="">
+                        <div class="form-group mb-2">
+                            <label>Nombre del Titular</label>
+                            <input type="text" name="titular" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Número de Tarjeta</label>
+                            <input type="text" name="numero_tarjeta" class="form-control" maxlength="16" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Fecha de Caducidad</label>
+                            <input type="month" name="caducidad" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Código de Seguridad</label>
+                            <input type="text" name="codigo_seguridad" class="form-control" maxlength="4" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Identificación</label>
+                            <input type="text" name="identificacion" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Pagar</button>
+                    </form>
+                </div>
+            </div>
+        </main>
         <?php include '../View/componentes/menu.html' ?>
         <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
     </div>
