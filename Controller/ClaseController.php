@@ -427,9 +427,11 @@ class ClaseController
             session_start();
         }
 
+        $fecha = date('Y-m-d');
+
         $id_usuario = $_SESSION['id_usuario'];
         $modelo = new ModeloClases();
-        $clasesInscritas = $modelo->MostrarClasesInscritas($id_usuario);
+        $clasesInscritas = $modelo->MostrarClasesInscritas($id_usuario, $fecha);
 
 
         date_default_timezone_set('America/Bogota');

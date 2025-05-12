@@ -76,10 +76,10 @@ class ModeloClases
         return $stmt->execute();
     }
 
-    public function MostrarClasesInscritas($id_usuario) {
+    public function MostrarClasesInscritas($id_usuario, $fecha) {
 
-        $stmt = $this->db->prepare("SELECT clases.* FROM clases JOIN inscripcion ON clases.id_clase = inscripcion.id_clase WHERE inscripcion.id_usuario = ? ORDER BY clases.fecha DESC, clases.horario DESC;");
-        $stmt->bind_param("i", $id_usuario);
+        $stmt = $this->db->prepare("SELECT clases.* FROM clases JOIN inscripcion ON clases.id_clase = inscripcion.id_clase WHERE inscripcion.id_usuario = ? AND fecha = ? ORDER BY clases.fecha DESC, clases.horario DESC;");
+        $stmt->bind_param("is", $id_usuario, $fecha);
         $stmt->execute();
         $result = $stmt->get_result();
         $clasesInscritas = [];
