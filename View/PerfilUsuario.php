@@ -13,7 +13,7 @@
 <style>
     .fondo-perfil {
         z-index: -10;
-        background: radial-gradient(125% 125% at 50% 10%, #000 40%, #63e 100%);
+        background: radial-gradient(125% 125% at 50% 10%, #101116 40%, #63e 100%);
         border-radius: 0px 0px 100px 40px;
 
     }

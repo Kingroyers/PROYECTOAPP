@@ -28,7 +28,7 @@ class ClaseController
                                 Usuario debe pagar un plan o estar registrado para que pueda visualizar las clases
                               </div>
                               <div class="col-12 mt-4">
-                              <a href="#" class="btn btn-primary w-100">Comprar Plan</a>
+                              <a href="/ProyectoAPP/View/Planes.php" class="btn btn-primary w-100">Comprar Plan</a>
                               </div>
                            </div>
                         </div>
