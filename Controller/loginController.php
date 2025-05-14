@@ -34,6 +34,7 @@ class loginController
                     $_SESSION['nombre_usuario'] = $datos['nombre_usuario'];
                     $_SESSION['apellido'] = $datos['apellido'];
                     $_SESSION['id_usuario'] = $datos['id_usuario'];
+                    $_SESSION['correo'] = $datos['correo'];
                     $_SESSION['foto_usuario'] = $datos['foto_usuario'];
 
 

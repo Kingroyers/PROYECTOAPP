@@ -29,6 +29,7 @@ class LoginModel
             $_SESSION['id_login'] = $row->id_login;
             $_SESSION['nombre_usuario'] = $row->nombre_usuario;
             $_SESSION['id_usuario'] = $row->id_usuario;
+            $_SESSION['correo'] = $row->correo;
             $_SESSION['foto_usuario'] = $row->foto_usuario;
 
             if ($row['correo'] == $correo && $row['contraseña'] == $contraseña) {

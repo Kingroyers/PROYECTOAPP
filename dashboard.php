@@ -24,7 +24,7 @@ $controller->eliminarAsistenciasDomingo();
 
 <body class="d-flex position-relative align-items-center bg-white flex-column">
 
-    <!---Barra principal-->
+    
     <?php include '../ProyectoAPP/View/componentes/barraPrincipal.php' ?>
 
     <?php #echo '<pre>';
@@ -38,7 +38,7 @@ $controller->eliminarAsistenciasDomingo();
         <div class="container-xxl position-relative d-flex flex-column">
 
 
-            <main style="height: auto">
+            <main style="height: auto;">
 
 
                 <a href="View/ClasesView.php" class="text-black text-decoration-none">
