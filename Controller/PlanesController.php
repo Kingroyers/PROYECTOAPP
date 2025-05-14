@@ -1,6 +1,20 @@
 <?php
-require_once __DIR__ . '/../Model/conexionbd.php'; // Primero cargamos la conexión
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
+if (!isset($_SESSION['id_usuario'])) {
+    die("Error: No hay un usuario logueado.");
+}
+
+
+$id_usuario = $_SESSION['id_usuario'];
+
+require_once __DIR__ . '/../Model/conexionbd.php';
 require_once __DIR__ . '/../Model/PlanesModel.php';
+require_once __DIR__ . '/../Model/PagoModel.php';
 
 class PlanesController
 {
@@ -11,15 +25,23 @@ class PlanesController
         $this->planesModel = new PlanesModel($conexion);
     }
 
-    public function mostrarPlanes()
+    public function mostrarPlanes($id_usuario)
     {
-        return $this->planesModel->getPlanes();
+        return $this->planesModel->getPlanesNoPagados($id_usuario);
+    }
+
+    public function getPlanActivo($id_usuario)
+    {
+        return $this->planesModel->getPlanActivo($id_usuario);
     }
 }
 
-// 🛠 Definir la conexión ANTES de instanciar el controlador
 $conexionBD = new ConexionBD();
 $conexion = $conexionBD->getConexion();
 
 $planController = new PlanesController($conexion);
-$planes = $planController->mostrarPlanes();
+$planes = $planController->mostrarPlanes($id_usuario);
+$planActivo = $planController->getPlanActivo($id_usuario);
+
+$pagoModel = new PagoModel();
+$pagoModel->actualizarEstadosPagos();
