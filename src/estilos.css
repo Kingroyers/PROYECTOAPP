@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Valorant';
+  font-family: "Valorant";
   src: url("fonts/Valorant-Font.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -10,11 +10,11 @@ body {
 }
 
 :root {
-  --font-valorant: 'Valorant', sans-serif;
-  --color-claro: #8689AC;
+  --font-valorant: "Valorant", sans-serif;
+  --color-claro: #8689ac;
   --color-2: #587099;
-  --color-3: #3F5576;
-  --color-4: #2F3148;
+  --color-3: #3f5576;
+  --color-4: #2f3148;
   --color-dark: #101116;
 }
 
@@ -36,9 +36,11 @@ body {
 body {
   z-index: -2;
   background-color: #100f18;
-  background-image: radial-gradient(ellipse 80% 80% at 50% -20%,
-      rgba(0, 0, 0, 0.096),
-      rgba(255, 255, 255, 0))
+  background-image: radial-gradient(
+    ellipse 80% 80% at 50% -20%,
+    rgba(0, 0, 0, 0.096),
+    rgba(255, 255, 255, 0)
+  );
 }
 
 .tarjetamedio {
@@ -59,7 +61,6 @@ body {
 
 @keyframes parpadeo {
   0% {
-
     opacity: 1;
     transform: translateY(0);
   }
@@ -73,7 +74,6 @@ body {
     opacity: 0.9;
     transform: translateY(-5px);
   }
-
 }
 
 .custom-navbar a {
@@ -90,7 +90,6 @@ body {
 
 .custom-navbar a img {
   width: 27px;
-
 }
 
 .custom-navbar a:hover {
@@ -106,59 +105,60 @@ body {
   padding: 1em;
 }
 
-.wrapper::-webkit-scrollbar{
+.wrapper::-webkit-scrollbar {
   display: none;
 }
 
-.cartas-rutinas{
+.cartas-rutinas {
   transition: transform 0.3s ease-in-out;
   background: transparent;
 }
-.cartas-rutinas:hover{
+.cartas-rutinas:hover {
   transform: scale(1.1);
-
 }
 
-.fondo-rutina{
+.fondo-rutina {
   position: relative;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    background-image: 
-        linear-gradient(to right, rgba(79, 79, 79, 0.18) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(128, 128, 128, 0.04) 1px, transparent 1px),
-        radial-gradient(circle 400px at 50% 300px, rgba(251, 251, 251, 0.21), black);
-    background-size: 14px 24px, 14px 24px, cover;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  background-image: linear-gradient(
+      to right,
+      rgba(79, 79, 79, 0.18) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.04) 1px, transparent 1px),
+    radial-gradient(circle 400px at 50% 300px, rgba(251, 251, 251, 0.21), black);
+  background-size: 14px 24px, 14px 24px, cover;
 }
 
-.custom-proximas-clases{
-  text-align: center; 
-  margin-right: 5px; 
-  box-sizing: content-box; 
-  overflow: hidden; 
-  display: flex; 
-  justify-content: center; 
+.custom-proximas-clases {
+  text-align: center;
+  margin-right: 5px;
+  box-sizing: content-box;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
   border: 1px solid #7a7a7a;
-  
 }
 
-.custom-entrenadores{
-  min-width: 250px; 
-  height: 300px; 
-  text-align: center; 
-  margin-right: 5px; 
-  box-sizing: content-box; 
-  overflow: hidden; 
-  display: flex; 
-  justify-content: center; 
-  border-radius: 20px; 
+.custom-entrenadores {
+  min-width: 250px;
+  height: 300px;
+  text-align: center;
+  margin-right: 5px;
+  box-sizing: content-box;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
   border: 1px solid #7a7a7a;
 }
-input{
+input {
   font-size: 10px;
 }
 
-input::placeholder{
+input::placeholder {
   color: #7a7a7a13;
   font-size: 10px;
 }
@@ -167,4 +167,32 @@ input:focus::placeholder {
   transition: all 0.5s ease-in-out;
 }
 
+/*----- Estilos de validacion ::-webkit-meter-even-less-good-value*/
+.formulario__grupo-correcto {
+  border: 2px solid green;
+}
 
+.formulario__grupo-incorrecto {
+  border: 2px solid red;
+}
+
+.formulario__input-error {
+  font-size: 12px;
+  margin-top: 5px;
+  display: none;
+  color: red;
+}
+
+.formulario__input-error-activo {
+  display: block;
+}
+
+.formulario__mensaje-exito {
+  font-size: 14px;
+  color: #119200;
+  display: none;
+}
+
+.formulario__mensaje-exito-activo {
+  display: block;
+}

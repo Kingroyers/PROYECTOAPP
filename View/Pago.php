@@ -21,31 +21,34 @@
                     $nombre_plan = isset($_GET['nombre_plan']) ? $_GET['nombre_plan'] : 'Desconocido';
                     $precio = isset($_GET['precio']) ? $_GET['precio'] : '0';
                     ?>
-
                     <h4 class="card-title">Formulario de Pago para el Plan <strong><?php echo htmlspecialchars($nombre_plan); ?></strong></h4>
                     <p><strong>Precio a pagar:</strong> $<?php echo number_format($precio, 2); ?> COP</p>
-
-                    <form action="/ProyectoAPP/Controller/PagoController.php" method="POST">
+                    <form action="/ProyectoAPP/Controller/PagoController.php" method="POST" id="formulario_pago">
                         <input type="hidden" name="id_plan" value="<?php echo $_GET['id_plan']; ?>">
                         <div class="form-group mb-2">
                             <label>Nombre del Titular</label>
-                            <input type="text" name="titular" class="form-control" required>
+                            <input type="text" name="titular" class="form-control formulario__input" required>
+                            <p class="formulario__input-error">El nombre debe contener solo letras y espacios, mínimo 3 caracteres.</p>
                         </div>
                         <div class="form-group mb-2">
                             <label>Número de Tarjeta</label>
-                            <input type="text" name="numero_tarjeta" class="form-control" maxlength="16" required>
+                            <input type="text" name="numero_tarjeta" class="form-control formulario__input" maxlength="16" required>
+                            <p class="formulario__input-error">El número de tarjeta debe contener exactamente 16 dígitos numéricos.</p>
                         </div>
                         <div class="form-group mb-2">
                             <label>Fecha de Caducidad</label>
-                            <input type="month" name="caducidad" class="form-control" required>
+                            <input type="month" name="caducidad" class="form-control formulario__input" min="2026-01" required>
+                            <p class="formulario__input-error">La fecha de caducidad debe estar en formato MM/YY y ser una fecha válida.</p>
                         </div>
                         <div class="form-group mb-2">
                             <label>Código de Seguridad</label>
-                            <input type="text" name="codigo_seguridad" class="form-control" maxlength="4" required>
+                            <input type="text" name="codigo_seguridad" class="form-control formulario__input" maxlength="3" required>
+                            <p class="formulario__input-error">El código de seguridad debe contener exactamente 3 dígitos numéricos.</p>
                         </div>
                         <div class="form-group mb-3">
                             <label>Identificación</label>
-                            <input type="text" name="identificacion" class="form-control" required>
+                            <input type="text" name="identificacion" class="form-control formulario__input" maxlength="10" required>
+                            <p class="formulario__input-error">La identificación debe contener exactamente 10 dígitos numéricos.</p>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Pagar</button>
                     </form>
@@ -53,6 +56,7 @@
             </div>
         </main>
         <?php include '../View/componentes/menu.html'; ?>
+        <script src="/ProyectoApp/src/js/formulario.js"></script>
         <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
     </div>
 </body>
