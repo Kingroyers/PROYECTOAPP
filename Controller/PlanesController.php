@@ -23,6 +23,7 @@ class PlanesController
     public function __construct($conexion)
     {
         $this->planesModel = new PlanesModel($conexion);
+        $this->actualizarEstadosPagos();
     }
 
     public function mostrarPlanes($id_usuario)
@@ -33,6 +34,13 @@ class PlanesController
     public function getPlanActivo($id_usuario)
     {
         return $this->planesModel->getPlanActivo($id_usuario);
+    }
+
+    private function actualizarEstadosPagos()
+    {
+        $sql = "UPDATE pagos SET estado = 0 WHERE fecha_expiracion <= NOW()";
+        $stmt = $this->planesModel->getConexion()->prepare($sql);
+        $stmt->execute();
     }
 }
 

@@ -6,7 +6,7 @@ const expresiones = {
   numero_tarjeta: /^\d{16}$/, // 16 dígitos numéricos
   caducidad: /^\d{4}-(0[1-9]|1[0-2])$/, // Formato YYYY-MM
   codigo_seguridad: /^\d{3}$/, // 3 dígitos numéricos
-  identificacion: /^\d{10}$/, // Solo números, exactamente 10 dígitos
+  identificacion: /^\d{7,10}$/, // Solo números, mínimo 7 y máximo 10 dígitos.
 };
 
 const validarFormulario = (e) => {
