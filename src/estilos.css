@@ -17,6 +17,10 @@ body {
   --color-4: #2f3148;
   --color-dark: #101116;
 }
+   form{
+        font-family: 'Arial', sans-serif;
+    }
+
 
 .imageninicio {
   width: 100%;

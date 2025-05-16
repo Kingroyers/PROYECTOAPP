@@ -10,6 +10,12 @@
     <base href="http://localhost/ProyectoAPP/">
     <title>Pago - APP</title>
 </head>
+<style>
+    form{
+        font-family: 'Arial', sans-serif;
+    }
+</style>
+ 
 
 <body class="bg-white">
     <?php include '../View/componentes/barraPrincipal.php'; ?>
@@ -21,13 +27,13 @@
                     $nombre_plan = isset($_GET['nombre_plan']) ? $_GET['nombre_plan'] : 'Desconocido';
                     $precio = isset($_GET['precio']) ? $_GET['precio'] : '0';
                     ?>
-                    <h4 class="card-title">Formulario de Pago para el Plan <strong><?php echo htmlspecialchars($nombre_plan); ?></strong></h4>
-                    <p><strong>Precio a pagar:</strong> $<?php echo number_format($precio, 2); ?> COP</p>
+                    <h4 class="card-title" style="font-family: 'Arial', sans-serif;">Formulario de Pago para el Plan <strong><?php echo htmlspecialchars($nombre_plan); ?></strong></h4>
+                    <p style="font-family: 'Arial', sans-serif;"><strong>Precio a pagar:</strong> $<?php echo number_format($precio, 2); ?> COP</p>
                     <form action="/ProyectoAPP/Controller/PagoController.php" method="POST" id="formulario_pago">
                         <input type="hidden" name="id_plan" value="<?php echo $_GET['id_plan']; ?>">
                         <div class="form-group mb-2">
                             <label>Nombre del Titular</label>
-                            <input type="text" name="titular" class="form-control formulario__input" required>
+                            <input type="text" name="titular" class="form-control formulario__input" maxlength="50" required>
                             <p class="formulario__input-error">El nombre debe contener solo letras y espacios, mínimo 3 caracteres.</p>
                         </div>
                         <div class="form-group mb-2">
@@ -48,7 +54,7 @@
                         <div class="form-group mb-3">
                             <label>Identificación</label>
                             <input type="text" name="identificacion" class="form-control formulario__input" maxlength="10" required>
-                            <p class="formulario__input-error">La identificación debe contener exactamente 10 dígitos numéricos.</p>
+                            <p class="formulario__input-error">La identificación debe contener entre 7 y 10 dígitos numéricos.</p>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Pagar</button>
                     </form>
@@ -56,7 +62,7 @@
             </div>
         </main>
         <?php include '../View/componentes/menu.html'; ?>
-        <script src="/ProyectoApp/src/js/formulario.js"></script>
+        <script src="/ProyectoApp/src/js/formularioPago.js"></script>
         <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
     </div>
 </body>

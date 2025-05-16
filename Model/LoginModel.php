@@ -10,8 +10,6 @@ class LoginModel
         $this->db = $conexion->getConexion();
     }
 
-
-
     function loginValidar($correo, $contraseña)
     {
 
@@ -106,59 +104,60 @@ class LoginModel
 
 
     public function ActualizarFotoUsuario($foto_usuario)
-{
-    $conexion = new ConexionBD();
-    $bd = $conexion->getConexion();
+    {
+        $conexion = new ConexionBD();
+        $bd = $conexion->getConexion();
 
-    $id_usuario = $_SESSION['id_usuario'];
+        $id_usuario = $_SESSION['id_usuario'];
 
-    // Preparamos la consulta de actualización
-    $stmt = $bd->prepare("UPDATE login SET foto_usuario = ? WHERE id_usuario = ?");
-    
-    if ($stmt) {
-        $stmt->bind_param("ss", $foto_usuario, $id_usuario); // Dos strings
+        // Preparamos la consulta de actualización
+        $stmt = $bd->prepare("UPDATE login SET foto_usuario = ? WHERE id_usuario = ?");
+
+        if ($stmt) {
+            $stmt->bind_param("ss", $foto_usuario, $id_usuario); // Dos strings
+            $result = $stmt->execute();
+            $stmt->close();
+
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false; // Falló preparar la consulta
+        }
+    }
+
+    public function RecuperarContraseña($correo)
+    {
+
+        $stmt = $this->db->prepare("SELECT * FROM login WHERE correo = ? ");
+        $stmt->bind_param("s", $correo);
         $result = $stmt->execute();
-        $stmt->close();
 
         if ($result) {
             return true;
         } else {
             return false;
         }
-    } else {
-        return false; // Falló preparar la consulta
-    }
-}
-
-    public function RecuperarContraseña($correo){
-
-        $stmt = $this->db->prepare("SELECT * FROM login WHERE correo = ? ");
-        $stmt->bind_param("s",$correo);
-        $result = $stmt->execute();
-
-        if($result){
-          return true;
-        }else{
-            return false;
-        }
-
     }
 
-    public function ConsularContraseña($correo){
+    public function ConsularContraseña($correo)
+    {
         $contraseña = null;
         $stmt = $this->db->prepare("SELECT contraseña FROM login WHERE correo = ?");
-        $stmt->bind_param("s",$correo);
+        $stmt->bind_param("s", $correo);
         $stmt->execute();
         $stmt->store_result();
 
-        if($stmt->num_rows > 0){
+        if ($stmt->num_rows > 0) {
 
-            
+
             $stmt->bind_result($contraseña);
             $stmt->fetch();
             $stmt->close();
-            return $contraseña;   
-        }else{
+            return $contraseña;
+        } else {
             return false;
         }
     }

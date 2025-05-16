@@ -8,55 +8,63 @@
     <link rel="stylesheet" href="../src/estilos.css">
     <title>Register</title>
 </head>
+<style>
+
+    form{
+        font-family: 'Arial', sans-serif;
+    }
+
+</style>
 
 <body class="d-flex justify-content-center align-items-center vh-100 position-relative" style="background-color: #f8f9fa;  background-color: #101116;">
     <div class="p-4 bg-transparent position-absolute" style="max-width: 390px; width: 100%; border: 1px solid #ffffff38; border-radius: 40px;">
-
         <h2 class="text-center text-primary my-4">Registro</h2>
         <?php
         include_once '../Controller/loginController.php';
         $login = new loginController();
         $login->registrarUsuario();
         ?>
-
-        <form class="text-white" action="" method="post">
+        <form class="text-white" action="" method="post" id="formulario_registrar">
             <div class="row mb-3">
                 <div class="col">
                     <label class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="nombre" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
+                    <input type="text" class="form-control formulario__input" name="nombre" placeholder="Nombre" maxlength="50" required>
+                    <p class="formulario__input-error">El nombre debe contener solo letras, mínimo 3 caracteres.</p>
                 </div>
                 <div class="col">
                     <label class="form-label">Apellido</label>
-                    <input type="text" class="form-control" name="apellido" placeholder="Apellido" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
+                    <input type="text" class="form-control formulario__input" name="apellido" placeholder="Apellido" maxlength="50" required>
+                    <p class="formulario__input-error">El apellido debe contener solo letras, mínimo 3 caracteres.</p>
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label">Identificacion</label>
-                <input type="number" class="form-control" max="9999999999" name="id" placeholder="CC:" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
+                <label class="form-label">Identificación</label>
+                <input type="text" class="form-control formulario__input" name="id" placeholder="CC:" maxlength="10" required>
+                <p class="formulario__input-error">La identificación debe contener entre 7 y 10 dígitos numéricos.</p>
             </div>
             <div class="mb-3">
                 <label class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" name="correo_register" placeholder="Usuario@example.com" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
+                <input type="email" class="form-control formulario__input" name="correo_register" placeholder="usuario@example.com" maxlength="50" required>
+                <p class="formulario__input-error">Introduce un correo electrónico válido.</p>
             </div>
             <div class="mb-3">
                 <label class="form-label">Contraseña</label>
-                <div class="input-group">
-                    <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="***************" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
-                    <span class="input-group-text" style="cursor: pointer;" onclick="togglePassword()">
-                        <img src="../src/img/inconos/ojoabierto.png" id="iconoContraseña" width="20px"></img>
+                <div class="input-group position-relative" style="border: 1px solid #5555;">
+                    <input type="password" class="form-control formulario__input" id="contraseña" name="contraseña" placeholder="***************" maxlength="50" required>
+                    <p class="formulario__input-error" style="font-size: 9px;">Debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula, un número y un carácter especial.</p>
+                    <span class="input-group-text position-absolute" style="cursor: pointer; top: 0; right: 0; height: 37px; z-index: 10;" onclick="togglePassword()">
+                        <img src="../src/img/inconos/ojoabierto.png" id="iconoContraseña" width="20px">
                     </span>
+                    
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-primary w-100" name="btnRegistrar">Enviar</button>
+            <button type="submit" class="btn btn-primary w-100 mt-3" name="btnRegistrar">Enviar</button>
         </form>
         <p class="text-center mt-3" style="color: #dadada;">¿Ya tienes una cuenta? <a href="../View/login.php" style="text-decoration: none; color: #007bff;">Inicia sesión</a></p>
-
     </div>
-
-
     <script src="../src/js/bootstrap.bundle.min.js"></script>
     <script src="../Model/funcionPass.js"></script>
+    <script src="/ProyectoApp/src/js/formularioRegistrar.js"></script>
 </body>
 
 </html>

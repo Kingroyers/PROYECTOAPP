@@ -90,6 +90,11 @@ class loginController
 
                 if ($usuario == true) {
                     echo '<div class="alert alert-success fs-6">Usuario registrado correctamente</div>';
+                    echo "<script>
+                        setTimeout(function() {
+                            window.location.href = '../index.php';
+                        }, 2000);
+                     </script>";
                 } else {
                     echo '<div class="alert alert-danger fs-6">Error al registrar el usuario</div>';
                 }

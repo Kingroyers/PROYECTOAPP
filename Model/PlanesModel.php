@@ -9,6 +9,11 @@ class PlanesModel
         $this->conexion = (new ConexionBD())->getConexion();
     }
 
+    public function getConexion()
+    {
+        return $this->conexion;
+    }
+
     public function getPlanesNoPagados($id_usuario)
     {
         $sql_check = "SELECT COUNT(*) as total 
