@@ -141,7 +141,7 @@ class loginController
             $tamañoFoto = $archivoFoto['size'];
             $tipoFoto = $archivoFoto['type'];
 
-            $carpetaDestino = 'src/uploads/';
+           $carpetaDestino = __DIR__ . '/../src/uploads/';
 
             // 3. Validar el tipo de archivo (ejemplo: permitir solo imágenes JPEG, PNG, GIF)
             $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
@@ -153,7 +153,21 @@ class loginController
             // 4. Validar el tamaño del archivo (ejemplo: máximo 2MB)
             $tamañoMaximo = 2 * 1024 * 1024; // 2MB en bytes
             if ($tamañoFoto > $tamañoMaximo) {
-                echo "Error: El tamaño de la imagen no puede exceder los 2MB.";
+                echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
+                                    <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
+                                     <strong>Error la imagen no puedo exeder de los 2MB</strong>                                
+                                    </div>
+                                  </div>';
+                            echo '<script>
+                                  setTimeout(function() {
+                                      location.reload();
+                                  }, 2000);
+                                </script>';
+                            echo "<script>
+                                    setTimeout(function() {
+                                    window.location.href = 'dashboard.php';
+                                    }, 2000);
+                                </script>";
                 return;
             }
 

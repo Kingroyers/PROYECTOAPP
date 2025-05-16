@@ -10,35 +10,35 @@ class LoginModel
         $this->db = $conexion->getConexion();
     }
 
-    function loginValidar($correo, $contraseña)
-    {
+    // function loginValidar($correo, $contraseña)
+    // {
 
 
-        $conexion = new ConexionBD();
-        $conexion->getConexion();
+    //     $conexion = new ConexionBD();
+    //     $conexion->getConexion();
 
-        $sql = "select * from login where correo ='$correo'and contraseña='$contraseña'";
-        $result = $conexion->getConexion()->query($sql);
+    //     $sql = "select * from login where correo ='$correo'and contraseña='$contraseña'";
+    //     $result = $conexion->getConexion()->query($sql);
 
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            session_start();
-            $_SESSION['id_login'] = $row->id_login;
-            $_SESSION['nombre_usuario'] = $row->nombre_usuario;
-            $_SESSION['id_usuario'] = $row->id_usuario;
-            $_SESSION['correo'] = $row->correo;
-            $_SESSION['foto_usuario'] = $row->foto_usuario;
+    //     if ($result->num_rows > 0) {
+    //         $row = $result->fetch_assoc();
+    //         session_start();
+    //         $_SESSION['id_login'] = $row->id_login;
+    //         $_SESSION['nombre_usuario'] = $row->nombre_usuario;
+    //         $_SESSION['id_usuario'] = $row->id_usuario;
+    //         $_SESSION['correo'] = $row->correo;
+    //         $_SESSION['foto_usuario'] = $row->foto_usuario;
 
-            if ($row['correo'] == $correo && $row['contraseña'] == $contraseña) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+    //         if ($row['correo'] == $correo && $row['contraseña'] == $contraseña) {
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     function registrarUsuario($nombre, $apellido, $correo, $identificacion, $contraseña)
     {
