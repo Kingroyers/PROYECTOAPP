@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,13 @@
         background: radial-gradient(125% 125% at 50% 10%, #101116 40%, #63e 100%);
         border-radius: 0px 0px 100px 40px;
 
+    }
+
+    .letraNombre{
+        font-size: 20px;
+        font-weight: 300;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: white;
     }
 </style>
 
@@ -37,32 +44,32 @@
 
                 </div>
 
-                <div class="" style="gap: 0;">
-                    <p style="font-size: 18px ;margin-top: 15px; color: #fff; font-weight: 600;"><?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
-                    <p style="font-size: 10px ; color: #fff;"><?php echo $_SESSION['correo'] ?></p>
+                <div class="">
+                    <p  class="letraNombre" style="margin-left: 14px;"><?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
                 </div>
 
             </div>
 
         </div>
 
-            <div class="position-absolute" style="border-radius: 20px; width: 330px; height: 140px; z-index: 1000; bottom: -110px; background: #fff; box-shadow: 10px 8px 24px #bebebe;">
+        <div class="position-absolute" style="border-radius: 20px; width: 330px; height: 140px; z-index: 1000; bottom: -110px; background: #fff; box-shadow: 10px 8px 24px #bebebe;">
 
-            </div>
-   
-    </div>    
+        </div>
+
+    </div>
 
 
 
-        <div class=" d-flex justify-content-center align-items-center  w-100" style="margin-top: 150px;">
+    <div class=" d-flex justify-content-center align-items-center  w-100" style="margin-top: 150px;">
 
-            <div class="container-xxl position-relative d-flex flex-column">
+        <div class="container-xxl position-relative d-flex flex-column">
 
-                <main style="height: auto; ">
+            <main style="height: auto; display: flex; justify-content: center; align-items: center; margin: 0 20px 0 20px;">
 
-                 <div class="row d-flex justify-content-center align-items-center" style="gap: 10px;">
+                <div class="row d-flex justify-content-center align-items-center" style="gap: 10px;">
 
-                    <div class="col-sm-4 col-11 d-flex flex-row align-items-center" style="padding: 1em; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                    <div class="position-relative col-12 d-flex flex-row align-items-center" style="border-radius: 15px 65px 15px 15px; padding: 1em; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+
                         <div class="col-4">
                             <img src="src/img/inconos/CartaID.png" alt="cartaid" style="width: 40px; height: 40px;">
                         </div>
@@ -70,28 +77,38 @@
                             <?php echo $_SESSION['id_usuario']; ?>
                         </div>
                     </div>
-                    <div class="col-sm-4 col-11 d-flex flex-row align-items-center" style="padding: 1em; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+
+                    <div class="col-12 d-flex flex-row align-items-center" style="border-radius: 15px 15px 65px 15px; padding: 1em; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
                         <div class="col-4">
-                            <img src="src/img/inconos/CartaID.png" alt="cartaid" style="width: 40px; height: 40px;">
+                            <img src="src/img/inconos/icono-name.png" alt="cartaid" style="width: 30px; height: 30px;">
                         </div>
-                        <div class="col-8">
-                            <?php echo $_SESSION['nombre_usuario'].'   '.$_SESSION['apellido']; ?>
+                        <div class="col-8" style="font-size: 15px;">
+                            <?php echo $_SESSION['nombre_usuario'] . '   ' . $_SESSION['apellido']; ?>
                         </div>
                     </div>
-                    
-                 </div>
 
-                </main>
+                    <div class="col-12 d-flex flex-row align-items-center" style="border-radius: 15px 65px 15px 15px; padding: 1em; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                        <div class="col-2">
+                            <img src="src/img/inconos/icono-email.png" alt="cartaid" style="width: 30px; height: 30px; margin-right: 3px;">
+                        </div>
+                        <div class="col-10" style="font-size: 15px;">
+                            <?php echo $_SESSION['correo']; ?>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
 
 
 
 
 
-                <?php include '../View/componentes/menu.html' ?>
-            </div>
-
-
+            <?php include '../View/componentes/menu.html' ?>
         </div>
+
+
+    </div>
 </body>
 
 </html>

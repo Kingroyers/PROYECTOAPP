@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 //     $nombre = 'Invitado';
 // }
 ?>
-<div class="d-flex w-100 w-md-75 w-lg-50 text-white justify-content-between" style="background: #101116; padding: 1em; width: 100vh;">
+<div class="d-flex w-100 w-md-75 w-lg-50 text-white justify-content-between" style="background: radial-gradient(125% 125% at 50% 10%, #101116 40%, #63e 100%); padding: 1em; width: 100vh;">
 
     <section class="row w-100 mx-2">
         <div class="col-6 w-auto d-flex justify-content-center align-items-center" style="gap: 10px;">

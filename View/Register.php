@@ -18,11 +18,12 @@
         $login = new loginController();
         $login->registrarUsuario();
         ?>
+
         <form class="text-white" action="" method="post">
             <div class="row mb-3">
                 <div class="col">
                     <label class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="nombre" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required >
+                    <input type="text" class="form-control" name="nombre" placeholder="nombre" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
                 </div>
                 <div class="col">
                     <label class="form-label">Apellido</label>
@@ -31,7 +32,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Identificacion</label>
-                <input type="number" class="form-control" name="id" placeholder="CC:" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
+                <input type="number" class="form-control" max="9999999999" name="id" placeholder="CC:" style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Correo Electrónico</label>
@@ -53,9 +54,9 @@
 
     </div>
 
-    
+
     <script src="../src/js/bootstrap.bundle.min.js"></script>
-    <script src="../Model/funcionPass.js" ></script>
+    <script src="../Model/funcionPass.js"></script>
 </body>
 
 </html>
