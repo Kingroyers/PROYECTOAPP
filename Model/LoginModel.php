@@ -161,4 +161,24 @@ class LoginModel
             return false;
         }
     }
+
+    
+    public function MostrarPlanPerfil($id_usuario){
+       
+        $stmt = $this->db->prepare('SELECT p.nombre_plan FROM pagos pa JOIN planes p ON pa.id_plan = p.id_plan
+            WHERE pa.id_usuario = ? 
+            AND pa.estado = 1
+            AND pa.fecha_expiracion >= CURDATE()
+            ORDER BY pa.fecha_expiracion DESC
+            LIMIT 1;
+            '); 
+
+        $stmt->bind_param("i", $id_usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+    }
+
+   
 }

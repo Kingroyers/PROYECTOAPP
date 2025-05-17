@@ -161,7 +161,7 @@ $controller->eliminarAsistenciasDomingo();
 
                     <?php include '../ProyectoAPP/View/componentes/NuestroEquipo.php' ?>
 
-                    <p style="margin: 30px 0 10px 0;">Clases Agendadas</p>
+                    <p id="clases-agendadas" style="margin: 30px 0 10px 0;">Clases Agendadas</p>
                     <hr>
 
                     <div class="container-fluid mt-4 w-100 w-sm-100" style="padding: 1em;">
@@ -186,7 +186,7 @@ $controller->eliminarAsistenciasDomingo();
 
 
             <!-------------- menu ---------------->
-            <?php include '../ProyectoAPP/View/componentes/menu.html' ?>
+            <?php include '../ProyectoAPP/View/componentes/menu.php' ?>
 
         </div>
 

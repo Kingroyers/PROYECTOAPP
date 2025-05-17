@@ -1,6 +1,7 @@
 <?php
 
 require_once realpath(dirname(__FILE__) . '/../Model/LoginModel.php');
+require_once realpath(dirname(__FILE__) . '/../Model/PlanesModel.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -109,7 +110,6 @@ class loginController
         $modelo = new LoginModel();
         $foto = $modelo->mostrarFotoUsuario();
 
-
         if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
             echo '<img src="src/uploads/' . htmlspecialchars($_SESSION['foto_usuario']) . '" alt="Foto de perfil" style="object-fit: cover; width:100%; height:100%; border-radius:50%;" >';
         } else {
@@ -141,7 +141,7 @@ class loginController
             $tamañoFoto = $archivoFoto['size'];
             $tipoFoto = $archivoFoto['type'];
 
-           $carpetaDestino = __DIR__ . '/../src/uploads/';
+            $carpetaDestino = __DIR__ . '/../src/uploads/';
 
             // 3. Validar el tipo de archivo (ejemplo: permitir solo imágenes JPEG, PNG, GIF)
             $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
@@ -158,12 +158,12 @@ class loginController
                                      <strong>Error la imagen no puedo exeder de los 2MB</strong>                                
                                     </div>
                                   </div>';
-                            echo '<script>
+                echo '<script>
                                   setTimeout(function() {
                                       location.reload();
                                   }, 2000);
                                 </script>';
-                            echo "<script>
+                echo "<script>
                                     setTimeout(function() {
                                     window.location.href = 'dashboard.php';
                                     }, 2000);
@@ -330,6 +330,60 @@ class loginController
                     echo '<div class="alert alert-danger fs-6">El correo no existe</div>';
                 }
             }
+        }
+    }
+
+
+    public function mostrarPlan()
+    {
+        $modelo = new LoginModel();
+
+        $id_usuario = $_SESSION['id_usuario'];
+
+        $resultado = $modelo->MostrarPlanPerfil($id_usuario);
+
+        if ($resultado) {
+            $plan = $resultado['nombre_plan'];
+
+            switch ($plan) {
+                case 'Básico':
+                    echo "<p style='font-size: 30px'>basico</p>";
+                    break;
+                case 'Estándar':
+                    echo "<p style='font-size: 30px'>estandar</p>";
+                    break;
+                case 'VIP':
+                    echo "<p style='font-size: 30px'>VIP</p>";
+                    break;
+                default:
+                    echo "";
+                    break;
+            }
+        }
+    }
+
+    public function mostrarNotificacionesPlanVencido()
+    {
+        $id_usuario = $_SESSION['id_usuario'];
+
+        $modelo = new PlanesModel();
+        $result =  $modelo->getPlanActivo($id_usuario);
+
+        if ($result == null) {
+                echo ' <span style="
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        background: red;
+        color: white;
+        padding: 2px 8px;
+        font-size: 12px;
+        border-radius: 50%;
+        font-weight: bold;">
+        1
+    </span>';
+        } else {
+            echo '';
         }
     }
 }

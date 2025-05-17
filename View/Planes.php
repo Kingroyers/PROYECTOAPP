@@ -61,7 +61,7 @@ if (!empty($_SESSION['mensaje_exito'])) {
                 </div>
             <?php endif ?>
         </main>
-        <?php include '../View/componentes/menu.html' ?>
+        <?php include '../View/componentes/menu.php' ?>
         <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     </div>

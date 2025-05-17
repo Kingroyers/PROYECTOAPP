@@ -33,7 +33,7 @@
                 </div>
             </div>
         </main>
-        <?php include '../View/componentes/menu.html' ?>
+        <?php include '../View/componentes/menu.php' ?>
         <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
     </div>
 </body>

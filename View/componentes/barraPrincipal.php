@@ -104,15 +104,13 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 
-                <ul class="list-group" style="margin-top: 20px;">
+                <ul class="list-group" style="margin-top: 2s0px;">
 
-                    <li class="list-group-item" style="padding: 1em;"><a href="#"
+                    <li class="list-group-item" style="padding: 1em;"><a href="View/PerfilUsuario.php"
                             style="text-decoration: none; color: #000;">Perfil</a></li>
-                    <li class="list-group-item" style="padding: 1em;"><a href="#"
-                            style="text-decoration: none; color: #000;">Servicios</a></li>
-                    <li class="list-group-item" style="padding: 1em;"><a href="#"
+                    <li class="list-group-item" style="padding: 1em;"><a href="View/Planes.php"
                             style="text-decoration: none; color: #000;">Cartera</a></li>
-                    <li class="list-group-item" style="padding: 1em;"><a href="#"
+                    <li class="list-group-item" style="padding: 1em;"><a href="#clases-agendadas"
                             style="text-decoration: none; color: #000;">Clases Inscritas</a></li>
                     <li class="list-group-item" style="padding: 1em;"><a href="#"
                             style="text-decoration: none; color: #000;">Configuracion</a></li>

@@ -18,7 +18,7 @@
 
     }
 
-    .letraNombre{
+    .letraNombre {
         font-size: 20px;
         font-weight: 300;
         -webkit-text-stroke-width: 0.5px;
@@ -45,15 +45,26 @@
                 </div>
 
                 <div class="">
-                    <p  class="letraNombre" style="margin-left: 14px;"><?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
+                    <p class="letraNombre" style="margin-left: 14px;"><?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
                 </div>
 
             </div>
 
         </div>
 
-        <div class="position-absolute" style="border-radius: 20px; width: 330px; height: 140px; z-index: 1000; bottom: -110px; background: #fff; box-shadow: 10px 8px 24px #bebebe;">
+        <div class="position-absolute d-flex justify-content-center align-items-center flex-column" style="border-radius: 20px; width: 330px; height: 140px; z-index: 1000; bottom: -110px; background: #fff; box-shadow: 10px 8px 24px #bebebe;">
+             
+                <div class="position-absolute d-flex justify-content-between" style="background-color: #8689ac; border-radius: 10px 40px 90px 0; box-sizing: content-box; top: 10px; left: 0px; border: 1px solid #e0e0e0; width: 200px;">                    
+                        <p style="margin: 0 30px; color: #fff;">Plan</p>
+                        <div style="border-radius: 50%; width: 10px; height: 10px; background-color: #fff; margin:  5px 10px;"></div>
+                </div>
+             
+            <?php
+                include_once __DIR__ . '/../Controller/loginController.php';
 
+                $Controller = new loginController();
+                $Controller->mostrarPlan();
+            ?>
         </div>
 
     </div>
@@ -104,7 +115,7 @@
 
 
 
-            <?php include '../View/componentes/menu.html' ?>
+            <?php include '../View/componentes/menu.php' ?>
         </div>
 
 

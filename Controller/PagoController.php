@@ -18,7 +18,6 @@ class PagoController
             $numero_tarjeta = $_POST['numero_tarjeta'];
             $fecha_caducidad = $_POST['caducidad'];
             $codigo_seguridad = $_POST['codigo_seguridad'];
-            $telefono = 0;
 
             $pagoModel = new PagoModel();
             $resultado = $pagoModel->registrarPago($id_usuario, $id_plan, $nombre_titular, $numero_tarjeta, $fecha_caducidad, $codigo_seguridad);
@@ -27,7 +26,7 @@ class PagoController
                 $_SESSION['mensaje_exito'] = "Pago realizado con éxito";
                 
                 $modelo = new AcessoModel;
-                $resultado = $modelo->AssecoGym($id_usuario, $id_plan, $nombre_usuario,$apellido, $correo, $telefono);
+                $resultado = $modelo->AssecoGym($id_usuario, $id_plan, $nombre_usuario,$apellido, $correo);
 
                 header("Location: /ProyectoAPP/View/Planes.php");
                 

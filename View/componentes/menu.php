@@ -20,7 +20,20 @@
   <a href="../ProyectoApp/View/Acceso.php"
     ><img src="src/img/inconos/QR-icons.png" alt=""
   /></a>
-  <a href="../ProyectoApp/View/Planes.php"
-    ><img src="src/img/inconos/MdiWalletBifold.png" alt=""
-  /></a>
+ <div style="position: relative; display: inline-block;">
+  <a href="../ProyectoApp/View/Planes.php">
+    <img src="src/img/inconos/MdiWalletBifold.png" alt="">
+  </a>
+  <?php 
+    require_once __DIR__ . '/../../Controller/loginController.php';
+
+
+
+
+    $controller = new LoginController();
+    $controller->mostrarNotificacionesPlanVencido();
+
+  ?>
+</div>
+
 </div>
