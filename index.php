@@ -25,7 +25,7 @@
 
                 <div class=" d-flex  flex-column p-4">
 
-                    <h1 class="fs-1 " style="font-family:  Valorant, sans-serif">FITNESS LIFE</h1>
+                    <h1>FITNESS <span id="texto-animado"></span></h1>
                     <p class="d-none d-md-block z-lg-1 ">FITNESS LIFE, La mejor version de ti</p>
 
                     <div class="d-flex mt-4 justify-content-center">
@@ -38,10 +38,11 @@
                 </div>
 
             </div>
-            <!-------------------------Hola mundo---------------------------->
         </div>
     </section>
     <script src="/src/js/bootstrap.min.js"></script>
+    <script src="libs/typed.min.js"></script>
+    <script src="src/js/textoanimado.js"></script>
 </body>
 
 </html>
