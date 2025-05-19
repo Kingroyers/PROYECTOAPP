@@ -22,7 +22,7 @@
     $controller = new LoginController();
     $controller->mostrarNotificacionesPlanVencido();
 
-  ?>
-</div>
+    ?>
+  </div>
 
 </div>
