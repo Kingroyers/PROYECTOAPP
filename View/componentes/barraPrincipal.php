@@ -112,7 +112,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             style="text-decoration: none; color: #000;">Cartera</a></li>
                     <li class="list-group-item" style="padding: 1em;"><a href="#clases-agendadas"
                             style="text-decoration: none; color: #000;">Clases Inscritas</a></li>
-                    <li class="list-group-item" style="padding: 1em;"><a href="#"
+                    <li class="list-group-item" style="padding: 1em;"><a href="View/Configuracion.php"
                             style="text-decoration: none; color: #000;">Configuracion</a></li>
 
                 </ul>

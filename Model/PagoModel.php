@@ -37,4 +37,15 @@ class PagoModel
 
         return $stmt->execute();
     }
+
+     public function BarraProcesoPlan($id_usuario){
+
+        $stmt = $this->conn->prepare("SELECT fecha_expiracion, fecha_inicio FROM pagos WHERE id_usuario = ?");
+        $stmt->bind_param("i", $id_usuario);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        
+        return $result->fetch_assoc();
+    }
 }

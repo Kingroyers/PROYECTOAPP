@@ -180,5 +180,39 @@ class LoginModel
         return $result->fetch_assoc();
     }
 
-   
+    public function CambiarDatosUsuario($id_usuario, $nombre, $apellido, $correo, $contraseña = null)
+    {
+        // Si la contraseña es proporcionada, actualizarla también
+        if ($contraseña !== null) {
+            $stmt = $this->db->prepare("UPDATE login SET nombre_usuario = ?, apellido = ?, correo = ?, contraseña = ? WHERE id_usuario = ?");
+            $stmt->bind_param("ssssi", $nombre, $apellido, $correo, $contraseña, $id_usuario);
+        } else {
+            // Si no se proporciona contraseña, no la actualizamos
+            return $this->ActualizarDatosUsuario($id_usuario, $nombre, $apellido, $correo);
+        }
+
+        $result = $stmt->execute();
+        $stmt->close();
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function ActualizarDatosUsuario($id_usuario, $nombre, $apellido, $correo)
+    {
+        $stmt = $this->db->prepare("UPDATE login SET nombre_usuario = ?, apellido = ?, correo = ? WHERE id_usuario = ?");
+        $stmt->bind_param("sssi", $nombre, $apellido, $correo, $id_usuario);
+        $result = $stmt->execute();
+        $stmt->close();
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

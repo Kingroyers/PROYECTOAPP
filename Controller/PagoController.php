@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once '../Model/PagoModel.php';
 require_once '../Model/AcessoModel.php';
 
@@ -24,13 +26,13 @@ class PagoController
 
             if ($resultado) {
                 $_SESSION['mensaje_exito'] = "Pago realizado con éxito";
-                
+
                 $modelo = new AcessoModel;
-                $resultado = $modelo->AssecoGym($id_usuario, $id_plan, $nombre_usuario,$apellido, $correo);
+                $resultado = $modelo->AssecoGym($id_usuario, $id_plan, $nombre_usuario, $apellido, $correo);
 
                 header("Location: /ProyectoAPP/View/Planes.php");
-                
-                
+
+
                 exit();
             } else {
                 $_SESSION['mensaje_error'] = "Error al realizar el pago";
@@ -39,6 +41,34 @@ class PagoController
             }
         }
     }
+
+//   public function BarraProcesoPlan()
+// {
+//     $id_usuario = $_SESSION['id_usuario'];
+//     $pagoModel = new PagoModel();
+//     $resultado = $pagoModel->BarraProcesoPlan($id_usuario);
+
+//     if ($resultado) {
+//         $fecha_inicio = new DateTime($resultado['fecha_inicio']);
+//         $fecha_expiracion = new DateTime($resultado['fecha_expiracion']);
+//         $hoy = new DateTime();
+
+//         $dias_totales = $fecha_inicio->diff($fecha_expiracion)->days;
+//         $dias_restantes = max(0, $hoy->diff($fecha_expiracion)->days);
+
+//         $porcentaje = ($dias_restantes / $dias_totales) * 100;
+//         $porcentaje = min(max(round($porcentaje), 0), 100);
+
+//         $expirado = $hoy > $fecha_expiracion;
+
+//         return [
+//             'porcentaje' => $porcentaje,
+//             'expirado' => $expirado
+//         ];
+//     }
+//     return null;
+// }
+
 }
 
 $controller = new PagoController();

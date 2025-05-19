@@ -53,4 +53,6 @@ class PlanesModel
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+   
 }
