@@ -9,22 +9,15 @@
     height: 7vh;
     padding: 2em;
     background: #101116;
-  "
->
-  <a href="../ProyectoAPP/Dashboard.php"
-    ><img src="src/img/inconos/icons-Home.png" alt=""
-  /></a>
-  <a href="../ProyectoAPP/View/PerfilUsuario.php"
-    ><img src="src/img/inconos/user-icons2.png" alt=""
-  /></a>
-  <a href="../ProyectoApp/View/Acceso.php"
-    ><img src="src/img/inconos/QR-icons.png" alt=""
-  /></a>
- <div style="position: relative; display: inline-block;">
-  <a href="../ProyectoApp/View/Planes.php">
-    <img src="src/img/inconos/MdiWalletBifold.png" alt="">
-  </a>
-  <?php 
+  ">
+  <a href="../ProyectoAPP/Dashboard.php"><img src="src/img/inconos/icons-Home.png" alt="" /></a>
+  <a href="../ProyectoAPP/View/PerfilUsuario.php"><img src="src/img/inconos/user-icons2.png" alt="" /></a>
+  <a href="../ProyectoApp/View/Acceso.php"><img src="src/img/inconos/FamiconsQrCode.png" alt="" /></a>
+  <div style="position: relative; display: inline-block;">
+    <a href="../ProyectoApp/View/Planes.php">
+      <img src="src/img/inconos/MdiWalletBifold.png" alt="">
+    </a>
+    <?php
     require_once __DIR__ . '/../../Controller/loginController.php';
 
 
@@ -33,7 +26,7 @@
     $controller = new LoginController();
     $controller->mostrarNotificacionesPlanVencido();
 
-  ?>
-</div>
+    ?>
+  </div>
 
 </div>
