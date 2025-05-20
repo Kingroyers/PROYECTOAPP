@@ -83,7 +83,7 @@ class ClaseController
                 $imagenEntrenador = match (strtolower($row['entrenador'])) {
                     "antonio royero" => "src/img/Entrenador3.png",
                     "samuel alzate" => "src/img/entrenadorcopia.png",
-                    "uso carruso"   => "src/img/entrenador4.png",
+                    "camilo aguilar"   => "src/img/entrenador4.png",
                     default         => "src/img/default.png"
                 };
 
