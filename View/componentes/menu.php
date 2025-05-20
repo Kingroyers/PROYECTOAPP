@@ -7,7 +7,7 @@
     ><img src="src/img/inconos/user-icons2.png" alt=""
   /></a>
   <a href="../ProyectoApp/View/Acceso.php"
-    ><img src="src/img/inconos/QR-icons.png" alt=""
+    ><img src="src/img/inconos/QrCodeModern.png" alt=""
   /></a>
  <div style="position: relative; display: inline-block;">
   <a href="../ProyectoApp/View/Planes.php">
