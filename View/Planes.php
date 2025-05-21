@@ -2,11 +2,6 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-if (!empty($_SESSION['mensaje_exito'])) {
-    echo "<script>alert('" . $_SESSION['mensaje_exito'] . "');</script>";
-    unset($_SESSION['mensaje_exito']);
-}
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +23,15 @@ if (!empty($_SESSION['mensaje_exito'])) {
         <main style="height: auto;">
             <p style="margin: 30px 0 0 10px; display: flex; justify-content: space-between;">Planes</p>
             <hr style="margin-bottom: 20px;">
+            <?php
+            if (!empty($_SESSION['mensaje_exito'])) {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                echo $_SESSION['mensaje_exito'];
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                echo '</div>';
+                unset($_SESSION['mensaje_exito']);
+            }
+            ?>
             <div class="container-fluid mt-4 w-100 w-sm-100" style="padding: 1em;">
                 <div id="scrollContainer" class="wrapper d-flex" style="overflow-x: auto; padding-bottom: 1em; scroll-behavior: smooth;">
                     <?php
@@ -64,6 +68,16 @@ if (!empty($_SESSION['mensaje_exito'])) {
         <?php include '../View/componentes/menu.php' ?>
         <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script>
+            setTimeout(() => {
+                let alert = document.querySelector(".alert");
+                if (alert) {
+                    alert.style.transition = "opacity 0.5s";
+                    alert.style.opacity = "0";
+                    setTimeout(() => alert.remove(), 500);
+                }
+            }, 3000);
+        </script>
     </div>
 </body>
 
