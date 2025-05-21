@@ -395,49 +395,54 @@ class loginController
             $nombre = trim($_POST['nombre']);
             $apellido = trim($_POST['apellido']);
             $correo = trim($_POST['correo']);
-            $contraseña = isset($_POST['password']) ? trim($_POST['password']) : null;
+
+            $contraseña = null;
+            if (!empty($_POST['password'])) {
+                $contraseña = trim($_POST['password']);
+            }
+
 
 
             $loginModel = new LoginModel();
             $resultado = $loginModel->CambiarDatosUsuario($id_usuario, $nombre, $apellido, $correo, $contraseña);
 
             if ($resultado) {
-                // Actualizar sesión si se cambió el nombre o correo
+                
                 $_SESSION['nombre_usuario'] = $nombre;
                 $_SESSION['apellido'] = $apellido;
                 $_SESSION['correo'] = $correo;
 
                 echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
-                    <div class="alert alert-success alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
-                        <strong>Perfil actualizado correctamente.</strong>
-                    </div>
-                </div>';
+                <div class="alert alert-success alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
+                    <strong>Perfil actualizado correctamente.</strong>
+                </div>
+            </div>';
                 echo '<script>
-                              setTimeout(function() {
-                                  location.reload();
-                              }, 2000);
-                            </script>';
+                          setTimeout(function() {
+                              location.reload();
+                          }, 2000);
+                        </script>';
                 echo "<script>
-                                    setTimeout(function() {
-                                    window.location.href = 'dashboard.php';
-                                    }, 2000);
-                                </script>";
+                                setTimeout(function() {
+                                window.location.href = 'dashboard.php';
+                                }, 2000);
+                            </script>";
             } else {
                 echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
-                    <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
-                        <strong>Error al actualizar el perfil.</strong>
-                    </div>
-                </div>';
+                <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
+                    <strong>Error al actualizar el perfil.</strong>
+                </div>
+            </div>';
                 echo '<script>
-                              setTimeout(function() {
-                                  location.reload();
-                              }, 2000);
-                            </script>';
+                          setTimeout(function() {
+                              location.reload();
+                          }, 2000);
+                        </script>';
                 echo "<script>
-                                    setTimeout(function() {
-                                    window.location.href = 'dashboard.php';
-                                    }, 2000);
-                                </script>";
+                                setTimeout(function() {
+                                window.location.href = 'dashboard.php';
+                                }, 2000);
+                            </script>";
             }
         }
     }

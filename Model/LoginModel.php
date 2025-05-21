@@ -162,16 +162,17 @@ class LoginModel
         }
     }
 
-    
-    public function MostrarPlanPerfil($id_usuario){
-       
+
+    public function MostrarPlanPerfil($id_usuario)
+    {
+
         $stmt = $this->db->prepare('SELECT p.nombre_plan FROM pagos pa JOIN planes p ON pa.id_plan = p.id_plan
             WHERE pa.id_usuario = ? 
             AND pa.estado = 1
             AND pa.fecha_expiracion >= CURDATE()
             ORDER BY pa.fecha_expiracion DESC
             LIMIT 1;
-            '); 
+            ');
 
         $stmt->bind_param("i", $id_usuario);
         $stmt->execute();
@@ -180,39 +181,25 @@ class LoginModel
         return $result->fetch_assoc();
     }
 
-    public function CambiarDatosUsuario($id_usuario, $nombre, $apellido, $correo, $contraseña = null)
+    public function CambiarDatosUsuario($id, $nombre, $apellido, $correo, $contraseña = null)
     {
-        // Si la contraseña es proporcionada, actualizarla también
-        if ($contraseña !== null) {
-            $stmt = $this->db->prepare("UPDATE login SET nombre_usuario = ?, apellido = ?, correo = ?, contraseña = ? WHERE id_usuario = ?");
-            $stmt->bind_param("ssssi", $nombre, $apellido, $correo, $contraseña, $id_usuario);
+       
+
+        if ($contraseña) {
+            $sql = "UPDATE login SET nombre_usuario = ?, apellido = ?, correo = ?, contraseña = ? WHERE id_usuario = ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("ssssi", $nombre, $apellido, $correo, $contraseña, $id);
         } else {
-            // Si no se proporciona contraseña, no la actualizamos
-            return $this->ActualizarDatosUsuario($id_usuario, $nombre, $apellido, $correo);
+            $sql = "UPDATE login SET nombre_usuario = ?, apellido = ?, correo = ? WHERE id_usuario = ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("sssi", $nombre, $apellido, $correo, $id);
         }
 
-        $result = $stmt->execute();
+        $resultado = $stmt->execute();
         $stmt->close();
+        $this->db->close();
 
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function ActualizarDatosUsuario($id_usuario, $nombre, $apellido, $correo)
-    {
-        $stmt = $this->db->prepare("UPDATE login SET nombre_usuario = ?, apellido = ?, correo = ? WHERE id_usuario = ?");
-        $stmt->bind_param("sssi", $nombre, $apellido, $correo, $id_usuario);
-        $result = $stmt->execute();
-        $stmt->close();
-
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
+        return $resultado;
     }
 
 }

@@ -73,7 +73,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="mb-3">
                         <label class="form-label" for="password">Contraseña</label>
                         <div class="d-flex">
-                            <input type="password" class="form-control me-2" id="password" name="password" maxlength="50" placeholder="********" disabled />
+                           <input type="password" class="form-control me-2" id="password" name="password" maxlength="50" placeholder="********" value="" disabled />
                             <button class="btn btn-outline-primary" type="button" onclick="habilitarCampo('password')">Editar</button>
                         </div>
                         <p class="formulario__input-error" style="font-size: 0.8em;">
