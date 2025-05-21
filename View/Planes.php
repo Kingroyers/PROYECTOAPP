@@ -39,7 +39,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     foreach ($planes as $index => $plan) : ?>
                         <div class="card mx-2 shadow-lg text-white" style="width: 18rem; flex: 0 0 auto; border-radius: 40px; background-color: #101116;" id="card-<?php echo $index; ?>">
                             <div class="card-body text-left">
-                                <h3 class="card-title mt-3 mb-3"><strong>Plan </strong><?php echo $plan['nombre_plan']; ?></h3>
+                                <h3 class="card-title mt-3 mb-3"><strong>Plan <?php echo $plan['nombre_plan']; ?></strong></h3>
                                 <p class="card-text" style="font-size: 0.75rem;"><strong>Beneficios</strong><br><?php echo nl2br(htmlspecialchars($plan['beneficios'])); ?></p>
                                 <p class="card-text"><strong>Precio:</strong> $<?php echo number_format($plan['precio'], 2); ?> COP</p>
                                 <div class="text-center">
@@ -68,16 +68,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php include '../View/componentes/menu.php' ?>
         <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <script>
-            setTimeout(() => {
-                let alert = document.querySelector(".alert");
-                if (alert) {
-                    alert.style.transition = "opacity 0.5s";
-                    alert.style.opacity = "0";
-                    setTimeout(() => alert.remove(), 500);
-                }
-            }, 3000);
-        </script>
+        <script src="/ProyectoAPP/src/js/PagoExitoso.js"></script>
     </div>
 </body>
 

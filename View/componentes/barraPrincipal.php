@@ -22,7 +22,6 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="offcanvas offcanvas-end" tabindex="-1" id="menuLateral"
             style="transition: transform 0.5s ease-in-out !important; z-index: 100000;">
             <div class="offcanvas-header">
-
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
             </div>
             <div class="offcanvas-body d-flex flex-column">
@@ -43,7 +42,6 @@ if (session_status() === PHP_SESSION_NONE) {
                                     <figure class="" style="position: relative; border-radius: 50%; width: 100px; height: 100px;">
                                         <?php
                                         include_once __DIR__ . '/../../Controller/loginController.php';
-
                                         $login = new loginController;
                                         $login->mostrarFotoUsuario();
                                         ?>

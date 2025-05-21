@@ -33,7 +33,6 @@
                 <div style="width: 80px; height: 80px; margin: 10px solid #ffffff;">
                     <?php
                     include_once __DIR__ . '/../Controller/loginController.php';
-
                     $login = new loginController;
                     $login->mostrarFotoUsuario();
                     ?>
