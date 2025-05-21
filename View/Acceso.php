@@ -15,19 +15,19 @@
     <?php include '../View/componentes/barraPrincipal.php' ?>
     <div class="container-xxl position-relative d-flex flex-column">
         <main style="height: auto;">
-            <p style="margin: 30px 0 0 10px; display: flex; justify-content: space-between;">ACCESO</p>
+            <p style="margin: 30px 0 0 10px; display: flex; justify-content: space-between;">Acceso</p>
             <hr style="margin-bottom: 20px;">
             <div class="row d-flex justify-content-center align-content-center" style=" margin-top: 0; padding: 0 0 10px 0;">
                 <div class="col-12 col-sm-10 col-md-8 col-lg-6 mx-375px">
                     <div class="card bg-secondary text-white mb-4" style="border-radius: 40px;">
                         <div class="card-body text-center">
-                            <p>CÓDIGO QR</p>
+                            <p>Código QR</p>
                             <?php
                             include '../Controller/AccesoController.php';
                             $controller = new AccesoController();
                             $controller->mostrar_qr();
                             ?>
-                            <p style="margin-top: 20px;">ESCANEAME!</p>
+                            <p style="margin-top: 20px;">Escaneame!</p>
                         </div>
                     </div>
                 </div>

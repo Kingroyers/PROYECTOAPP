@@ -1,5 +1,5 @@
 <div class="custom-navbar d-flex justify-content-around align-items-center position-fixed mx-5 w-75 w-md-75 w-lg-50" style=" align-self: center; gap: 10px; bottom: 8px; color: white;   border-radius: 20px;  height: 7vh; padding: 2em; background: #101116;">
-  
+
   <a href="../ProyectoAPP/Dashboard.php"
     ><img src="src/img/inconos/icons-Home.png" alt=""
   /></a>
@@ -15,14 +15,8 @@
   </a>
   <?php 
     require_once __DIR__ . '/../../Controller/loginController.php';
-
-
-
-
     $controller = new LoginController();
     $controller->mostrarNotificacionesPlanVencido();
-
     ?>
   </div>
-
 </div>

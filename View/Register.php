@@ -8,13 +8,6 @@
     <link rel="stylesheet" href="../src/estilos.css">
     <title>Register</title>
 </head>
-<style>
-
-    form{
-        font-family: 'Arial', sans-serif;
-    }
-
-</style>
 
 <body class="d-flex justify-content-center align-items-center vh-100 position-relative" style="background-color: #f8f9fa;  background-color: #101116;">
     <div class="p-4 bg-transparent position-absolute" style="max-width: 390px; width: 100%; border: 1px solid #ffffff38; border-radius: 40px;">
@@ -55,7 +48,6 @@
                     <span class="input-group-text position-absolute" style="cursor: pointer; top: 0; right: 0; height: 37px; z-index: 10;" onclick="togglePassword()">
                         <img src="../src/img/inconos/ojoabierto.png" id="iconoContraseña" width="20px">
                     </span>
-                    
                 </div>
             </div>
             <button type="submit" class="btn btn-primary w-100 mt-3" name="btnRegistrar">Enviar</button>

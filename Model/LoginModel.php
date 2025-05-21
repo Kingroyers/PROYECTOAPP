@@ -10,36 +10,6 @@ class LoginModel
         $this->db = $conexion->getConexion();
     }
 
-    // function loginValidar($correo, $contraseña)
-    // {
-
-
-    //     $conexion = new ConexionBD();
-    //     $conexion->getConexion();
-
-    //     $sql = "select * from login where correo ='$correo'and contraseña='$contraseña'";
-    //     $result = $conexion->getConexion()->query($sql);
-
-
-    //     if ($result->num_rows > 0) {
-    //         $row = $result->fetch_assoc();
-    //         session_start();
-    //         $_SESSION['id_login'] = $row->id_login;
-    //         $_SESSION['nombre_usuario'] = $row->nombre_usuario;
-    //         $_SESSION['id_usuario'] = $row->id_usuario;
-    //         $_SESSION['correo'] = $row->correo;
-    //         $_SESSION['foto_usuario'] = $row->foto_usuario;
-
-    //         if ($row['correo'] == $correo && $row['contraseña'] == $contraseña) {
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
     function registrarUsuario($nombre, $apellido, $correo, $identificacion, $contraseña)
     {
         $conexion = new ConexionBD();
@@ -61,60 +31,41 @@ class LoginModel
         $result = $db->query($sql);
 
         if ($result->num_rows > 0) {
-            return true;  // Usuario encontrado
+            return true;
         } else {
-            return false; // Usuario no encontrado
+            return false;
         }
     }
 
     public function mostrarFotoUsuario()
     {
-
-        // Iniciar sesión si no está iniciada
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-
-        // Verificar si el usuario está logueado
         if (isset($_SESSION['id_usuario'])) {
-
-            // Obtener el ID del usuario desde la sesión
             $id_usuario = $_SESSION['id_usuario'];
-
-            // Crear la conexión a la base de datos
             $conexion = new ConexionBD;
             $bd = $conexion->getConexion();
-
-            // Consulta para obtener la foto del usuario
             $sql = "SELECT foto_usuario FROM login WHERE id_usuario = '$id_usuario'";
             $resultado = $bd->query($sql);
-
-            // Verificar si la consulta devuelve un resultado
             if ($row = $resultado->fetch_assoc()) {
-                // Almacenar la foto del usuario en la sesión
                 $_SESSION['foto_usuario'] = $row['foto_usuario'];
-                return $row['foto_usuario']; // Retornar la foto para mostrarla
+                return $row['foto_usuario'];
             } else {
-                // Si no se encuentra la foto, retornar null
                 return null;
             }
         }
-        return null; // Si el usuario no está logueado, retornar null
+        return null;
     }
-
 
     public function ActualizarFotoUsuario($foto_usuario)
     {
         $conexion = new ConexionBD();
         $bd = $conexion->getConexion();
-
         $id_usuario = $_SESSION['id_usuario'];
-
-        // Preparamos la consulta de actualización
         $stmt = $bd->prepare("UPDATE login SET foto_usuario = ? WHERE id_usuario = ?");
-
         if ($stmt) {
-            $stmt->bind_param("ss", $foto_usuario, $id_usuario); // Dos strings
+            $stmt->bind_param("ss", $foto_usuario, $id_usuario);
             $result = $stmt->execute();
             $stmt->close();
 
@@ -124,17 +75,15 @@ class LoginModel
                 return false;
             }
         } else {
-            return false; // Falló preparar la consulta
+            return false;
         }
     }
 
     public function RecuperarContraseña($correo)
     {
-
         $stmt = $this->db->prepare("SELECT * FROM login WHERE correo = ? ");
         $stmt->bind_param("s", $correo);
         $result = $stmt->execute();
-
         if ($result) {
             return true;
         } else {
@@ -149,10 +98,7 @@ class LoginModel
         $stmt->bind_param("s", $correo);
         $stmt->execute();
         $stmt->store_result();
-
         if ($stmt->num_rows > 0) {
-
-
             $stmt->bind_result($contraseña);
             $stmt->fetch();
             $stmt->close();
@@ -162,10 +108,8 @@ class LoginModel
         }
     }
 
-
     public function MostrarPlanPerfil($id_usuario)
     {
-
         $stmt = $this->db->prepare('SELECT p.nombre_plan FROM pagos pa JOIN planes p ON pa.id_plan = p.id_plan
             WHERE pa.id_usuario = ? 
             AND pa.estado = 1
@@ -173,18 +117,14 @@ class LoginModel
             ORDER BY pa.fecha_expiracion DESC
             LIMIT 1;
             ');
-
         $stmt->bind_param("i", $id_usuario);
         $stmt->execute();
         $result = $stmt->get_result();
-
         return $result->fetch_assoc();
     }
 
     public function CambiarDatosUsuario($id, $nombre, $apellido, $correo, $contraseña = null)
     {
-       
-
         if ($contraseña) {
             $sql = "UPDATE login SET nombre_usuario = ?, apellido = ?, correo = ?, contraseña = ? WHERE id_usuario = ?";
             $stmt = $this->db->prepare($sql);
@@ -194,12 +134,9 @@ class LoginModel
             $stmt = $this->db->prepare($sql);
             $stmt->bind_param("sssi", $nombre, $apellido, $correo, $id);
         }
-
         $resultado = $stmt->execute();
         $stmt->close();
         $this->db->close();
-
         return $resultado;
     }
-
 }

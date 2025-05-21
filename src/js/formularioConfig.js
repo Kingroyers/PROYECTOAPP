@@ -20,7 +20,7 @@
             nombre: false,
             apellido: false,
             correo: false,
-            password: true // Vacío = válido (no obligatorio)
+            password: true 
         };
 
         function validarCampo(expresion, input, campo) {
@@ -62,7 +62,6 @@
         });
 
         formulario.addEventListener('submit', function(e) {
-            // Validar todos los campos al enviar
             inputs.forEach(input => {
                 if (input.name in expresiones) {
                     validarFormulario({ target: input });
@@ -75,7 +74,6 @@
             }
         });
 
-        // Al enviar habilitar todos los inputs para que se envíen
         formulario.addEventListener("submit", function() {
             inputs.forEach(input => input.disabled = false);
         });

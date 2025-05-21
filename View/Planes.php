@@ -19,14 +19,14 @@ if (!empty($_SESSION['mensaje_exito'])) {
     <link rel="stylesheet" href="../src/estilos.css">
     <base href="http://localhost/ProyectoAPP/">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <title>Planes - APP</title>
+    <title>Planes</title>
 </head>
 
 <body class="bg-white">
     <?php include '../View/componentes/barraPrincipal.php' ?>
     <div class="container-xxl position-relative d-flex flex-column">
         <main style="height: auto;">
-            <p style="margin: 30px 0 0 10px; display: flex; justify-content: space-between;">PLANES</p>
+            <p style="margin: 30px 0 0 10px; display: flex; justify-content: space-between;">Planes</p>
             <hr style="margin-bottom: 20px;">
             <div class="container-fluid mt-4 w-100 w-sm-100" style="padding: 1em;">
                 <div id="scrollContainer" class="wrapper d-flex" style="overflow-x: auto; padding-bottom: 1em; scroll-behavior: smooth;">

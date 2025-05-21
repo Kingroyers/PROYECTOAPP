@@ -1,16 +1,16 @@
-const typed = new Typed('#texto-animado', {
+const typed = new Typed("#texto-animado", {
   strings: [
-    'LIFE',
-    'Energía',
-    'Disciplina',
-    'Motivación',
-    'Salud',
-    'Progreso',
-    'Poder',
-    'Constancia',
-    'Éxito'
+    "LIFE",
+    "ENERGÍA",
+    "DISCIPLINA",
+    "MOTIVACIÓN",
+    "SALUD",
+    "PROGRESO",
+    "PODER",
+    "CONSTANCIA",
+    "ÉXITO",
   ],
   typeSpeed: 100,
   backSpeed: 60,
-  loop: true
+  loop: true,
 });

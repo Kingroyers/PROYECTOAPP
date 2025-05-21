@@ -9,27 +9,17 @@ use PHPMailer\PHPMailer\Exception;
 class loginController
 {
 
-
     function loginValidar()
     {
-
-
         if (isset($_POST['btnlogin'])) {
             if (!empty($_POST['correo']) && !empty($_POST['pass'])) {
                 $correo = $_POST['correo'];
                 $contraseña = $_POST['pass'];
-
                 $conexion = new ConexionBD();
                 $conexion->getConexion();
-
                 $sql = "select * from login where correo ='$correo'and contraseña='$contraseña'";
                 $result = $conexion->getConexion()->query($sql);
-
                 if ($datos = $result->fetch_assoc()) {
-                    // echo '<pre>';
-                    // print_r($datos);  // 👈 Muestra lo que tiene la fila
-                    // echo '</pre>';
-                    // exit();
                     session_start();
                     $_SESSION['id_login'] = $datos['id_login'];
                     $_SESSION['nombre_usuario'] = $datos['nombre_usuario'];
@@ -37,9 +27,6 @@ class loginController
                     $_SESSION['id_usuario'] = $datos['id_usuario'];
                     $_SESSION['correo'] = $datos['correo'];
                     $_SESSION['foto_usuario'] = $datos['foto_usuario'];
-
-
-
                     header("Location: ../dashboard.php");
                     exit();
                 } else {
@@ -49,31 +36,6 @@ class loginController
                 echo '<div class="alert alert-danger fs-6">Por favor complete todos los campos</div>';
             }
         }
-
-
-
-        //   session_start();
-
-        //     if (isset($_POST['btnlogin'])) {
-
-        //         $correo = $_POST['correo'];
-        //         $contraseña = $_POST['pass'];
-
-        //         $login = new LoginModel();
-        //         $usuario = $login->loginValidar($correo, $contraseña);
-
-        //         if ($usuario == true) {
-
-
-        //             $_SESSION['nombre_usuario'];
-
-        //             header("Location: ../dashboard.php");
-
-        //         } else {
-        //             echo '<div class="alert alert-danger fs-6">Acceso denegado</div>';
-        //         }
-        //     }
-
     }
 
     function registrarUsuario()
@@ -85,10 +47,8 @@ class loginController
                 $correo = $_POST['correo_register'];
                 $identificacion = $_POST['id'];
                 $contraseña = $_POST['contraseña'];
-
                 $login = new LoginModel();
                 $usuario = $login->registrarUsuario($nombre, $apellido, $correo, $identificacion, $contraseña);
-
                 if ($usuario == true) {
                     echo '<div class="alert alert-success fs-6">Usuario registrado correctamente</div>';
                     echo "<script>
@@ -109,7 +69,6 @@ class loginController
     {
         $modelo = new LoginModel();
         $foto = $modelo->mostrarFotoUsuario();
-
         if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
             echo '<img src="src/uploads/' . htmlspecialchars($_SESSION['foto_usuario']) . '" alt="Foto de perfil" style="object-fit: cover; width:100%; height:100%; border-radius:50%;" >';
         } else {
@@ -133,25 +92,18 @@ class loginController
                     return;
                 }
             }
-
-            // 2. Procesar la subida del archivo si no hubo errores
             $archivoFoto = $_FILES['foto'];
             $nombreFoto = $archivoFoto['name'];
             $rutaTemporal = $archivoFoto['tmp_name'];
             $tamañoFoto = $archivoFoto['size'];
             $tipoFoto = $archivoFoto['type'];
-
             $carpetaDestino = __DIR__ . '/../src/uploads/';
-
-            // 3. Validar el tipo de archivo (ejemplo: permitir solo imágenes JPEG, PNG, GIF)
             $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
             if (!in_array($tipoFoto, $tiposPermitidos)) {
                 echo "Error: Solo se permiten archivos con formato JPEG, PNG o GIF.";
                 return;
             }
-
-            // 4. Validar el tamaño del archivo (ejemplo: máximo 2MB)
-            $tamañoMaximo = 2 * 1024 * 1024; // 2MB en bytes
+            $tamañoMaximo = 2 * 1024 * 1024;
             if ($tamañoFoto > $tamañoMaximo) {
                 echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
                                     <div class="alert alert-danger alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
@@ -170,22 +122,14 @@ class loginController
                                 </script>";
                 return;
             }
-
-            // 5. Generar un nombre de archivo único para evitar colisiones
             $nombreUnico = uniqid() . "_" . pathinfo($nombreFoto, PATHINFO_FILENAME) . "." . pathinfo($nombreFoto, PATHINFO_EXTENSION);
             $rutaDestino = $carpetaDestino . $nombreUnico;
-
-            // 6. Mover la foto al servidor
             if (move_uploaded_file($rutaTemporal, $rutaDestino)) {
-                // 7. Actualizar la base de datos con el nuevo nombre de archivo
                 $model = new LoginModel();
                 $model->ActualizarFotoUsuario($nombreUnico);
-
-                // 8. Redirigir con un mensaje de éxito
                 header("Location: dashboard.php");
                 exit();
             } else {
-                // 9. Manejar el error al mover el archivo
                 echo "Error al guardar la imagen en el servidor.";
             }
         }
@@ -195,25 +139,16 @@ class loginController
     {
         if (isset($_POST['btnRC'])) {
             if (!empty($_POST['correo'])) {
-
                 $correo = $_POST['correo'];
-
                 $login = new LoginModel();
                 $result = $login->RecuperarContraseña($correo);
-
                 if ($result == true) {
-
-
                     require '../libs/PHPMailer/Exception.php';
                     require '../libs/PHPMailer/PHPMailer.php';
                     require '../libs/PHPMailer/SMTP.php';
-
                     $mail = new PHPMailer(true);
                     $contraseña = $login->ConsularContraseña($correo);
-
                     try {
-
-
                         $mail->isSMTP();
                         $mail->Host       = 'smtp.gmail.com';
                         $mail->SMTPAuth   = true;
@@ -221,8 +156,6 @@ class loginController
                         $mail->Password   = 'qbtd ivdi pyzb safw';
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                         $mail->Port       = 465;
-
-                        //Recipients
                         $mail->setFrom('antonioroyero12@gmail.com', 'Soporte Fitness Life');
                         $mail->addAddress($correo);
                         $mail->isHTML(true);
@@ -333,18 +266,13 @@ class loginController
         }
     }
 
-
     public function mostrarPlan()
     {
         $modelo = new LoginModel();
-
         $id_usuario = $_SESSION['id_usuario'];
-
         $resultado = $modelo->MostrarPlanPerfil($id_usuario);
-
         if ($resultado) {
             $plan = $resultado['nombre_plan'];
-
             switch ($plan) {
                 case 'Básico':
                     echo "<p style='font-size: 30px'>basico</p>";
@@ -365,10 +293,8 @@ class loginController
     public function mostrarNotificacionesPlanVencido()
     {
         $id_usuario = $_SESSION['id_usuario'];
-
         $modelo = new PlanesModel();
         $result =  $modelo->getPlanActivo($id_usuario);
-
         if ($result == null) {
             echo ' <span style="
         position: absolute;
@@ -390,28 +316,20 @@ class loginController
     public function actualizarPerfil()
     {
         if (isset($_POST['actualizarPerfil'])) {
-
             $id_usuario = $_SESSION['id_usuario'];
             $nombre = trim($_POST['nombre']);
             $apellido = trim($_POST['apellido']);
             $correo = trim($_POST['correo']);
-
             $contraseña = null;
             if (!empty($_POST['password'])) {
                 $contraseña = trim($_POST['password']);
             }
-
-
-
             $loginModel = new LoginModel();
             $resultado = $loginModel->CambiarDatosUsuario($id_usuario, $nombre, $apellido, $correo, $contraseña);
-
             if ($resultado) {
-                
                 $_SESSION['nombre_usuario'] = $nombre;
                 $_SESSION['apellido'] = $apellido;
                 $_SESSION['correo'] = $correo;
-
                 echo '<div class="container mt-4 d-flex justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.5); z-index: 1000;">
                 <div class="alert alert-success alert-dismissible fade show shadow p-4 rounded text-center" role="alert" style="max-width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
                     <strong>Perfil actualizado correctamente.</strong>

@@ -38,7 +38,6 @@ class PlanesModel
         return [];
     }
 
-
     public function getPlanActivo($id_usuario)
     {
         $sql = "SELECT p.nombre_plan, p.precio, pg.fecha_inicio, pg.fecha_expiracion 
@@ -53,6 +52,4 @@ class PlanesModel
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
-
-   
 }

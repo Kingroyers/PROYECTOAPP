@@ -2,11 +2,11 @@ const formulario_pago = document.getElementById("formulario_pago");
 const inputs = document.querySelectorAll("#formulario_pago input");
 
 const expresiones = {
-  titular: /^[a-zA-ZÁÉÍÓÚáéíóúñÑ\s]{3,50}$/, // Solo letras y espacios, mínimo 3 caracteres
-  numero_tarjeta: /^\d{16}$/, // 16 dígitos numéricos
-  caducidad: /^\d{4}-(0[1-9]|1[0-2])$/, // Formato YYYY-MM
-  codigo_seguridad: /^\d{3}$/, // 3 dígitos numéricos
-  identificacion: /^\d{7,10}$/, // Solo números, mínimo 7 y máximo 10 dígitos.
+  titular: /^[a-zA-ZÁÉÍÓÚáéíóúñÑ\s]{3,50}$/,
+  numero_tarjeta: /^\d{16}$/,
+  caducidad: /^\d{4}-(0[1-9]|1[0-2])$/,
+  codigo_seguridad: /^\d{3}$/,
+  identificacion: /^\d{7,10}$/,
 };
 
 const validarFormulario = (e) => {

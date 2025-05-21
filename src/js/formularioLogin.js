@@ -28,13 +28,11 @@ const validarCampo = (expresion, input) => {
   }
 };
 
-// Escuchar eventos de validación en tiempo real
 inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
 });
 
-// Validación final al enviar el formulario
 formulario_login.addEventListener("submit", (e) => {
   let formularioValido = true;
 
@@ -48,9 +46,9 @@ formulario_login.addEventListener("submit", (e) => {
 
   if (formularioValido) {
     console.log("Formulario válido. Enviando...");
-    formulario_login.submit(); // Envío directo del formulario
+    formulario_login.submit();
   } else {
     console.log("Formulario inválido. Revisa los campos.");
-    e.preventDefault(); // Solo previene si hay errores
+    e.preventDefault();
   }
 });

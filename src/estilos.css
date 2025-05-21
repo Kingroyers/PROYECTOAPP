@@ -1,26 +1,26 @@
 @font-face {
-  font-family: "Valorant";
-  src: url("fonts/Valorant-Font.woff") format("woff");
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: var(--font-valorant);
+  font-family: var(--font-poppins);
 }
 
 :root {
-  --font-valorant: "Valorant", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
   --color-claro: #8689ac;
   --color-2: #587099;
   --color-3: #3f5576;
   --color-4: #2f3148;
   --color-dark: #101116;
 }
-   form{
-        font-family: 'Arial', sans-serif;
-    }
 
+form {
+  font-family: "Poppins", sans-serif;
+}
 
 .imageninicio {
   width: 100%;
@@ -117,6 +117,7 @@ body {
   transition: transform 0.3s ease-in-out;
   background: transparent;
 }
+
 .cartas-rutinas:hover {
   transform: scale(1.1);
 }
@@ -158,6 +159,7 @@ body {
   border-radius: 20px;
   border: 1px solid #7a7a7a;
 }
+
 input {
   font-size: 10px;
 }

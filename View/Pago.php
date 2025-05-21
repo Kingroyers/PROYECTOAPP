@@ -8,14 +8,8 @@
     <link rel="stylesheet" href="../src/css/bootstrap.min.css">
     <link rel="stylesheet" href="../src/estilos.css">
     <base href="http://localhost/ProyectoAPP/">
-    <title>Pago - APP</title>
+    <title>Pago</title>
 </head>
-<style>
-    form{
-        font-family: 'Arial', sans-serif;
-    }
-</style>
- 
 
 <body class="bg-white">
     <?php include '../View/componentes/barraPrincipal.php'; ?>

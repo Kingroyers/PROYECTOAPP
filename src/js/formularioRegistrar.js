@@ -2,11 +2,11 @@ const formulario_registrar = document.getElementById("formulario_registrar");
 const inputs = document.querySelectorAll("#formulario_registrar input");
 
 const expresiones = {
-  nombre: /^[A-Za-zÁÉÍÓÚáéíóúÑñ]{3,}$/, // Solo letras, mínimo 3 caracteres.
-  apellido: /^[A-Za-zÁÉÍÓÚáéíóúÑñ]{3,}$/, // Solo letras, mínimo 3 caracteres.
-  id: /^\d{7,10}$/, // Solo números, mínimo 7 y máximo 10 caracteres.
-  correo_register: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, // Formato válido de correo electrónico.
-  contraseña: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/ // Al menos 8 caracteres, incluyendo una mayúscula, una minúscula, un número y un carácter especial.
+  nombre: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}$/,
+  apellido: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}$/,
+  id: /^\d{7,10}$/,
+  correo_register: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+  contraseña: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/,
 };
 
 const validarFormulario = (e) => {
@@ -29,13 +29,11 @@ const validarCampo = (expresion, input) => {
   }
 };
 
-// Escuchar eventos de validación en tiempo real
 inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
 });
 
-// Validación final al enviar el formulario
 formulario_registrar.addEventListener("submit", (e) => {
   let formularioValido = true;
 
@@ -49,9 +47,9 @@ formulario_registrar.addEventListener("submit", (e) => {
 
   if (formularioValido) {
     console.log("Formulario válido. Enviando...");
-    formulario_login.submit(); // Envío directo del formulario
+    formulario_login.submit();
   } else {
     console.log("Formulario inválido. Revisa los campos.");
-    e.preventDefault(); // Solo previene si hay errores
+    e.preventDefault();
   }
 });

@@ -46,10 +46,8 @@ class PlanesController
 
 $conexionBD = new ConexionBD();
 $conexion = $conexionBD->getConexion();
-
 $planController = new PlanesController($conexion);
 $planes = $planController->mostrarPlanes($id_usuario);
 $planActivo = $planController->getPlanActivo($id_usuario);
-
 $pagoModel = new PagoModel();
 $pagoModel->actualizarEstadosPagos();

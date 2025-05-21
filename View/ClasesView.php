@@ -12,7 +12,6 @@
 </head>
 
 <body class="d-flex position-relative align-items-center bg-white flex-column">
-
     <style>
         .dia:hover {
             transform: scale(1.05);
@@ -65,7 +64,6 @@
     </style>
 
     <?php include '../View/componentes/barraPrincipal.php' ?>
-
     <div class="col-12 d-flex justify-content-center my-2">
         <div class='d-flex  overflow-x-auto p-2' id="contenedor-dias" style='width: 100%; padding: 1em; scrollbar-width: none; scroll-behavior: smooth; '>
             <?php
@@ -75,9 +73,6 @@
             ?>
         </div>
     </div>
-
-
-
     <div class="container mt-5">
         <h2>Clases De la semana</h2>
         <hr>
@@ -87,42 +82,18 @@
         //   $usuarioExiste = $claseController-> 
         
         ?>
-
         <div class="col-12 d-flex flex-wrap mb-5">
-
-
             <?php
             require_once "../Controller/ClaseController.php";
             $claseController = new ClaseController();
             $claseController->mostrarClasesPorFecha();
             ?>
-
-
-
         </div>
     </div>
-
-
-
     <?php include '../View/componentes/menu.php' ?>
 
     <script src="/ProyectoAPP/src/js/bootstrap.min.js"></script>
-    <!-- <script>
-window.onload = function () {
-    const activo = document.querySelector('.activo');
-    const container = document.getElementById('semana');
-
-    if (activo) {
-        const offset = activo.offsetLeft - (container.offsetWidth / 2) + (activo.offsetWidth / 2);
-        container.scrollLeft = offset;
-    }
-}
-</script> -->
-
-
 <script src="src/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
 </html>

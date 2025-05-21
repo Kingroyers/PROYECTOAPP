@@ -2,25 +2,15 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-// if (isset($_SESSION['nombre_usuario'])) {
-//     $nombre = $_SESSION['nombre_usuario'];
-// } else {
-//     $nombre = 'Invitado';
-// }
 ?>
 <div class="d-flex w-100 w-md-75 w-lg-50 text-white justify-content-between" style="background: radial-gradient(125% 125% at 50% 10%, #101116 40%, #63e 100%); padding: 1em; width: 100vh;">
-
     <section class="row w-100 mx-2">
         <div class="col-6 w-auto d-flex justify-content-center align-items-center" style="gap: 10px;">
             <div class="justify-content-center align-items-center" style="width: 55px; height: 55px; border: 1px solid; border-radius: 50%; margin-right:10px; display: flex; border: 1px solid rgb(1, 4, 25);">
                 <?php
                 include_once __DIR__ . '/../../Controller/loginController.php';
-
                 $login = new loginController;
                 $login->mostrarFotoUsuario();
-
-
                 ?>
             </div>
             <p style="font-size: 15px ;margin-top: 15px;">Hola, <?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
@@ -29,7 +19,6 @@ if (session_status() === PHP_SESSION_NONE) {
                 src="src/img/inconos/BiThreeDotsVertical.png" alt="config" style="width: 24px;"
                 data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
         </div>
-        <!-- Menú Offcanvas -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="menuLateral"
             style="transition: transform 0.5s ease-in-out !important; z-index: 100000;">
             <div class="offcanvas-header">
@@ -41,39 +30,29 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                         <figure class="actualizarPerfil" style="position: relative; border-radius: 50%; width: 140px; height: 150px;">
                             <?php
-                        include_once __DIR__ . '/../../Controller/loginController.php';
-
-
+                            include_once __DIR__ . '/../../Controller/loginController.php';
                             $login = new loginController;
                             $login->mostrarFotoUsuario();
-
-
                             ?>
                             <button popovertarget="modal" class="position-absolute justify-content-center d-flex bottom-0" style="border: 4px solid #fff; right: 0; background: #000; border-radius:50%; width:30px; height:30px;"><img src="src/img/inconos/Plus.png" alt=""></button>
                         </figure>
-
                         <p style="justify-self: center; font-size: 20px;"><?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?></p>
-
                         <div id="modal" class="col-8 col-md-4" style=" height:400px; border: 1px solid #9a9797; padding:1em; border-radius: 10px;" popover>
                             <div class="row container-fluid d-flex justify-content-center">
                                 <div class="col-12 d-flex justify-content-center">
-
                                     <figure class="" style="position: relative; border-radius: 50%; width: 100px; height: 100px;">
                                         <?php
-                                       include_once __DIR__ . '/../../Controller/loginController.php';
+                                        include_once __DIR__ . '/../../Controller/loginController.php';
 
                                         $login = new loginController;
                                         $login->mostrarFotoUsuario();
                                         ?>
                                     </figure>
                                 </div>
-
                                 <div class="col-12">
-                                    <?php  include_once __DIR__ . '/../../Controller/loginController.php';
-
+                                    <?php include_once __DIR__ . '/../../Controller/loginController.php';
                                     $login = new loginController();
                                     $login->ActualizarFoto();
-
                                     ?>
                                     <form action="" method="POST" enctype="multipart/form-data">
                                         <label for="foto" class="mt-2 align-self-center">Cambiar Foto</label><br>
@@ -81,17 +60,10 @@ if (session_status() === PHP_SESSION_NONE) {
                                         <button type="submit" name="actualizarFoto" class="btn btn-primary w-100">Subir Foto</button>
                                     </form>
                                 </div>
-
                             </div>
-
-
-
                         </div>
-
-
                     </div>
                 </div>
-
                 <div class="container mt-3 my-3">
                     <div class="custom-alert"
                         style="background-color: #eefbe5; color: #2b641e; border: 1px solid #84d65a; display: flex; align-items: center; padding: 8px 12px; border-radius: 5px;">
@@ -101,11 +73,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <span style="font-size: 20px;">0000000</span>
                     </div>
                 </div>
-
-
-
                 <ul class="list-group" style="margin-top: 2s0px;">
-
                     <li class="list-group-item" style="padding: 1em;"><a href="View/PerfilUsuario.php"
                             style="text-decoration: none; color: #000;">Perfil</a></li>
                     <li class="list-group-item" style="padding: 1em;"><a href="View/Planes.php"
@@ -114,9 +82,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             style="text-decoration: none; color: #000;">Clases Inscritas</a></li>
                     <li class="list-group-item" style="padding: 1em;"><a href="View/Configuracion.php"
                             style="text-decoration: none; color: #000;">Configuracion</a></li>
-
                 </ul>
-
                 <ul class="list-group" style="margin-top: 20px;">
                     <li class="list-group-item" style="padding: 1em;">
                         <a href="Controller/cerrarSesion.php"
@@ -129,10 +95,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         style="padding: 1em; height: 50px; margin-top: 20px; background-color: #101116; display: flex; justify-content: center;">
                         <a href="#" style="text-decoration: none; color: #fff;">Visita nuestra pagina</a>
                 </ul>
-
-
             </div>
         </div>
-
     </section>
 </div>
