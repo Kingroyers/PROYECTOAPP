@@ -4,6 +4,17 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Valorant";
+  src: url("fonts/Valorant-Font.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.valorant-text {
+      font-family: "Valorant", sans-serif;
+      font-size: 40px;
+    }
 
 body {
   font-family: var(--font-poppins);
@@ -11,6 +22,7 @@ body {
 
 :root {
   --font-poppins: "Poppins", sans-serif;
+  --font-valorant: "Valorant", sans-serif;
   --color-claro: #8689ac;
   --color-2: #587099;
   --color-3: #3f5576;
@@ -202,3 +214,4 @@ input:focus::placeholder {
 .formulario__mensaje-exito-activo {
   display: block;
 }
+

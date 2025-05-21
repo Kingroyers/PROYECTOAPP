@@ -19,9 +19,9 @@
             </div>
             <div class=" col-lg-6 d-flex flex-column align-items-center justify-content-center p- rounded">
                 <div class=" d-flex  flex-column p-4">
-                    <h1>FITNESS <span id="texto-animado"></span></h1>
-                    <p class="d-none d-md-block z-lg-1 ">FITNESS LIFE, La mejor versión de ti</p>
-                    <div class="d-flex mt-4 justify-content-center">
+                    <h1 class="valorant-text">FITNESS <span id="texto-animado"></span></h1>
+                    <p class="d-none d-md-block z-lg-1">FITNESS LIFE, La mejor versión de ti</p>
+                    <div class="d-flex mt-4 justify-content-center valorant-text">
                         <a href="../ProyectoAPP/View/login.php"><button class="btn btn-outline-light px-4 py-2 rounded-"
                                 style="border-radius:  0 0 0 30px;">Iniciar</button></a>
                         <a href="../ProyectoAPP/View/Register.php"><button

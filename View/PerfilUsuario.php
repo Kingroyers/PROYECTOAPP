@@ -21,7 +21,8 @@
     .letraNombre {
         font-size: 20px;
         font-weight: 300;
-        color: white;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: white;
     }
 </style>
 
@@ -38,7 +39,7 @@
                     ?>
                 </div>
                 <div class="">
-                    <p class="letraNombre" style="margin-left: 14px;"><?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
+                    <p class="letraNombre valorant-text" style="margin-left: 14px;"><?php echo $_SESSION['nombre_usuario'] . ' ' . $_SESSION['apellido'] ?> </p>
                 </div>
             </div>
         </div>
