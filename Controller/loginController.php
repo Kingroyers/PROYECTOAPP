@@ -47,17 +47,29 @@ class loginController
                 $correo = $_POST['correo_register'];
                 $identificacion = $_POST['id'];
                 $contraseña = $_POST['contraseña'];
+
                 $login = new LoginModel();
-                $usuario = $login->registrarUsuario($nombre, $apellido, $correo, $identificacion, $contraseña);
-                if ($usuario == true) {
-                    echo '<div class="alert alert-success fs-6">Usuario registrado correctamente</div>';
-                    echo "<script>
+                $verificacion = $login->VerificacionUsuarioLogin($identificacion);
+
+                if (!$verificacion) {
+                    $usuario = $login->registrarUsuario($nombre, $apellido, $correo, $identificacion, $contraseña);
+                    if ($usuario == true) {
+                        echo '<div class="alert alert-success fs-6">Usuario registrado correctamente</div>';
+                        echo "<script>
                         setTimeout(function() {
                             window.location.href = '../index.php';
                         }, 2000);
                      </script>";
-                } else {
-                    echo '<div class="alert alert-danger fs-6">Error al registrar el usuario</div>';
+                    } else {
+                        echo '<div class="alert alert-danger fs-6">Error al registrar el usuario</div>';
+                    }
+                }else{
+                    echo '<div class="alert alert-danger fs-6">Error Usuario ya registrado con la misma Identificacion </div>';
+                        echo "<script>
+                        setTimeout(function() {
+                            window.location.href = '../index.php';
+                        }, 3000);
+                     </script>";
                 }
             } else {
                 echo '<div class="alert alert-danger fs-6">Por favor complete todos los campos</div>';

@@ -37,6 +37,20 @@ class LoginModel
         }
     }
 
+    public function VerificacionUsuarioLogin($id_usuario)
+    {
+        $conexion = new ConexionBD();
+        $db = $conexion->getConexion();
+        $sql = "SELECT id_usuario FROM login WHERE id_usuario = '$id_usuario'";
+        $result = $db->query($sql);
+
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function mostrarFotoUsuario()
     {
         if (session_status() === PHP_SESSION_NONE) {
