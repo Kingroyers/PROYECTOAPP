@@ -286,8 +286,8 @@ class loginController
         if ($resultado) {
             $plan = $resultado['nombre_plan'];
             switch ($plan) {
-                case 'Básico':
-                    echo "<p style='font-size: 30px' class='valorant-text'>basico</p>";
+                case 'Eco':
+                    echo "<p style='font-size: 30px' class='valorant-text'>Eco</p>";
                     break;
                 case 'Estándar':
                     echo "<p style='font-size: 30px' class='valorant-text'>estandar</p>";
